@@ -6,7 +6,7 @@
 # User-specific files
 *.rsuser
 *.suo
-*.user
+#*.user 
 *.userosscache
 *.sln.docstates
 
@@ -17,6 +17,7 @@
 mono_crash.*
 
 # Build results
+[Bd]uild/
 [Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
