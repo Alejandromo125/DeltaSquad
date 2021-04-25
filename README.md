@@ -1,2 +1,4 @@
 # DeltaSquad
 Games Development - Project I - My first amazing game
+
+Use the arrow keys to move and space bar to shoot.
