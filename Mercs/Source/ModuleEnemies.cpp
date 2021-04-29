@@ -27,7 +27,7 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/enemies.png");
+	texture = App->textures->Load("Assets/Art/Sprites/enemies.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
@@ -142,7 +142,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 		{
 			switch (info.type)
 			{
-				case ENEMY_TYPE::REDBIRD:
+				case ENEMY_TYPE::SOLDIER:
 					enemies[i] = new Enemy_Soldier(info.x, info.y);
 					break;
 				
