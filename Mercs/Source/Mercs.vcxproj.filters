@@ -85,16 +85,10 @@
     <ClInclude Include="Enemy.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BrownShip.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_RedBird.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_Mech.h">
+    <ClInclude Include="Enemy_Soldier.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
@@ -150,16 +144,10 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BrownShip.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_RedBird.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Path.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_Mech.cpp">
+    <ClCompile Include="Enemy_Soldier.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
