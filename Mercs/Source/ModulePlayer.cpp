@@ -171,6 +171,7 @@ Update_Status ModulePlayer::Update()
 	{
 		speedY = 1;
 	}
+
 	// Moving the player with the camera scroll
 	//App->player->position.x = App->render->camera.x;
 	//App->player->position.y = App->render->camera.y;
