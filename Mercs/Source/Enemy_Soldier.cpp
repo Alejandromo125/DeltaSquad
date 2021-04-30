@@ -87,31 +87,31 @@ void Enemy_Soldier::Update()
 		
 		if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 		{
-			
+	
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotDown, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.Update();
+			
 		}
 		if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
 		{
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.Update();
+			
 		}
 		if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
 		{
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotRight, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.Update();
+		
 		}
 		if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
 		{
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.Update();
+			
 		}
 		/**
 		if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
