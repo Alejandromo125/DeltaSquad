@@ -8,7 +8,7 @@
 enum class Enemy_Type
 {
 	NO_TYPE,
-	REDBIRD,
+	SOLDIER,
 
 };
 

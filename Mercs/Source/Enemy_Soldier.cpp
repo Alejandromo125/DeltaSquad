@@ -1,4 +1,4 @@
-#include "Enemy_RedBird.h"
+#include "Enemy_Soldier.h"
 
 #include "Application.h"
 #include "ModuleCollisions.h"
@@ -6,7 +6,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 
-Enemy_RedBird::Enemy_RedBird(int x, int y) : Enemy(x, y)
+Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
 	walkUp.speed = 0.1f;
 	walkDown.speed = 0.1f;
@@ -76,7 +76,7 @@ Enemy_RedBird::Enemy_RedBird(int x, int y) : Enemy(x, y)
 
 }
 
-void Enemy_RedBird::Update()
+void Enemy_Soldier::Update()
 {
 	path.Update();
 	position = spawnPos + path.GetRelativePosition();
