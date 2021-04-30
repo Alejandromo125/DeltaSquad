@@ -18,54 +18,60 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	
 	//WALKING ANIMATIONS
-	walkUp.PushBack({ 277,606,101,118 });
-	walkUp.PushBack({ 174,606,101,118 });
-	walkUp.PushBack({ 77,606,101,118 });
+	walkUp.PushBack({ 113,547,30,43 });
+	walkUp.PushBack({ 73,547,30,43 });
+	walkUp.PushBack({ 35,547,30,43 });
+	walkUp.loop = true;
 
-	walkDown.PushBack({ 274,122,101,118 });
-	walkDown.PushBack({ 184,122,101,118 });
-	walkDown.PushBack({ 91,122,101,118 });
+	walkDown.PushBack({ 113,358,30,43 });
+	walkDown.PushBack({ 76,358,30,43 });
+	walkDown.PushBack({ 40,358,30,43 });
+	walkDown.loop = true;
 
-	walkRight.PushBack({ 276,356,101,118 });
-	walkRight.PushBack({ 170,356,101,118 });
+	walkRight.PushBack({ 113,448,30,43 });
+	walkRight.PushBack({ 73,448,30,43 });
+	walkRight.loop = true;
 
-	walkLeft.PushBack({ 280,471,101,118 });
-	walkLeft.PushBack({ 174,471,101,118 });
+	walkLeft.PushBack({ 113,495,30,43 });
+	walkLeft.PushBack({ 73,495,30,43 });
+	walkLeft.loop = true;
 
-	walkUpRight.PushBack({ 264,733,101,118 });
-	walkUpRight.PushBack({ 174,733,101,118 });
-	walkUpRight.PushBack({ 76,733,101,118 });
+	walkUpRight.PushBack({ 113,598,30,43 });
+	walkUpRight.PushBack({ 73,598,30,43 });
+	walkUpRight.PushBack({ 35,598,30,43 });
+	walkUpRight.loop = true;
 
-	walkUpLeft.PushBack({ 270,861,101,118 });
-	walkUpLeft.PushBack({ 173,861,101,118 });
-	walkUpLeft.PushBack({ 75,861,101,118 });
+	walkUpLeft.PushBack({ 113,647,30,43 });
+	walkUpLeft.PushBack({ 73,647,30,43 });
+	walkUpLeft.PushBack({ 35,647,30,43 });
+	walkUpLeft.loop = true;
 
-	walkDownRight.PushBack({ 179,241,101,118 });
-	walkDownRight.PushBack({ 90,241,101,118 });
-	walkDownRight.PushBack({ 0,241,101,118 });
+	walkDownRight.PushBack({ 75,403,30,43 });
+	walkDownRight.PushBack({ 40,403,30,43 });
+	walkDownRight.PushBack({ 5,403,30,43 });
+	walkDownRight.loop = true;
 
-	walkDownLeft.PushBack({ 0,0,101,118 });
-	walkDownLeft.PushBack({ 83,0,101,118 });
-	walkDownLeft.PushBack({ 180,0,101,118 });
+	walkDownLeft.PushBack({ 75,314,30,43 });
+	walkDownLeft.PushBack({ 38,314,30,43 });
+	walkDownLeft.PushBack({ 3,314,30,43 });
+	walkDownLeft.loop = true;
 
 	//SHOOTING ANIMATIONS
-	shootDown.PushBack({});
-	shootUp.PushBack({});
-	shootRight.PushBack({});
-	shootLeft.PushBack({});
-	shootUpRight.PushBack({});
-	shootUpLeft.PushBack({});
-	shootDownRight.PushBack({});
-	shootDownLeft.PushBack({});
+	shootDown.PushBack({113,358,30,43});
+	shootUp.PushBack({ 113,547,30,43 });
+	shootRight.PushBack({ 113,448,30,43 });
+	shootLeft.PushBack({ 113,495,30,43 });
+	shootUpRight.PushBack({ 113,598,30,43 });
+	shootUpLeft.PushBack({ 113,647,30,43 });
+	shootDownRight.PushBack({ 113,403,30,43 });
+	shootDownLeft.PushBack({ 113,314,30,43 });
 	
 	//Have the Soldiers describe a path in the screen taking into account the collisions
 	
-	path.PushBack({ -1.0, -0.5 }, 10, &walkUp);
-	path.PushBack({ -1.0, 0 }, 15, &walkLeft);
-	path.PushBack({ -1.0, 0.5 }, 10, &walkDown);
-	
+	path.PushBack({ 0.0f,0.5f }, 50,&walkDown);
+	path.PushBack({ 0.0f,-0.5f }, 50, &walkUp);
 
-	collider = App->collisions->AddCollider({0, 0, 101, 118}, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({position.x, position.y, 30, 43}, Collider::Type::ENEMY, (Module*)App->enemies);
 	
 	
 }
@@ -81,52 +87,62 @@ void Enemy_Soldier::Update()
 		
 		if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 		{
-			currentAnim == &shootDown;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotDown, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
 		if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
 		{
-			currentAnim == &shootUp;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
 		if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
 		{
-			currentAnim == &shootRight;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotRight, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
 		if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
 		{
-			currentAnim == &shootLeft;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
+		/**
 		if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
 		{
 			currentAnim == &shootDownRight;
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotDownRight, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
 		if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
 		{
 			currentAnim == &shootDownLeft;
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotDownLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
 		if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
 		{
 			currentAnim == &shootUpRight;
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUpRight, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
 		if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
 		{
 			currentAnim == &shootUpLeft;
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUpLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			path.Update();
 		}
+		*/
 	}
 	
 	
