@@ -20,7 +20,7 @@ private:
 	// And an animation for each step
 	Path path;
 
-	
+
 	Animation walkUp;
 	Animation walkDown;
 	Animation walkLeft;

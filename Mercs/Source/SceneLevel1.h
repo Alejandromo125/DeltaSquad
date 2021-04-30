@@ -1,19 +1,19 @@
-#ifndef __MODULE_SCENE_H__
-#define __MODULE_SCENE_H__
+#ifndef __SCENE_LEVEL1_H__
+#define __SCENE_LEVEL1_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class ModuleScene : public Module
+class SceneLevel1 : public Module
 {
 public:
 	//Constructor
-	ModuleScene();
+	SceneLevel1(bool startEnabled);
 
 	//Destructor
-	~ModuleScene();
+	~SceneLevel1();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -21,11 +21,14 @@ public:
 
 	// Called at the middle of the application loop
 	// Updates the scene's background animations
-	update_status Update() override;
+	Update_Status Update() override;
 
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background
-	update_status PostUpdate() override;
+	Update_Status PostUpdate() override;
+
+	// Disables the player and the enemies
+	bool CleanUp();
 
 public:
 	
@@ -36,9 +39,6 @@ public:
 	SDL_Texture* Houses2Texture = nullptr;
 	SDL_Texture* LevelIntroTexture = nullptr;
 	SDL_Texture* MovingAndChangingTilesTexture = nullptr;
-	
-	// The sprite rectangle for the ground
-	SDL_Texture* starsTexture = nullptr;
 };
 
 #endif
