@@ -137,7 +137,7 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
 	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
@@ -317,7 +317,7 @@ Update_Status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_IDLE)
 		currentAnimation = &idledownAnim;
 
-	collider->SetPos(position.x, position.y);
+	collider->SetPos(position.x + 6, position.y + 3);
 
 	currentAnimation->Update();
 
