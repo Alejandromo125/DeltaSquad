@@ -26,7 +26,7 @@ class ModuleEnemies : public Module
 {
 public:
 	// Constructor
-	ModuleEnemies();
+	ModuleEnemies(bool startEnabled);
 
 	// Destructor
 	~ModuleEnemies();
@@ -34,6 +34,10 @@ public:
 	// Called when the module is activated
 	// Loads the necessary textures for the enemies
 	bool Start() override;
+
+	// Called at the beginning of the application loop
+	// Removes all enemies pending to delete
+	update_status PreUpdate() override;
 
 	// Called at the middle of the application loop
 	// Handles all enemies logic and spawning/despawning

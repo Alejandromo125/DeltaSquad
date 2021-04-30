@@ -7,9 +7,8 @@
 #include "ModuleInput.h"
 
 #include "SDL/include/SDL_render.h"
-#include "SDL/include/SDL_scancode.h"
 
-ModuleRender::ModuleRender() : Module()
+ModuleRender::ModuleRender(bool startEnabled) : Module(startEnabled)
 {
 
 }
@@ -22,7 +21,7 @@ ModuleRender::~ModuleRender()
 bool ModuleRender::Init()
 {
 	LOG("Creating Renderer context");
-	bool ret = true;	
+	bool ret = true;
 	Uint32 flags = 0;
 
 	if (VSYNC == true)
@@ -94,15 +93,15 @@ bool ModuleRender::CleanUp()
 }
 
 // Blit to screen
-bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed)
+bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* section, float speed, bool useCamera)
 {
 	bool ret = true;
 
-	SDL_Rect rect {
+	SDL_Rect rect{
 		(int)(-camera.x * speed) + x * SCREEN_SIZE,
 		(int)(-camera.y * speed) + y * SCREEN_SIZE,
 		0, 0 };
-	
+
 	if (section != nullptr)
 	{
 		rect.w = section->w;
@@ -126,14 +125,14 @@ bool ModuleRender::Blit(SDL_Texture* texture, int x, int y, const SDL_Rect* sect
 	return ret;
 }
 
-bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, float speed)
+bool ModuleRender::DrawQuad(const SDL_Rect& rect, Uint8 r, Uint8 g, Uint8 b, Uint8 a, float speed, bool useCamera)
 {
 	bool ret = true;
 
 	SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 
-	SDL_Rect dstRect {
+	SDL_Rect dstRect{
 		(int)(-camera.x * speed) + rect.x * SCREEN_SIZE,
 		(int)(-camera.y * speed) + rect.y * SCREEN_SIZE,
 		rect.w * SCREEN_SIZE, rect.h * SCREEN_SIZE };

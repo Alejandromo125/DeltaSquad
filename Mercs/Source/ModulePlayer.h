@@ -12,7 +12,7 @@ class ModulePlayer : public Module
 {
 public:
 	// Constructor
-	ModulePlayer();
+	ModulePlayer(bool startEnabled);
 
 	// Destructor
 	~ModulePlayer();
@@ -85,12 +85,17 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 
-	// A countdown to when the player gets destroyed. After a while, the game exits
+	// A countdown to when the player gets destroyed. After a while, the game have to go to the TitleScreen
 	uint destroyedCountdown = 120;
 
 	// Sound effects indices
 	uint shot06 = 0;
 	uint dead26 = 0;
+
+	// Font score index
+	uint score = 000;
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
 
 };
 

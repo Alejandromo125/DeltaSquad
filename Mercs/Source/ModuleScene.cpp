@@ -8,7 +8,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 
-ModuleScene::ModuleScene()
+ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
 {
 
 }
@@ -63,6 +63,9 @@ bool ModuleScene::Start()
 	// Create a new enemy type: The Mech
 	//App->enemies->AddEnemy(ENEMY_TYPE::MECH, 970, 220 - 32);
 
+	App->player->Enable();
+	App->enemies->Enable();
+
 	return ret;
 }
 
@@ -78,9 +81,17 @@ update_status ModuleScene::Update()
 update_status ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, -600, NULL);
-	App->render->Blit(bgTexture, 512, -600, NULL);
-	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 2.0);
+	App->render->Blit(bgTexture, 0, -600, NULL, true);
+	App->render->Blit(bgTexture, 512, -600, NULL, true);
+	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 2.0, true);
 
 	return update_status::UPDATE_CONTINUE;
+}
+
+bool ModuleScene::CleanUp()
+{
+	App->player->Disable();
+	App->enemies->Disable();
+
+	return true;
 }

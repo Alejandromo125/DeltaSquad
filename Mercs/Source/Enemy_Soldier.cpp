@@ -8,13 +8,13 @@
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {	
-	walkUp.speed = 0.2f;
-	walkDown.speed = 0.2f;
-	walkRight.speed = 0.2f;
-	walkUpLeft.speed = 0.2f;
-	walkUpRight.speed = 0.2f;
-	walkDownLeft.speed = 0.2f;
-	walkDownRight.speed = 0.2f;
+	walkUp.speed = 0.1f;
+	walkDown.speed = 0.1f;
+	walkRight.speed = 0.1f;
+	walkUpLeft.speed = 0.1f;
+	walkUpRight.speed = 0.1f;
+	walkDownLeft.speed = 0.1f;
+	walkDownRight.speed = 0.1f;
 
 	
 	//WALKING ANIMATIONS
@@ -113,7 +113,7 @@ void Enemy_Soldier::Update()
 			App->particles->AddParticle(App->particles->shotLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
 			path.Update();
 		}
-		/**
+		/*
 		if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
 		{
 			currentAnim == &shootDownRight;
