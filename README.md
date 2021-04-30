@@ -1,7 +1,7 @@
 # DeltaSquad
 Games Development - Project I - My first amazing game
 
-Use the arrow keys to move and space bar to shoot.
+Use the ARROW KEYS to move and SPACE BAR to shoot.
 
 F1 to see colliders
 
