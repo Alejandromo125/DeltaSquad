@@ -24,10 +24,10 @@ bool ModuleFadeToBlack::Start()
 	return true;
 }
 
-update_status ModuleFadeToBlack::Update()
+Update_Status ModuleFadeToBlack::Update()
 {
 	// Exit this function if we are not performing a fade
-	if (currentStep == Fade_Step::NONE) return update_status::UPDATE_CONTINUE;
+	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
 
 	if (currentStep == Fade_Step::TO_BLACK)
 	{
@@ -49,13 +49,13 @@ update_status ModuleFadeToBlack::Update()
 		}
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
-update_status ModuleFadeToBlack::PostUpdate()
+Update_Status ModuleFadeToBlack::PostUpdate()
 {
 	// Exit this function if we are not performing a fade
-	if (currentStep == Fade_Step::NONE) return update_status::UPDATE_CONTINUE;
+	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
 
 	float fadeRatio = (float)frameCount / (float)maxFadeFrames;
 
@@ -63,7 +63,7 @@ update_status ModuleFadeToBlack::PostUpdate()
 	SDL_SetRenderDrawColor(App->render->renderer, 0, 0, 0, (Uint8)(fadeRatio * 255.0f));
 	SDL_RenderFillRect(App->render->renderer, &screenRect);
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
 bool ModuleFadeToBlack::FadeToBlack(Module* moduleToDisable, Module* moduleToEnable, float frames)

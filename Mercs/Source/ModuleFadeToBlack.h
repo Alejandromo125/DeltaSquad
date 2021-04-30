@@ -19,11 +19,11 @@ public:
 
 	// Called at the middle of the application loop
 	// Updates the fade logic
-	update_status Update() override;
+	Update_Status Update() override;
 
 	// Called at the end of the application loop
 	// Performs the render call of a black rectangle with transparency
-	update_status PostUpdate() override;
+	Update_Status PostUpdate() override;
 
 	// Called from another module
 	// Starts the fade process which has two steps, fade_out and fade_in

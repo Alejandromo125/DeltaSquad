@@ -1,4 +1,4 @@
-#include "ModuleScene.h"
+#include "SceneLevel1.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -8,18 +8,18 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 
-ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
+SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
 
 }
 
-ModuleScene::~ModuleScene()
+SceneLevel1::~SceneLevel1()
 {
 
 }
 
 // Load assets
-bool ModuleScene::Start()
+bool SceneLevel1::Start()
 {
 	LOG("Loading background assets");
 
@@ -43,25 +43,10 @@ bool ModuleScene::Start()
 	//App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
 
 	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 100, 40);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 625, 80);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 640, 80);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 665, 80);
+	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 100, 40);
 
-	// Add a new wave of red birds
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 860, 125);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 885, 125);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 910, 125);
-	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 935, 125);
-	
-	// Add a new wave of brown cookies
-	//App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 700, 100);
-	//App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 715, 100);
-	//App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 730, 100);
-	//App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 745, 100);
-
-	// Create a new enemy type: The Mech
-	//App->enemies->AddEnemy(ENEMY_TYPE::MECH, 970, 220 - 32);
+	App->render->camera.x = 0;
+	App->render->camera.y = 0;
 
 	App->player->Enable();
 	App->enemies->Enable();
@@ -69,26 +54,25 @@ bool ModuleScene::Start()
 	return ret;
 }
 
-update_status ModuleScene::Update()
+Update_Status SceneLevel1::Update()
 {
-	//App->render->camera.x = App->player->position.x - 200;
-	//App->render->camera.y = App->player->position.y - 100;
+	//App->render->camera.x += 3;
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status ModuleScene::PostUpdate()
+Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, -600, NULL, true);
 	App->render->Blit(bgTexture, 512, -600, NULL, true);
 	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 2.0, true);
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
-bool ModuleScene::CleanUp()
+bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
 	App->enemies->Disable();

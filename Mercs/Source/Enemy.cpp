@@ -40,7 +40,9 @@ void Enemy::Draw()
 void Enemy::OnCollision(Collider* collider)
 {
 	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	App->audio->PlayFx(destroyedFx); // Enemy has no audio effect when dieing in original game...
+	App->audio->PlayFx(destroyedFx);
+
+	SetToDelete();
 }
 
 void Enemy::SetToDelete()

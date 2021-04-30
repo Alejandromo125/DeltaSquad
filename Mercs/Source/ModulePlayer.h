@@ -23,11 +23,11 @@ public:
 
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
-	update_status Update() override;
+	Update_Status Update() override;
 
 	// Called at the end of the application loop
 	// Performs the render call of the player sprite
-	update_status PostUpdate() override;
+	Update_Status PostUpdate() override;
 
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
@@ -84,9 +84,6 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
-
-	// A countdown to when the player gets destroyed. After a while, the game have to go to the TitleScreen
-	uint destroyedCountdown = 120;
 
 	// Sound effects indices
 	uint shot06 = 0;

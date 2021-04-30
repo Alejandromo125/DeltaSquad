@@ -29,55 +29,55 @@ int main(int argc, char* argv[])
 	{
 		switch (state)
 		{
-		case Main_States::MAIN_CREATION:
-		{
-			LOG("Application Creation --------------\n");
-			App = new Application();
-			state = Main_States::MAIN_START;
-		}	break;
-
-		case Main_States::MAIN_START:
-		{
-			LOG("Application Start --------------\n");
-			if (App->Init() == false)
+			case Main_States::MAIN_CREATION:
 			{
-				LOG("Application Init exits with error -----\n");
+				LOG("Application Creation --------------\n");
+				App = new Application();
+				state = Main_States::MAIN_START;
+			}	break;
+
+			case Main_States::MAIN_START:
+			{
+				LOG("Application Start --------------\n");
+				if(App->Init() == false)
+				{
+					LOG("Application Init exits with error -----\n");
+					state = Main_States::MAIN_EXIT;
+				}
+				else
+				{
+					state = Main_States::MAIN_UPDATE;
+				}
+			}	break;
+
+			case Main_States::MAIN_UPDATE:
+			{
+				Update_Status status = App->Update();
+
+				if (status == Update_Status::UPDATE_ERROR)
+				{
+					LOG("Application Update exits with error -----\n");
+					state = Main_States::MAIN_EXIT;
+				}
+				else if (status == Update_Status::UPDATE_STOP)
+				{
+					state = Main_States::MAIN_FINISH;
+				}
+			}	break;
+
+			case Main_States::MAIN_FINISH:
+			{
+				LOG("Application Finish --------------\n");
+				if (App->CleanUp() == true)
+				{
+					main_return = EXIT_SUCCESS;
+				}
+				else
+				{
+					LOG("Application CleanUp exits with error -----\n");
+				}
 				state = Main_States::MAIN_EXIT;
 			}
-			else
-			{
-				state = Main_States::MAIN_UPDATE;
-			}
-		}	break;
-
-		case Main_States::MAIN_UPDATE:
-		{
-			update_status status = App->Update();
-
-			if (status == update_status::UPDATE_ERROR)
-			{
-				LOG("Application Update exits with error -----\n");
-				state = Main_States::MAIN_EXIT;
-			}
-			else if (status == update_status::UPDATE_STOP)
-			{
-				state = Main_States::MAIN_FINISH;
-			}
-		}	break;
-
-		case Main_States::MAIN_FINISH:
-		{
-			LOG("Application Finish --------------\n");
-			if (App->CleanUp() == true)
-			{
-				main_return = EXIT_SUCCESS;
-			}
-			else
-			{
-				LOG("Application CleanUp exits with error -----\n");
-			}
-			state = Main_States::MAIN_EXIT;
-		}
 		}
 	}
 

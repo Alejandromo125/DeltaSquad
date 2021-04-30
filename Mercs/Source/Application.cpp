@@ -6,8 +6,8 @@
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
-#include "TitleScreen.h"
-#include "ModuleScene.h"
+#include "SceneIntro.h"
+#include "SceneLevel1.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
@@ -21,21 +21,21 @@ Application::Application()
 	// It will define the order in which Pre/Update/Post will be called
 	// Render should always be last, as our last action should be updating the screen
 
-	modules[0] = window = new ModuleWindow(true);
-	modules[1] = input = new ModuleInput(true);
-	modules[2] = textures = new ModuleTextures(true);
-	modules[3] = audio = new ModuleAudio(true);
+	modules[0] =	window =		new ModuleWindow(true);
+	modules[1] =	input =			new ModuleInput(true);
+	modules[2] =	textures =		new ModuleTextures(true);
+	modules[3] =	audio =			new ModuleAudio(true);
 
-	modules[4] = titleScreen = new TitleScreen(false);
-	modules[5] = scene = new ModuleScene(true);		//Gameplay scene starts disabled
-	modules[6] = player = new ModulePlayer(true);	//Player starts disabled
-	modules[7] = particles = new ModuleParticles(true);
-	modules[8] = enemies = new ModuleEnemies(true);	//Enemies start disabled
+	modules[4] =	sceneIntro =	new SceneIntro(true);
+	modules[5] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[6] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[7] =	particles =		new ModuleParticles(true);
+	modules[8] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[9] = collisions = new ModuleCollisions(true);
-	modules[10] = fade = new ModuleFadeToBlack(false);
-	modules[11] = fonts = new ModuleFonts(true);
-	modules[12] = render = new ModuleRender(true);
+	modules[9] =	collisions =	new ModuleCollisions(true);
+	modules[10] =	fade =			new ModuleFadeToBlack(true);
+	modules[11] =	fonts =			new ModuleFonts(true);
+	modules[12] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()
@@ -64,22 +64,22 @@ bool Application::Init()
 	return ret;
 }
 
-update_status Application::Update()
+Update_Status Application::Update()
 {
-	update_status ret = update_status::UPDATE_CONTINUE;
+	Update_Status ret = Update_Status::UPDATE_CONTINUE;
 
-	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate() : update_status::UPDATE_CONTINUE;
+	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
+		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate() : Update_Status::UPDATE_CONTINUE;
 
-	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->IsEnabled() ? modules[i]->Update() : update_status::UPDATE_CONTINUE;
+	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
+		ret = modules[i]->IsEnabled() ? modules[i]->Update() : Update_Status::UPDATE_CONTINUE;
 
-	for (int i = 0; i < NUM_MODULES && ret == update_status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : update_status::UPDATE_CONTINUE;
+	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
+		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : Update_Status::UPDATE_CONTINUE;
 
 	return ret;
 }
-
+ 
 bool Application::CleanUp()
 {
 	bool ret = true;

@@ -18,13 +18,13 @@ public:
 	virtual bool Start();
 
 	//Called at the beginning of each application loop
-	virtual update_status PreUpdate();
+	virtual Update_Status PreUpdate();
 
 	//Called at the middle of each application loop
-	virtual update_status Update();
+	virtual Update_Status Update();
 
 	//Called at the end of each application loop
-	virtual update_status PostUpdate();
+	virtual Update_Status PostUpdate();
 
 	//Called at the end of the application
 	virtual bool CleanUp();

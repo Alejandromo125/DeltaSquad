@@ -12,7 +12,6 @@
 
 #include <stdio.h>
 
-
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// Idle Animations
@@ -136,7 +135,9 @@ bool ModulePlayer::Start()
 	position.x = 200;
 	position.y = 100;
 
-	collider = App->collisions->AddCollider({ position.x + 6, position.y + 5, 15, 30 }, Collider::Type::PLAYER, this);
+	destroyed = false;
+
+	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
 	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
@@ -149,9 +150,8 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
-update_status ModulePlayer::Update()
+Update_Status ModulePlayer::Update()
 {
-
 	// Camera speed and player speed value conditions
 
 	if (cameraSpeedX == 0)
@@ -177,7 +177,7 @@ update_status ModulePlayer::Update()
 	//App->player->position.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
 	//App->player->position.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
 
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 	{
 		App->player->position.x -= speedX;
 		App->render->camera.x -= cameraSpeedX;
@@ -188,7 +188,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
 	{
 		App->player->position.x += speedX;
 		App->render->camera.x += cameraSpeedX;
@@ -199,7 +199,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
 	{
 		App->player->position.y += speedY;
 		App->render->camera.y += cameraSpeedY;
@@ -210,7 +210,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
 	{
 		if (currentAnimation != &downLeftAnim)
 		{
@@ -219,7 +219,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
 	{
 		if (currentAnimation != &downRightAnim)
 		{
@@ -228,7 +228,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 	{
 		App->player->position.y -= speedY;
 		App->render->camera.y -= cameraSpeedY;
@@ -239,7 +239,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 	{
 		if (currentAnimation != &upLeftAnim)
 		{
@@ -248,7 +248,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 	{
 		if (currentAnimation != &upRightAnim)
 		{
@@ -257,7 +257,7 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
 		App->audio->PlayFx(shot06);
 
@@ -290,7 +290,7 @@ update_status ModulePlayer::Update()
 			App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
 		}
-		
+
 		if (currentAnimation == &idleDownLeftAnim || currentAnimation == &downLeftAnim)
 		{
 			App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
@@ -311,27 +311,20 @@ update_status ModulePlayer::Update()
 	}
 
 	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_UP] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_RIGHT] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_LEFT] == KEY_STATE::KEY_IDLE)
+	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_IDLE
+		&& App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_IDLE)
 		currentAnimation = &idledownAnim;
 
-	collider->SetPos(position.x + 6, position.y + 5);
+	collider->SetPos(position.x, position.y);
 
 	currentAnimation->Update();
 
-	if (destroyed)
-	{
-		destroyedCountdown--;
-		if (destroyedCountdown <= 0)
-			return update_status::UPDATE_STOP;
-	}
-
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
-update_status ModulePlayer::PostUpdate()
+Update_Status ModulePlayer::PostUpdate()
 {
 	if (!destroyed)
 	{
@@ -339,10 +332,15 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
 
-	// Add player shadow
-	//App->particles->AddParticle(App->particles->shadow, position.x + 5, position.y + 30, Collider::Type::NONE); // <-- Does not work well (Z-layer problem)
-	
-	return update_status::UPDATE_CONTINUE;
+	// Draw UI (score) --------------------------------------
+	sprintf_s(scoreText, 10, "%7d", score);
+
+	// TODO 3: Blit the text of the score in at the bottom of the screen
+	App->fonts->BlitText(58, 248, scoreFont, scoreText);
+
+	App->fonts->BlitText(150, 248, scoreFont, "this is just a font test message");
+
+	return Update_Status::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
@@ -351,7 +349,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		App->audio->PlayFx(dead26);
 
-		if(currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
+		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
 			currentAnimation == &upAnim || currentAnimation == &upLeftAnim || currentAnimation == &upRightAnim || currentAnimation == &leftAnim)
 			currentAnimation = &deadBackAnim;
 

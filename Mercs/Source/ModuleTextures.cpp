@@ -26,7 +26,7 @@ bool ModuleTextures::Init()
 	int init = IMG_Init(flags);
 
 	// Check if all flags were initialized correctly
-	if ((init & flags) != flags)
+	if((init & flags) != flags)
 	{
 		LOG("Could not initialize Image lib. IMG_Init: %s", IMG_GetError());
 		ret = false;
@@ -88,7 +88,6 @@ SDL_Texture* const ModuleTextures::Load(const char* path)
 
 	return texture;
 }
-
 
 bool ModuleTextures::Unload(SDL_Texture* texture)
 {

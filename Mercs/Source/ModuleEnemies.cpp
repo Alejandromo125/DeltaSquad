@@ -7,9 +7,7 @@
 #include "ModuleAudio.h"
 
 #include "Enemy.h"
-#include "Enemy_Soldier.h"
-
-
+#include "Enemy_RedBird.h"
 
 #define SPAWN_MARGIN 50
 
@@ -33,7 +31,8 @@ bool ModuleEnemies::Start()
 	return true;
 }
 
-update_status ModuleEnemies::PreUpdate()
+
+Update_Status ModuleEnemies::PreUpdate()
 {
 	// Remove all enemies scheduled for deletion
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -45,10 +44,10 @@ update_status ModuleEnemies::PreUpdate()
 		}
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
-update_status ModuleEnemies::Update()
+Update_Status ModuleEnemies::Update()
 {
 	HandleEnemiesSpawn();
 
@@ -60,10 +59,10 @@ update_status ModuleEnemies::Update()
 
 	HandleEnemiesDespawn();
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
-update_status ModuleEnemies::PostUpdate()
+Update_Status ModuleEnemies::PostUpdate()
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -71,7 +70,7 @@ update_status ModuleEnemies::PostUpdate()
 			enemies[i]->Draw();
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	return Update_Status::UPDATE_CONTINUE;
 }
 
 // Called before quitting
@@ -91,13 +90,13 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(ENEMY_TYPE type, int x, int y)
+bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y)
 {
 	bool ret = false;
 
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(spawnQueue[i].type == ENEMY_TYPE::NO_TYPE)
+		if(spawnQueue[i].type == Enemy_Type::NO_TYPE)
 		{
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
@@ -115,7 +114,7 @@ void ModuleEnemies::HandleEnemiesSpawn()
 	// Iterate all the enemies queue
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if (spawnQueue[i].type != ENEMY_TYPE::NO_TYPE)
+		if (spawnQueue[i].type != Enemy_Type::NO_TYPE)
 		{
 			// Spawn a new enemy if the screen has reached a spawn position
 			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
@@ -123,7 +122,7 @@ void ModuleEnemies::HandleEnemiesSpawn()
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnEnemy(spawnQueue[i]);
-				spawnQueue[i].type = ENEMY_TYPE::NO_TYPE; // Removing the newly spawned enemy from the queue
+				spawnQueue[i].type = Enemy_Type::NO_TYPE; // Removing the newly spawned enemy from the queue
 			}
 		}
 	}
@@ -141,8 +140,7 @@ void ModuleEnemies::HandleEnemiesDespawn()
 			{
 				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
 
-				delete enemies[i];
-				enemies[i] = nullptr;
+				enemies[i]->SetToDelete();
 			}
 		}
 	}
@@ -157,12 +155,12 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 		{
 			switch (info.type)
 			{
-				case ENEMY_TYPE::SOLDIER:
-					enemies[i] = new Enemy_Soldier(info.x, info.y);
+				case Enemy_Type::REDBIRD:
+					enemies[i] = new Enemy_RedBird(info.x, info.y);
 					break;
-				
+
 			}
- 			enemies[i]->texture = texture;
+			enemies[i]->texture = texture;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}
@@ -176,9 +174,6 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
-			delete enemies[i];
-			enemies[i] = nullptr;
 			break;
 		}
 	}

@@ -28,7 +28,6 @@ public:
 	virtual void Draw();
 
 	// Collision response
-	// Triggers an animation and a sound fx
 	virtual void OnCollision(Collider* collider);
 
 	// Sets flag for deletion and for the collider aswell
