@@ -35,12 +35,26 @@ bool SceneLevel1::Start()
 
 	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 0.0f);
 
-	//Bottomside collider
-	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
+	//Water Colliders
+	App->collisions->AddCollider({ 160, 1480, 590, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 250, 1450, 500, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 270, 1420, 480, 40 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 270, 1400, 20, 30 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 300, 1410, 450, 10 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 360, 1390, 390, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 400, 1350, 350, 40 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 490, 1330, 260, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 520, 1310, 230, 20 }, Collider::Type::WATER);
 
-	//First two columns colliders
-	//App->collisions->AddCollider({ 1375, 0, 111, 96 }, Collider::Type::WALL);
-	//App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
+	//Wall Colliders
+	App->collisions->AddCollider({ 100, 1130, 20, 90 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 120, 1130, 50, 80 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 170, 1130, 10, 70 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 180, 1130, 60, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 240, 1130, 40, 50 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 280, 1130, 10, 40 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 290, 1130, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100, 1110, 230, 20 }, Collider::Type::WALL);
 
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 100, 40);

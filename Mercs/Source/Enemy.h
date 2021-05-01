@@ -46,6 +46,9 @@ public:
 	// A flag for the enemy removal. Important! We do not delete objects instantly
 	bool pendingToDelete = false;
 
+	// Enemy sink effect (in water)
+	int EnemywaterSink = 0; // 0 in ground, 20 in water
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;

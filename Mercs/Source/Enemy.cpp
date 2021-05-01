@@ -48,7 +48,21 @@ void Enemy::OnCollision(Collider* c2)
 		SetToDelete();
 	}
 
+	if (c2->type == Collider::Type::WATER)
+	{
+		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 30);
 
+		EnemywaterSink = 20;
+	}
+	else
+	{
+		EnemywaterSink = 0;
+	}
+
+	if (c2->type == Collider::Type::WALL)
+	{
+
+	}
 	
 }
 
