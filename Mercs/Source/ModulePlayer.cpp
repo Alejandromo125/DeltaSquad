@@ -377,14 +377,21 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		speedY = 1;
 	}
 
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::CAMERA_BOUND)
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
 		cameraSpeedX = 0;
-		cameraSpeedY = 0;
 	}
 	else
 	{
 		cameraSpeedX = 3;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
+	{
+		cameraSpeedY = 0;
+	}
+	else
+	{
 		cameraSpeedY = 3;
 	}
 
