@@ -67,12 +67,214 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	shootDownLeft.PushBack({ 113,314,30,43 });
 	
 	//Have the Soldiers describe a path in the screen taking into account the collisions
-	
-	path.PushBack({ 0.0f,0.5f }, 50,&walkDown);
+
+	path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
 	path.PushBack({ 0.0f,-0.5f }, 50, &walkUp);
 
 	collider = App->collisions->AddCollider({position.x, position.y, 30, 43}, Collider::Type::ENEMY, (Module*)App->enemies);
-	
+	if (this->collider->Intersects({ Collider::Type::WALL }) == true)
+	{
+		if (currentAnim = &walkUp)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
+			}
+			if (random == 2)
+			{
+				//walk Down Right
+			}
+			if (random == 3)
+			{
+				//walk Down Left
+			}
+			if (random == 4)
+			{
+				//walk Left
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkDown)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+			}
+			if (random == 2)
+			{
+				//walk Up Right
+			}
+			if (random == 3)
+			{
+				//walk Up Left
+			}
+			if (random == 4)
+			{
+				//walk Left
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkUpRight)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
+			}
+			if (random == 2)
+			{
+				//walk Down Right
+			}
+			if (random == 3)
+			{
+				//walk Down Left
+			}
+			if (random == 4)
+			{
+				//walk Left
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkUpLeft)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
+			}
+			if (random == 2)
+			{
+				//walk Down Right
+			}
+			if (random == 3)
+			{
+				//walk Down Left
+			}
+			if (random == 4)
+			{
+				//walk Left
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkDownRight)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+			}
+			if (random == 2)
+			{
+				//walk Up Right
+			}
+			if (random == 3)
+			{
+				//walk Up Left
+			}
+			if (random == 4)
+			{
+				//walk Left
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkDownLeft)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+			}
+			if (random == 2)
+			{
+				//walk Up Right
+			}
+			if (random == 3)
+			{
+				//walk Up Left
+			}
+			if (random == 4)
+			{
+				//walk Left
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkLeft)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+			}
+			if (random == 2)
+			{
+				//walk Up Right
+			}
+			if (random == 3)
+			{
+				//walk Down Rigth
+			}
+			if (random == 4)
+			{
+				//walk Down
+			}
+			if (random == 5)
+			{
+				//walk Right
+			}
+		}
+		if (currentAnim = &walkRight)
+		{
+			srand(1);
+			int random = rand() % 4 + 1;
+			if (random == 1)
+			{
+				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+			}
+			if (random == 2)
+			{
+				//walk Up Left
+			}
+			if (random == 3)
+			{
+				//walk Down Left
+			}
+			if (random == 4)
+			{
+				//walk Down
+			}
+			if (random == 5)
+			{
+				//walk Left
+			}
+		}
+	}
 	
 }
 
@@ -87,34 +289,35 @@ void Enemy_Soldier::Update()
 		
 		if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 		{
-			currentAnim = &shootDown;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotDown, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			
+			path.PushBack({ 0.0f,0.0f }, 10, &shootDown);
 			
 		}
 		if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
 		{
-			currentAnim = &shootUp;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			
+			path.PushBack({ 0.0f,0.0f }, 10, &shootUp);
 		}
 		if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
 		{
 			
-			currentAnim = &shootRight;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotRight, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+			//for(int counter = 0; counter <10000000;++counter)currentAnim = &shootRight;
 			
 		
 		}
 		if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
 		{
-			currentAnim = &shootLeft;
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			
+			path.PushBack({ 0.0f,0.0f }, 10, &shootLeft);
 			
 		}
 		/*

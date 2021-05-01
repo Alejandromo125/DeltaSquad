@@ -44,6 +44,7 @@ bool SceneLevel1::Start()
 
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 100, 40);
+	
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
