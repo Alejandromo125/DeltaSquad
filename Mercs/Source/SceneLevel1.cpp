@@ -48,6 +48,7 @@ bool SceneLevel1::Start()
 
 	//Wall Colliders
 	App->collisions->AddCollider({ 100, 1130, 20, 90 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100, 80, 20, 90 }, Collider::Type::WALL); // Test
 	App->collisions->AddCollider({ 120, 1130, 50, 80 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 170, 1130, 10, 70 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 180, 1130, 60, 60 }, Collider::Type::WALL);

@@ -37,11 +37,11 @@ public:
 	iPoint position;
 
 	// The speed in which we move the player (pixels per frame)
-	int speedX = 1;
-	int speedY = 1;
+	int speedX;
+	int speedY;
 	// The speed in which we move the player camera (pixels per frame)
-	int cameraSpeedX = 3;
-	int cameraSpeedY = 3;
+	int cameraSpeedX;
+	int cameraSpeedY;
 
 	// Player sink effect (in water)
 	int waterSink = 0; // 0 in ground, 20 in water

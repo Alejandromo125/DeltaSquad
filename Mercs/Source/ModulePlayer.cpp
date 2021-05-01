@@ -135,6 +135,12 @@ bool ModulePlayer::Start()
 	position.x = 200;
 	position.y = 100;
 
+	speedX = 1;
+	speedY = 1;
+
+	cameraSpeedX = 3;
+	cameraSpeedY = 3;
+
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
@@ -152,25 +158,6 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	// Camera speed and player speed value conditions
-
-	if (cameraSpeedX == 0)
-	{
-		speedX = 2;
-	}
-	else
-	{
-		speedX = 1;
-	}
-
-	if (cameraSpeedY == 0)
-	{
-		speedY = 2;
-	}
-	else
-	{
-		speedY = 1;
-	}
 
 	// Moving the player with the camera scroll
 	//App->player->position.x = App->render->camera.x;
@@ -346,7 +333,8 @@ Update_Status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false)
+	if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
+		(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false)
 	{
 		App->audio->PlayFx(dead26);
 
@@ -380,19 +368,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
 		cameraSpeedX = 0;
+		speedX = 2;
 	}
 	else
 	{
 		cameraSpeedX = 3;
+		speedX = 1;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
 	{
 		cameraSpeedY = 0;
+		speedY = 2;
 	}
 	else
 	{
 		cameraSpeedY = 3;
+		speedY = 1;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
