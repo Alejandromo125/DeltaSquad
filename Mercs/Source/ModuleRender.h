@@ -55,8 +55,8 @@ public:
 	SDL_Rect camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 
 	// The speed at which the camera will be moving
-	int cameraSpeedX = 3;
-	int cameraSpeedY = 3;
+	int cameraSpeedX = 1 * SCREEN_SIZE;
+	int cameraSpeedY = 1 * SCREEN_SIZE;
 
 };
 

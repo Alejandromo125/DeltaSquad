@@ -132,8 +132,8 @@ bool ModulePlayer::Start()
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
 	dead26 = App->audio->LoadFx("Assets/FX/26.wav");
 
-	position.x = 50;
-	position.y = 50;
+	position.x = 150;
+	position.y = 100;
 
 	speedX = 1;
 	speedY = 1;
@@ -377,23 +377,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
 		cameraSpeedX = 0;
-		speedX = 2;
 	}
 	else
 	{
 		cameraSpeedX = 3;
-		speedX = 1;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
 	{
 		cameraSpeedY = 0;
-		speedY = 2;
 	}
 	else
 	{
 		cameraSpeedY = 3;
-		speedY = 1;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
