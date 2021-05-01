@@ -78,7 +78,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	upLeftAnim.PushBack({ 70, 53, 30, 43 - waterSink });
 	upLeftAnim.PushBack({ 100, 53, 30, 43 - waterSink });
 	upLeftAnim.loop = true;
-	upLeftAnim.speed = 0.14f;
+	upLeftAnim.speed = 0.1f;
 
 	// Move Down Left
 	downLeftAnim.PushBack({ 8, 147, 30, 43 - waterSink });
@@ -86,7 +86,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downLeftAnim.PushBack({ 75, 147, 30, 43 - waterSink });
 	downLeftAnim.PushBack({ 105, 147, 30, 43 - waterSink });
 	downLeftAnim.loop = true;
-	downLeftAnim.speed = 0.14f;
+	downLeftAnim.speed = 0.1f;
 
 	// Move Up Right
 	upRightAnim.PushBack({ 3, 332, 30, 43 - waterSink });
@@ -94,7 +94,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	upRightAnim.PushBack({ 65, 332, 30, 43 - waterSink });
 	upRightAnim.PushBack({ 98, 332, 30, 43 - waterSink });
 	upRightAnim.loop = true;
-	upRightAnim.speed = 0.14f;
+	upRightAnim.speed = 0.1f;
 
 	// Move Down Right
 	downRightAnim.PushBack({ 8, 238, 30, 43 - waterSink });
@@ -102,7 +102,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downRightAnim.PushBack({ 70, 238, 30, 43 - waterSink });
 	downRightAnim.PushBack({ 104, 238, 30, 43 - waterSink });
 	downRightAnim.loop = true;
-	downRightAnim.speed = 0.14f;
+	downRightAnim.speed = 0.1f;
 
 	// Die Up
 	//Insert pushBack
@@ -145,8 +145,8 @@ bool ModulePlayer::Start()
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
 
-	App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
-	App->render->camera.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
+	//App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
+	//App->render->camera.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
 	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
