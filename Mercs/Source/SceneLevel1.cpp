@@ -48,7 +48,7 @@ bool SceneLevel1::Start()
 
 	//Wall Colliders
 	App->collisions->AddCollider({ 100, 1130, 20, 90 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 100, 80, 20, 90 }, Collider::Type::WALL); // Test
+	App->collisions->AddCollider({ 20, 70, 90, 20 }, Collider::Type::WALL); // Test
 	App->collisions->AddCollider({ 120, 1130, 50, 80 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 170, 1130, 10, 70 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 180, 1130, 60, 60 }, Collider::Type::WALL);
@@ -85,8 +85,8 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, -600, NULL, 0.55, true);
-	App->render->Blit(bgTexture, 512, -600, NULL, 0.55, true);
+	App->render->Blit(bgTexture, 0, -600, NULL, 0.53, true);
+	App->render->Blit(bgTexture, 512, -600, NULL, 0.53, true);
 	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 1.0, true);
 
 	return Update_Status::UPDATE_CONTINUE;
