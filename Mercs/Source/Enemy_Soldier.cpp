@@ -71,7 +71,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
 	path.PushBack({ 0.0f,-0.5f }, 50, &walkUp);
 
-	collider = App->collisions->AddCollider({position.x, position.y, 30, 43}, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
 	if (this->collider->Intersects({ Collider::Type::WALL }) == true)
 	{
 		if (currentAnim = &walkUp)
