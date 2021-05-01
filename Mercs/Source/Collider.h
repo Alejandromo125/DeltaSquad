@@ -20,7 +20,9 @@ struct Collider
 		ENEMY_BOMB,
 		WATER,
 		BOSS_ATTACK,
+		BREAKABLE_OBJECT,
 		CAMERA_BOUND,
+		EVENT_TRIGGER,
 
 		MAX
 	};
