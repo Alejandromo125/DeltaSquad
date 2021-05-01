@@ -365,4 +365,36 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		score += 23;
 	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
+	{
+		speedX = 0;
+		speedY = 0;
+	}
+	else
+	{
+		speedX = 1;
+		speedY = 1;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::CAMERA_BOUND)
+	{
+		cameraSpeedX = 0;
+		cameraSpeedY = 0;
+	}
+	else
+	{
+		cameraSpeedX = 3;
+		cameraSpeedY = 3;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
+	{
+		waterSink = 20;
+		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 30, Collider::Type::NONE);
+	}
+	else
+	{
+		waterSink = 0;
+	}
 }

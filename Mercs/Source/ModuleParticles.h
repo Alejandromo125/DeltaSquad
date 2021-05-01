@@ -84,6 +84,9 @@ public:
 	//Template particle for player and enemy shadow
 	Particle shadow;
 
+	//Template particle for player in water
+	Particle waterParticles;
+
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* texture = nullptr;

@@ -16,31 +16,143 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::WALL][Collider::Type::WATER] = false;
+	matrix[Collider::Type::WALL][Collider::Type::ENEMY_BOMB] = true;
+	matrix[Collider::Type::WALL][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::WALL][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::WALL][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::WALL][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::WALL][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::WATER] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_BOMB] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BOSS_ATTACK] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BREAKABLE_OBJECT] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::CAMERA_BOUND] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::EVENT_TRIGGER] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BOSS] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::WATER] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE_OBJECT] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WATER] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BREAKABLE_OBJECT] = true;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS] = true;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WATER] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BREAKABLE_OBJECT] = true;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS] = false;
+
+	matrix[Collider::Type::BOSS][Collider::Type::WALL] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::BOSS][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::BOSS] = false;
+
+	matrix[Collider::Type::WATER][Collider::Type::WALL] = false;
+	matrix[Collider::Type::WATER][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::WATER][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::WATER][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::WATER][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::WATER][Collider::Type::WATER] = false;
+	matrix[Collider::Type::WATER][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::WATER][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::WATER][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::WATER][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::WATER][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::WATER][Collider::Type::BOSS] = false;
 	
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::WALL] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BOSS] = false;
+
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::WALL] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS] = false;
+
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::WALL] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::WATER] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::CAMERA_BOUND][Collider::Type::BOSS] = false;
+
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::WALL] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::WATER] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::CAMERA_BOUND] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BOSS] = false;
 }
 
 // Destructor

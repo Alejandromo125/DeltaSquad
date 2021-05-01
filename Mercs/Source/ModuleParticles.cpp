@@ -24,6 +24,14 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Art/Sprites/items.png");
 
+	// Water Particles
+	waterParticles.anim.PushBack({ 334, 35, 23, 13 });
+	waterParticles.anim.PushBack({ 370, 35, 23, 13 });
+	waterParticles.speed.x = 0;
+	waterParticles.speed.y = 0;
+	waterParticles.anim.loop = true;
+	waterParticles.anim.speed = 0.2f;
+
 	// Shadow particle
 	shadow.anim.PushBack({ 3, 290, 20, 10 });
 	shadow.speed.x = 0;
