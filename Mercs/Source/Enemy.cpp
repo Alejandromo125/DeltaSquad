@@ -37,12 +37,19 @@ void Enemy::Draw()
 		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
 }
 
-void Enemy::OnCollision(Collider* collider)
+void Enemy::OnCollision(Collider* c2)
 {
-	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	App->audio->PlayFx(destroyedFx);
 
-	SetToDelete();
+	if (c2->type == Collider::Type::PLAYER_SHOT)
+	{
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+		App->audio->PlayFx(destroyedFx);
+
+		SetToDelete();
+	}
+
+
+	
 }
 
 void Enemy::SetToDelete()

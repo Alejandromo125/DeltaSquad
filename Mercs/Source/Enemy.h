@@ -28,7 +28,7 @@ public:
 	virtual void Draw();
 
 	// Collision response
-	virtual void OnCollision(Collider* collider);
+	virtual void OnCollision(Collider* c2);
 
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
