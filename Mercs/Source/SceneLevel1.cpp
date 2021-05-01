@@ -72,7 +72,8 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	//App->render->camera.x += 3;
+	App->render->camera.x = App->player->position.x - ((SCREEN_WIDTH / 2));
+	App->render->camera.y = App->player->position.y - ((SCREEN_HEIGHT / 2));
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -81,9 +82,9 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, -600, NULL, true);
-	App->render->Blit(bgTexture, 512, -600, NULL, true);
-	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 2.0, true);
+	App->render->Blit(bgTexture, 0, -600, NULL, 1.0, true);
+	App->render->Blit(bgTexture, 512, -600, NULL, 1.0, true);
+	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, true);
 
 	return Update_Status::UPDATE_CONTINUE;
 }

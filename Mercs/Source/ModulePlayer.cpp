@@ -132,8 +132,8 @@ bool ModulePlayer::Start()
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
 	dead26 = App->audio->LoadFx("Assets/FX/26.wav");
 
-	position.x = 200;
-	position.y = 100;
+	position.x = 50;
+	position.y = 50;
 
 	speedX = 1;
 	speedY = 1;
@@ -144,6 +144,9 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
+
+	App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
+	App->render->camera.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
 
 	// TODO 0: Notice how a font is loaded and the meaning of all its arguments 
 	//char lookupTable[] = { "!  ,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz" };
@@ -162,13 +165,19 @@ Update_Status ModulePlayer::Update()
 	// Moving the player with the camera scroll
 	//App->player->position.x = App->render->camera.x;
 	//App->player->position.y = App->render->camera.y;
+
+	//App->render->camera.x = App->player->position.x - (SCREEN_WIDTH / 2);
+	//App->render->camera.y = App->player->position.y - (SCREEN_HEIGHT / 2);
+	//App->player->position.x = App->player->position.x - (App->render->camera.x / 20);
+	//App->player->position.y = App->player->position.y - (App->render->camera.y / 20);
+
 	//App->player->position.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
 	//App->player->position.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
 
 	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 	{
-		App->player->position.x -= speedX;
-		App->render->camera.x -= cameraSpeedX;
+		App->player->position.x = App->player->position.x - speedX;
+		//App->render->camera.x -= cameraSpeedX;
 		if (currentAnimation != &leftAnim)
 		{
 			//leftAnim.Reset();
@@ -178,8 +187,8 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
 	{
-		App->player->position.x += speedX;
-		App->render->camera.x += cameraSpeedX;
+		App->player->position.x = App->player->position.x + speedX;
+		//App->render->camera.x += cameraSpeedX;
 		if (currentAnimation != &rightAnim)
 		{
 			//rightAnim.Reset();
@@ -189,8 +198,8 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
 	{
-		App->player->position.y += speedY;
-		App->render->camera.y += cameraSpeedY;
+		App->player->position.y = App->player->position.y + speedY;
+		//App->render->camera.y += cameraSpeedY;
 		if (currentAnimation != &downAnim)
 		{
 			//downAnim.Reset();
@@ -218,8 +227,8 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 	{
-		App->player->position.y -= speedY;
-		App->render->camera.y -= cameraSpeedY;
+		App->player->position.y = App->player->position.y - speedY;
+		//App->render->camera.y -= cameraSpeedY;
 		if (currentAnimation != &upAnim)
 		{
 			//upAnim.Reset();
@@ -317,7 +326,7 @@ Update_Status ModulePlayer::PostUpdate()
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect);
+		App->render->Blit(texture, position.x, position.y, &rect, 1.0);
 	}
 
 	// Draw UI (score) --------------------------------------
