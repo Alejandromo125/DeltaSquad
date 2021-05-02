@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModulePlayer.h"
+#include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 
@@ -69,9 +70,11 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	//Have the Soldiers describe a path in the screen taking into account the collisions
 
 	path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
-	path.PushBack({ 0.0f,-0.5f }, 50, &walkUp);
+	path.PushBack({ 0.0f,-0.5f }, 5000, &walkUp);
 
 	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
+
+	
 	if (this->collider->Intersects({ Collider::Type::WALL }) == true)
 	{
 		if (currentAnim = &walkUp)
@@ -80,23 +83,27 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 4 + 1;
 			if (random == 1)
 			{
-				path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
+				path.PushBack({ 0.0f,0.5f }, 1000, &walkDown);
 			}
 			if (random == 2)
 			{
 				//walk Down Right
+				path.PushBack({ 0.5f,0.5f }, 1000, &walkDownRight);
 			}
 			if (random == 3)
 			{
 				//walk Down Left
+				path.PushBack({ -0.5f,0.5f }, 1000, &walkDownLeft);
 			}
 			if (random == 4)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, &walkLeft);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, &walkRight);
 			}
 		}
 		if (currentAnim = &walkDown)
@@ -105,23 +112,27 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 4 + 1;
 			if (random == 1)
 			{
-				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+				path.PushBack({ 0.0f,-0.5f }, 50, &walkUp);
 			}
 			if (random == 2)
 			{
 				//walk Up Right
+				path.PushBack({ 0.5f,-0.5f }, 1000, &walkUpRight);
 			}
 			if (random == 3)
 			{
 				//walk Up Left
+				path.PushBack({ -0.5f,-0.5f }, 1000, &walkUpLeft);
 			}
 			if (random == 4)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, &walkLeft);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, &walkRight);
 			}
 		}
 		if (currentAnim = &walkUpRight)
@@ -135,18 +146,22 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			if (random == 2)
 			{
 				//walk Down Right
+				path.PushBack({ 0.5f,0.5f }, 1000, &walkDownRight);
 			}
 			if (random == 3)
 			{
 				//walk Down Left
+				path.PushBack({ -0.5f,0.5f }, 1000, &walkDownLeft);
 			}
 			if (random == 4)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, &walkLeft);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, &walkRight);
 			}
 		}
 		if (currentAnim = &walkUpLeft)
@@ -155,23 +170,27 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 4 + 1;
 			if (random == 1)
 			{
-				path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
+				path.PushBack({ 0.0f,0.5f }, 1000, &walkDown);
 			}
 			if (random == 2)
 			{
 				//walk Down Right
+				path.PushBack({ 0.5f,0.5f }, 1000, &walkDownRight);
 			}
 			if (random == 3)
 			{
 				//walk Down Left
+				path.PushBack({ -0.5f,0.5f }, 1000, & walkDownLeft);
 			}
 			if (random == 4)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, & walkLeft);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, & walkRight);
 			}
 		}
 		if (currentAnim = &walkDownRight)
@@ -180,23 +199,27 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 4 + 1;
 			if (random == 1)
 			{
-				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+				path.PushBack({ 0.0f,-0.5f }, 1000, &walkUp);
 			}
 			if (random == 2)
 			{
 				//walk Up Right
+				path.PushBack({ 0.5f,-0.05f }, 1000, & walkUpRight);
 			}
 			if (random == 3)
 			{
 				//walk Up Left
+				path.PushBack({ -0.5f,-0.5f }, 1000, & walkUpLeft);
 			}
 			if (random == 4)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, & walkLeft);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, & walkRight);
 			}
 		}
 		if (currentAnim = &walkDownLeft)
@@ -205,23 +228,27 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 4 + 1;
 			if (random == 1)
 			{
-				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+				path.PushBack({ 0.0f,-0.5f }, 1000, &walkUp);
 			}
 			if (random == 2)
 			{
 				//walk Up Right
+				path.PushBack({ 0.5f,-0.05f }, 1000, & walkUpRight);
 			}
 			if (random == 3)
 			{
 				//walk Up Left
+				path.PushBack({ -0.5f,-0.5f }, 1000, & walkUpLeft);
 			}
 			if (random == 4)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, & walkLeft);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, & walkRight);
 			}
 		}
 		if (currentAnim = &walkLeft)
@@ -230,23 +257,27 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 4 + 1;
 			if (random == 1)
 			{
-				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
+				path.PushBack({ 0.0f,-0.5f }, 1000, &walkUp);
 			}
 			if (random == 2)
 			{
 				//walk Up Right
+				path.PushBack({ 0.5f,-0.5f }, 1000, & walkUpRight);
 			}
 			if (random == 3)
 			{
-				//walk Down Rigth
+				//walk Down Right
+				path.PushBack({ 0.5f,0.5f }, 1000, & walkDownRight);
 			}
 			if (random == 4)
 			{
 				//walk Down
+				path.PushBack({ 0.0f,0.5f }, 1000, & walkDown);
 			}
 			if (random == 5)
 			{
 				//walk Right
+				path.PushBack({ 0.5f,0.0f }, 1000, & walkRight);
 			}
 		}
 		if (currentAnim = &walkRight)
@@ -260,18 +291,22 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			if (random == 2)
 			{
 				//walk Up Left
+				path.PushBack({ -0.5f,-0.5f }, 1000, & walkUpRight);
 			}
 			if (random == 3)
 			{
 				//walk Down Left
+				path.PushBack({ -0.5f,0.5f }, 1000, & walkDownLeft);
 			}
 			if (random == 4)
 			{
 				//walk Down
+				path.PushBack({ 0.0f,0.5f }, 1000, & walkDown);
 			}
 			if (random == 5)
 			{
 				//walk Left
+				path.PushBack({ -0.5f,0.0f }, 1000, & walkLeft);
 			}
 		}
 	}
@@ -284,7 +319,7 @@ void Enemy_Soldier::Update()
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();
 	
-	if (position.DistanceTo(App->player->position) < 150)
+	if (position.DistanceTo(App->player->position) < 250)
 	{
 		
 		if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
@@ -308,7 +343,7 @@ void Enemy_Soldier::Update()
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotRight, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			//for(int counter = 0; counter <10000000;++counter)currentAnim = &shootRight;
+			
 			
 		
 		}
