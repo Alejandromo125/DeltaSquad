@@ -36,26 +36,24 @@ bool SceneLevel1::Start()
 	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 0.0f);
 
 	//Water Colliders
-	App->collisions->AddCollider({ 160, 1480, 590, 20 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 250, 1450, 500, 20 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 270, 1420, 480, 40 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 270, 1400, 20, 30 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 300, 1410, 450, 10 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 360, 1390, 390, 20 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 400, 1350, 350, 40 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 490, 1330, 260, 20 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 520, 1310, 230, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 160 - 120, 1480 - 1100, 590, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 250 - 120, 1450 - 1100, 500, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 270 - 120, 1420 - 1100, 480, 40 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 270 - 120, 1400 - 1100, 20, 30 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 300 - 120, 1410 - 1100, 450, 10 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 360 - 120, 1390 - 1100, 390, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 400 - 120, 1350 - 1100, 350, 40 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 490 - 120, 1330 - 1100, 260, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 520 - 120, 1310 - 1100, 230, 20 }, Collider::Type::WATER);
 
 	//Wall Colliders
-	App->collisions->AddCollider({ 100, 1130, 20, 90 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 20, 70, 90, 20 }, Collider::Type::WALL); // Test
-	App->collisions->AddCollider({ 120, 1130, 50, 80 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 170, 1130, 10, 70 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 180, 1130, 60, 60 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 240, 1130, 40, 50 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 280, 1130, 10, 40 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 290, 1130, 30, 30 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 100, 1110, 230, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 1130 - 1100, 70, 80 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 170 - 120, 1130 - 1100, 10, 70 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 180 - 120, 1130 - 1100, 60, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 240 - 120, 1130 - 1100, 40, 50 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 280 - 120, 1130 - 1100, 10, 40 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 290 - 120, 1130 - 1100, 30, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 1110 - 1100, 230, 20 }, Collider::Type::WALL);
 
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 40);

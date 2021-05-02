@@ -17,6 +17,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::WALL][Collider::Type::WATER] = false;
+	matrix[Collider::Type::WALL][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_BOMB] = true;
 	matrix[Collider::Type::WALL][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::WALL][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -31,6 +32,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::WATER] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_BOMB] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::BOSS_ATTACK] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::BREAKABLE_OBJECT] = true;
@@ -45,6 +47,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::WATER] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE_OBJECT] = true;
@@ -59,6 +62,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WATER] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BREAKABLE_OBJECT] = true;
@@ -73,6 +77,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WATER] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BREAKABLE_OBJECT] = true;
@@ -87,6 +92,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BOSS][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::BOSS][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -101,6 +107,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WATER][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::WATER][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::WATER][Collider::Type::WATER] = false;
+	matrix[Collider::Type::WATER][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::WATER][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::WATER][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::WATER][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -115,6 +122,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -129,6 +137,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::WATER] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -143,6 +152,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::WATER] = false;
+	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -157,6 +167,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::WATER] = false;
+	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -171,6 +182,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::WATER] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BOSS] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::ENEMY_BOMB] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BREAKABLE_OBJECT] = false;
@@ -270,7 +282,7 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::NONE: // white
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
-			case Collider::Type::WALL: // blue
+			case Collider::Type::WALL: // dark blue
 				App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 				break;
 			case Collider::Type::PLAYER: // green
@@ -282,8 +294,32 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::PLAYER_SHOT: // yellow
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
 				break;
-			case Collider::Type::ENEMY_SHOT: // magenta
+			case Collider::Type::ENEMY_SHOT: // light blue
 				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break; //--------------------------------------------------------------------
+			case Collider::Type::ENEMY_BOMB: // orange
+				App->render->DrawQuad(colliders[i]->rect, 255, 120, 0, alpha);
+				break;
+			case Collider::Type::BOSS: // maroon
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 60, alpha);
+				break;
+			case Collider::Type::WATER: // blue
+				App->render->DrawQuad(colliders[i]->rect, 0, 150, 255, alpha);
+				break;
+			case Collider::Type::BOSS_ATTACK: // maroon
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 60, alpha);
+				break;
+			case Collider::Type::BREAKABLE_OBJECT: // lemon green
+				App->render->DrawQuad(colliders[i]->rect, 151, 255, 0, alpha);
+				break;
+			case Collider::Type::HORIZONTAL_CAMERA_BOUND: // pink
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 255, alpha);
+				break;
+			case Collider::Type::VERTICAL_CAMERA_BOUND: // pink
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 255, alpha);
+				break;
+			case Collider::Type::EVENT_TRIGGER: // purple
+				App->render->DrawQuad(colliders[i]->rect, 100, 0, 255, alpha);
 				break;
 			}
 		}
@@ -294,7 +330,7 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::NONE: // white
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
-			case Collider::Type::WALL: // blue
+			case Collider::Type::WALL: // dark blue
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			case Collider::Type::PLAYER: // green
@@ -307,6 +343,30 @@ void ModuleCollisions::DebugDraw()
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			case Collider::Type::ENEMY_SHOT: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::ENEMY_BOMB: // orange
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::BOSS: // maroon
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::WATER: // blue
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::BOSS_ATTACK: // maroon
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::BREAKABLE_OBJECT: // lemon green
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::HORIZONTAL_CAMERA_BOUND: // pink
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::VERTICAL_CAMERA_BOUND: // pink
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::EVENT_TRIGGER: // purple
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			}
