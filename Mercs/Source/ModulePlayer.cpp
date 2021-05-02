@@ -139,9 +139,6 @@ bool ModulePlayer::Start()
 	speedX = 1;
 	speedY = 1;
 
-	cameraSpeedX = 3;
-	cameraSpeedY = 3;
-
 	destroyed = false;
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
@@ -376,20 +373,20 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
-		cameraSpeedX = 0;
+		cameraXlimitation = true;
 	}
 	else
 	{
-		cameraSpeedX = 3;
+		cameraXlimitation = false;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
 	{
-		cameraSpeedY = 0;
+		cameraYlimitation = true;
 	}
 	else
 	{
-		cameraSpeedY = 3;
+		cameraYlimitation = false;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)

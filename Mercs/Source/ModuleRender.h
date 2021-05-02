@@ -58,6 +58,9 @@ public:
 	int cameraSpeedX = 1 * SCREEN_SIZE;
 	int cameraSpeedY = 1 * SCREEN_SIZE;
 
+	//int cameraSpeedX;
+	//int cameraSpeedY;
+
 };
 
 #endif //__MODULE_RENDER_H__

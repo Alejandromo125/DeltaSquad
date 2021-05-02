@@ -39,9 +39,10 @@ public:
 	// The speed in which we move the player (pixels per frame)
 	int speedX;
 	int speedY;
-	// The speed in which we move the player camera (pixels per frame)
-	int cameraSpeedX;
-	int cameraSpeedY;
+
+	// Camera limits
+	bool cameraXlimitation;
+	bool cameraYlimitation;
 
 	// Player sink effect (in water)
 	int waterSink; // 0 in ground, 20 in water

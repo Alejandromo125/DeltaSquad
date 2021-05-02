@@ -54,6 +54,12 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 280 - 120, 1130 - 1100, 10, 40 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 290 - 120, 1130 - 1100, 30, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 100 - 120, 1110 - 1100, 230, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 920 - 1100, 240, 190 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 340 - 120, 950 - 1100, 80, 140 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 420 - 120, 970 - 1100, 10, 80 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 430 - 120, 970 - 1100, 30, 50 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 460 - 120, 980 - 1100, 10, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 340 - 120, 940 - 1100, 20, 10 }, Collider::Type::WALL);
 
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 40);
