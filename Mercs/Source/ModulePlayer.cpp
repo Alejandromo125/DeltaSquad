@@ -14,9 +14,10 @@
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
+
 	// Idle Animations
 	// Up
-	idleUpAnim.PushBack({ 140, 0, 30, 43 - waterSink });
+	idleUpAnim.PushBack({ 140, 0, 30, 43 - waterSink }); //Water sink effect does not work
 	idleUpAnim.loop = false;
 	// Down
 	idledownAnim.PushBack({ 140, 196, 30, 43 - waterSink });
@@ -161,7 +162,6 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-
 	// Moving the player with the camera scroll
 	//App->player->position.x = App->render->camera.x;
 	//App->player->position.y = App->render->camera.y;
@@ -395,7 +395,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
 	{
 		waterSink = 20;
-		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 30, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 20, Collider::Type::NONE);
 	}
 	else
 	{

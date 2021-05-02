@@ -37,9 +37,9 @@ bool SceneLevel1::Start()
 
 	//Water Colliders
 	App->collisions->AddCollider({ 160 - 120, 1480 - 1100, 590, 20 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 250 - 120, 1450 - 1100, 500, 20 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 250 - 120, 1460 - 1100, 500, 20 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 270 - 120, 1420 - 1100, 480, 40 }, Collider::Type::WATER);
-	App->collisions->AddCollider({ 270 - 120, 1400 - 1100, 20, 30 }, Collider::Type::WATER);
+	App->collisions->AddCollider({ 270 - 120, 1400 - 1100, 20, 20 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 300 - 120, 1410 - 1100, 450, 10 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 360 - 120, 1390 - 1100, 390, 20 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 400 - 120, 1350 - 1100, 350, 40 }, Collider::Type::WATER);

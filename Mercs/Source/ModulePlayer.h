@@ -44,7 +44,7 @@ public:
 	int cameraSpeedY;
 
 	// Player sink effect (in water)
-	int waterSink = 0; // 0 in ground, 20 in water
+	int waterSink; // 0 in ground, 20 in water
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
