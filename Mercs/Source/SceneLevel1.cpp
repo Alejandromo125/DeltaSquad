@@ -38,6 +38,17 @@ bool SceneLevel1::Start()
 	//NULL COLLIDER --> (experimental test for camera functions and other mechanical stuff related with colliders)
 	App->collisions->AddCollider({ 90 - 120, 80 - 1100, 790, 1420 }, Collider::Type::NULL_COLLIDER);
 
+	//Camera Bound Colliders -=NOTE: Camera Bound Colliders stop working when colliding with another thing (water for example)=-
+	App->collisions->AddCollider({ 100 - 120, 900 - 1100, 130, 610 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 100 - 120, 520 - 1100, 170, 380 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 100 - 120, 90 - 1100, 170, 430 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 430 - 120, 1120 - 1100, 220, 380 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 600 - 120, 360 - 1100, 220, 770 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 760 - 120, 50 - 1100, 220, 310 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+
+	App->collisions->AddCollider({ 90 - 120, 1300 - 1100, 670, 270 }, Collider::Type::VERTICAL_CAMERA_BOUND);
+	//App->collisions->AddCollider({ 90 - 120, 30 - 1100, 790, 240 }, Collider::Type::VERTICAL_CAMERA_BOUND); <-- Not needed
+
 	//Water Colliders
 	App->collisions->AddCollider({ 160 - 120, 1480 - 1100, 590, 20 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 250 - 120, 1460 - 1100, 500, 20 }, Collider::Type::WATER);
@@ -100,8 +111,8 @@ bool SceneLevel1::Start()
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;
 
-	App->render->camera.x = App->player->position.x - ((SCREEN_WIDTH / 2));
-	App->render->camera.y = App->player->position.y - ((SCREEN_HEIGHT / 2));
+	App->render->camera.x = 100;
+	App->render->camera.y = -215;
 
 	App->player->Enable();
 	App->enemies->Enable();
