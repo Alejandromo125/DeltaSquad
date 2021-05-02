@@ -60,6 +60,35 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 430 - 120, 970 - 1100, 30, 50 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 460 - 120, 980 - 1100, 10, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 340 - 120, 940 - 1100, 20, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 390 - 120, 1190 - 1100, 130, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 400 - 120, 1210 - 1100, 120, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 460 - 120, 1220 - 1100, 60, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 470 - 120, 1230 - 1100, 50, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 500 - 120, 1240 - 1100, 20, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 510 - 120, 1260 - 1100, 10, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 520 - 120, 1190 - 1100, 10, 310 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 1420 - 1100, 420, 10 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 420 - 120, 1130 - 1100, 40, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 460 - 120, 1110 - 1100, 60, 80 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 520 - 120, 1100 - 1100, 10, 90 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 530 - 120, 1090 - 1100, 20, 100 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 550 - 120, 1070 - 1100, 40, 90 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 590 - 120, 1050 - 1100, 30, 90 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 620 - 120, 1040 - 1100, 100, 100 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 660 - 120, 1020 - 1100, 60, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 680 - 120, 1000 - 1100, 40, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 910 - 1100, 230, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 890 - 1100, 190, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 870 - 1100, 130, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 850 - 1100, 110, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 820 - 1100, 70, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 760 - 1100, 30, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 600 - 1100, 80, 60 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 550 - 1100, 80, 50 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 180 - 120, 570 - 1100, 30, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 180 - 120, 550 - 1100, 20, 20 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 520 - 1100, 70, 30 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 150 - 120, 100 - 1100, 10, 420 }, Collider::Type::WALL);
 
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 40);
