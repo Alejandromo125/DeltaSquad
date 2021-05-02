@@ -11,6 +11,21 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)
 		colliders[i] = nullptr;
 
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::WALL] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::WATER] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::HORIZONTAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::BOSS] = false;
+
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = true;
@@ -25,6 +40,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::WALL][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::WALL][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::WALL][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = true;
@@ -40,6 +56,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::VERTICAL_CAMERA_BOUND] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::EVENT_TRIGGER] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::BOSS] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::NULL_COLLIDER] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = false;
@@ -55,6 +72,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
@@ -70,6 +88,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS] = true;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
@@ -85,6 +104,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::BOSS][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::PLAYER] = false;
@@ -100,6 +120,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BOSS][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::WATER][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WATER][Collider::Type::PLAYER] = true;
@@ -115,7 +136,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WATER][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::WATER][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::WATER][Collider::Type::BOSS] = false;
-	
+	matrix[Collider::Type::WATER][Collider::Type::NULL_COLLIDER] = false;
+
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::ENEMY] = false;
@@ -130,6 +152,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::PLAYER] = true;
@@ -145,6 +168,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::PLAYER] = true;
@@ -160,6 +184,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::PLAYER] = true;
@@ -175,6 +200,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::NULL_COLLIDER] = false;
 
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::WALL] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::PLAYER] = true;
@@ -190,6 +216,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::EVENT_TRIGGER] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::NULL_COLLIDER] = false;
 }
 
 // Destructor
@@ -321,6 +348,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::EVENT_TRIGGER: // purple
 				App->render->DrawQuad(colliders[i]->rect, 100, 0, 255, alpha);
 				break;
+			case Collider::Type::NULL_COLLIDER: // purple
+				App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
+				break;
 			}
 		}
 		else if (activateGodMode == true)
@@ -367,6 +397,9 @@ void ModuleCollisions::DebugDraw()
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			case Collider::Type::EVENT_TRIGGER: // purple
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::NULL_COLLIDER: // purple
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			}

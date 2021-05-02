@@ -68,7 +68,7 @@ Update_Status ModuleRender::Update()
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 		camera.x += cameraSpeedX;
 
-	if (App->player->speedX != 0 && App->player->speedY != 0)
+	if (App->player->wallCollision == false)
 	{
 		if (App->player->cameraYlimitation == false)
 		{

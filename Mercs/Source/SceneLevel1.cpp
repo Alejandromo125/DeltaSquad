@@ -35,6 +35,9 @@ bool SceneLevel1::Start()
 
 	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 0.0f);
 
+	//NULL COLLIDER --> (experimental test for camera functions and other mechanical stuff related with colliders)
+	App->collisions->AddCollider({ 90 - 120, 80 - 1100, 790, 1420 }, Collider::Type::NULL_COLLIDER);
+
 	//Water Colliders
 	App->collisions->AddCollider({ 160 - 120, 1480 - 1100, 590, 20 }, Collider::Type::WATER);
 	App->collisions->AddCollider({ 250 - 120, 1460 - 1100, 500, 20 }, Collider::Type::WATER);
