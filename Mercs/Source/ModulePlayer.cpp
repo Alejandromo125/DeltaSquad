@@ -364,6 +364,59 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		speedX = 0;
 		speedY = 0;
+
+		if (currentAnimation == &downAnim)
+		{
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upAnim)
+		{
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &leftAnim)
+		{
+			position.x = position.x + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &rightAnim)
+		{
+			position.x = position.x - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upRightAnim)
+		{
+			position.x = position.x - 1;
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upLeftAnim)
+		{
+			position.x = position.x + 1;
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &downRightAnim)
+		{
+			position.x = position.x - 1;
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &downLeftAnim)
+		{
+			position.x = position.x + 1;
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
 	}
 	else
 	{

@@ -77,8 +77,6 @@ public:
 
 	Animation deadBackAnim;
 	Animation deadFrontAnim;
-	Animation deadLeftAnim;
-	Animation deadRightAnim;
 
 	// The player's collider
 	Collider* collider = nullptr;
