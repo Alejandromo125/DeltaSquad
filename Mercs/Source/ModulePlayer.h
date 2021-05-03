@@ -53,6 +53,7 @@ public:
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* merc = nullptr;
 	SDL_Texture* mercLife = nullptr;
+	SDL_Texture* insertCoin = nullptr;
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
