@@ -120,7 +120,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkDown)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -149,7 +149,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkUpRight)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -178,7 +178,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkUpLeft)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -207,7 +207,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkDownRight)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -236,7 +236,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkDownLeft)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -265,7 +265,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkLeft)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -294,7 +294,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		}
 		if (currentAnim = &walkRight)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
