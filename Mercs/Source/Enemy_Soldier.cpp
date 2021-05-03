@@ -95,6 +95,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
+				path.steps->framesDuration = 50;
 				path.PushBack({ 0.0f,0.5f }, 1000, &walkDown);
 			}
 			if (random == 2)
