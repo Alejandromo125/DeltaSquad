@@ -1,10 +1,9 @@
 # DeltaSquad
 ***
+Games Development - Project I - My first amazing game
 
 # Mercs
 ***
-
-Games Development - Project I - My first amazing game
 
 **Short description**
 
