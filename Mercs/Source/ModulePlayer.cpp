@@ -377,7 +377,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		speedX = 0;
 		speedY = 0;
-		wallCollision = true;
+		if (wallCollision == false)
+		{
+			wallCollision = true;
+		}
 
 		if (currentAnimation == &downAnim)
 		{
@@ -438,6 +441,76 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		speedY = 1;
 
 		wallCollision = false;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::TRENCH_WALL)
+	{
+		speedX = 0;
+		speedY = 0;
+		if (trenchWallCollision == false)
+		{
+			trenchWallCollision = true;
+		}
+
+		if (currentAnimation == &downAnim)
+		{
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upAnim)
+		{
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &leftAnim)
+		{
+			position.x = position.x + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &rightAnim)
+		{
+			position.x = position.x - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upRightAnim)
+		{
+			position.x = position.x - 1;
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upLeftAnim)
+		{
+			position.x = position.x + 1;
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &downRightAnim)
+		{
+			position.x = position.x - 1;
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &downLeftAnim)
+		{
+			position.x = position.x + 1;
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+	}
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::TRENCH_WALL)
+	{
+		speedX = 1;
+		speedY = 1;
+
+		trenchWallCollision = false;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)

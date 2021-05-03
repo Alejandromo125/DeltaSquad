@@ -132,7 +132,72 @@ void Enemy::OnCollision(Collider* c2)
 		EnemywallCollision = false;
 	}
 	
-	
+	if (c2->type == Collider::Type::TRENCH_WALL)
+	{
+		EnemySpeedX = 0;
+		EnemySpeedY = 0;
+		EnemywallCollision = true;
+
+		if (App->player->EnemyLookingPosition == 1)
+		{
+			position.y = position.y + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 2)
+		{
+			position.y = position.y - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 3)
+		{
+			position.x = position.x + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 4)
+		{
+			position.x = position.x - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 6)
+		{
+			position.x = position.x - 1;
+			position.y = position.y + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 5)
+		{
+			position.x = position.x + 1;
+			position.y = position.y + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 7)
+		{
+			position.x = position.x - 1;
+			position.y = position.y - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 8)
+		{
+			position.x = position.x + 1;
+			position.y = position.y - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+	}
+	else if (c2->type != Collider::Type::TRENCH_WALL)
+	{
+		EnemySpeedX = 1;
+		EnemySpeedY = 1;
+
+		EnemywallCollision = false;
+	}
 }
 
 void Enemy::SetToDelete()

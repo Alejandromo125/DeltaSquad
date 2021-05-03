@@ -47,6 +47,7 @@ public:
 	bool cameraYlimitation;
 
 	bool wallCollision;
+	bool trenchWallCollision;
 
 	// Player sink effect (in water)
 	int waterSink; // 0 in ground, 20 in water
