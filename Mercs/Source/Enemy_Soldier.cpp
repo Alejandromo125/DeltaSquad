@@ -81,11 +81,11 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 void Enemy_Soldier::Update()
 {
 	
-	counterMovement++;
+	
 	
 	counter++;
 
-		if(counterMovement%10==0)
+		if(counter%10==0)
 		{
 			if (App->player->position.y < position.y)
 			{
