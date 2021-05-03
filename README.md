@@ -21,10 +21,10 @@ F2 to turn ON/OFF god mode
 # Members
 ***
 
-Alvaro Milla Cano: https://github.com/mrmile 
-Alejandro Martin Ortega: https://github.com/Alejandromo125
-Oriol Via Porcar: https://github.com/Guerra22
-Albert Ramisa Cebrian: https://github.com/Taks7
+* **Alvaro Milla Cano: https://github.com/mrmile**
+* **Alejandro Martin Ortega: https://github.com/Alejandromo125**
+* **Oriol Via Porcar: https://github.com/Guerra22**
+* **Albert Ramisa Cebrian: https://github.com/Taks7**
 
 # Additional Comments
 ***
