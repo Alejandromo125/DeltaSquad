@@ -25,6 +25,8 @@ bool SceneIntro::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Art/Sequences/background.png");
+	mercsTitle = App->textures->Load("Assets/Art/UI/mercsTitle.png");
+	mercsTitle2 = App->textures->Load("Assets/Art/UI/title2.png");
 	App->audio->PlayMusic("Assets/Music/Ranking.ogg", 1.0f);
 
 	App->render->camera.x = 0;
@@ -48,6 +50,8 @@ Update_Status SceneIntro::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(mercsTitle, 40, 60, NULL);
+	App->render->Blit(mercsTitle2, 23, 120, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
