@@ -5,10 +5,13 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
+#include "Enemy_Soldier.h"
+#include "ModulePlayer.h"
+
 
 Enemy::Enemy(int x, int y) : position(x, y)
 {
-	spawnPos = position;
+	
 }
 
 Enemy::~Enemy()
@@ -29,7 +32,10 @@ void Enemy::Update()
 
 	if (collider != nullptr)
 		collider->SetPos(position.x + 5, position.y + 5);
-}
+	
+	
+	
+}	
 
 void Enemy::Draw()
 {
@@ -61,8 +67,71 @@ void Enemy::OnCollision(Collider* c2)
 
 	if (c2->type == Collider::Type::WALL)
 	{
-
+		EnemySpeedX = 0;
+		EnemySpeedY = 0;
+		EnemywallCollision = true;
+		
+		if (App->player->EnemyLookingPosition==1)
+		{
+			position.y = position.y + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 2)
+		{
+			position.y = position.y - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 3)
+		{
+			position.x = position.x + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 4)
+		{
+			position.x = position.x - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 6)
+		{
+			position.x = position.x - 1;
+			position.y = position.y + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 5)
+		{
+			position.x = position.x + 1;
+			position.y = position.y + 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 7)
+		{
+			position.x = position.x - 1;
+			position.y = position.y - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
+		if (App->player->EnemyLookingPosition == 8)
+		{
+			position.x = position.x + 1;
+			position.y = position.y - 1;
+			EnemySpeedX = 1;
+			EnemySpeedY = 1;
+		}
 	}
+	else if (c2->type != Collider::Type::WALL)
+	{
+		EnemySpeedX = 1;
+		EnemySpeedY = 1;
+
+		EnemywallCollision = false;
+	}
+	
 	
 }
 

@@ -15,11 +15,14 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	
+
+	
+
 private:
 	// A set of steps that define the position in the screen
 	// And an animation for each step
 	Path path;
-
 
 	Animation walkUp;
 	Animation walkDown;
@@ -38,6 +41,9 @@ private:
 	Animation shootUpRight;
 	Animation shootDownLeft;
 	Animation shootDownRight;
+
+	
+	
 };
 
 #endif // __ENEMY_BROWNSHIP_H__

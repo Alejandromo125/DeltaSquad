@@ -146,7 +146,7 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 860 - 120, 60 - 1100, 10, 300 }, Collider::Type::WALL);
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 80);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 100);
 
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;

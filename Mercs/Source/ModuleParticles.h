@@ -63,6 +63,12 @@ public:
 	Particle shotDownLeft;
 	Particle shotUpRight;
 
+	//Template for enemy shots
+	Particle EnemyshotUp;
+	Particle EnemyshotDown;
+	Particle EnemyshotLeft;
+	Particle EnemyshotRight;
+
 	Particle dualShotUp;
 	Particle dualShotDown;
 	Particle dualShotLeft;

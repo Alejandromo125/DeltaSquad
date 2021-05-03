@@ -35,13 +35,21 @@ public:
 
 public:
 	// The current position in the world
-	iPoint position;
+	iPoint  position;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
 
 	// Sound fx when destroyed
 	int destroyedFx = 0;
+
+	//speedEnemy
+	int EnemySpeedX;
+	int EnemySpeedY;
+
+
+	//wall Collision
+	bool EnemywallCollision;
 
 	// A flag for the enemy removal. Important! We do not delete objects instantly
 	bool pendingToDelete = false;
@@ -52,6 +60,8 @@ public:
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
+
+	
 
 	// The enemy's collider
 	Collider* collider = nullptr;

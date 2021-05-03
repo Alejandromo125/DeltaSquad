@@ -129,8 +129,9 @@ bool ModulePlayer::Start()
 
 	texture = App->textures->Load("Assets/Art/Sprites/player1.png");
 	merc = App->textures->Load("Assets/Art/UI/merc1.1_ss.png");
+	insertcoin = App->textures->Load("Assets/Art/UI/insertcoin_ss.png");
 	mercLife = App->textures->Load("Assets/Art/UI/mercLife.png");
-	insertCoin = App->textures->Load("Assets/Art/UI/insertcoin.png");
+
 	currentAnimation = &idledownAnim;
 
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
@@ -339,8 +340,11 @@ Update_Status ModulePlayer::PostUpdate()
 
 	App->render->Blit(merc, 10, 10, NULL, 0, true);
 	App->render->Blit(mercLife, -15, 315, NULL, 0, true);
-	App->render->Blit(insertCoin, -70, 320, NULL, 0, true);
-	App->render->Blit(insertCoin, -140, 320, NULL, 0, true);
+	App->render->Blit(insertcoin, 80, 360, NULL, 0, true);
+	App->render->Blit(insertcoin, 160, 360, NULL, 0, true);
+		
+
+	
 	//App->fonts->BlitText(100, 10, scoreFont, "0123456789");
 
 	return Update_Status::UPDATE_CONTINUE;
