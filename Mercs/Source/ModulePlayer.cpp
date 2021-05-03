@@ -128,6 +128,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/Art/Sprites/player1.png");
+	merc = App->textures->Load("Assets/Art/UI/merc1.1_ss.png");
 	currentAnimation = &idledownAnim;
 
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
@@ -151,9 +152,9 @@ bool ModulePlayer::Start()
 	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font.png", "! @,_./0123456789$;<&?abcdefghijklmnopqrstuvwxyz", 1);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
-	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
-
+	char lookupTable[] = { "0123456789" };
+	scoreFont = App->fonts->Load("Assets/Art/UI/numbers_s.png", lookupTable, 1);
+	
 	return ret;
 }
 
@@ -327,12 +328,15 @@ Update_Status ModulePlayer::PostUpdate()
 	}
 
 	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%7d", score);
+	sprintf_s(scoreText, 10, "%5d", score);
+
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(58, 248, scoreFont, scoreText);
+	App->fonts->BlitText(40, 25, scoreFont, scoreText);
 
-	App->fonts->BlitText(150, 248, scoreFont, "this is just a font test message");
+
+	App->render->Blit(merc, 10, 10, NULL, 0, true);
+	//App->fonts->BlitText(100, 10, scoreFont, "0123456789");
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -357,7 +361,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
 	{
-		score += 23;
+		 score += 150;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
