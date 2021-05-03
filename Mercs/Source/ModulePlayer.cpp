@@ -368,6 +368,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		speedX = 0;
 		speedY = 0;
+		wallCollision = true;
 
 		if (currentAnimation == &downAnim)
 		{
@@ -422,17 +423,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			speedY = 1;
 		}
 	}
-	else
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WALL)
 	{
 		speedX = 1;
 		speedY = 1;
+
+		wallCollision = false;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
 		cameraXlimitation = true;
 	}
-	else
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
 		cameraXlimitation = false;
 	}
@@ -441,7 +444,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		cameraYlimitation = true;
 	}
-	else
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::VERTICAL_CAMERA_BOUND)
 	{
 		cameraYlimitation = false;
 	}
@@ -451,7 +454,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		waterSink = 20;
 		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 20, Collider::Type::NONE);
 	}
-	else
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WATER)
 	{
 		waterSink = 0;
 	}
