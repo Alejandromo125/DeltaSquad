@@ -6,6 +6,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "p2Point.h"
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {	
@@ -69,18 +70,61 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	
 	//Have the Soldiers describe a path in the screen taking into account the collisions
 
-	path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
-	path.PushBack({ 0.0f,-0.5f }, 5000, &walkUp);
+
+		
 
 	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
-
 	
-	if (this->collider->Intersects({ Collider::Type::WALL }) == true)
+	if ((App->player->position.x > position.x) && (App->player->position.y == position.y))
+	{
+		&Animation::HasFinished;
+		path.PushBack({ 0.0f,0.5f },10,&walkRight);
+		
+	}
+	if ((App->player->position.x < position.x) && (App->player->position.y == position.y))
+	{
+		&Animation::HasFinished;
+		path.PushBack({ 0.0f,-0.5f },10, &walkLeft);
+		
+	}
+	if ((App->player->position.y > position.y) && (App->player->position.x == position.x))
+	{
+		&Animation::HasFinished;
+		path.PushBack({ 0.5f,0.0f },10, &walkDown);
+		
+	}
+	if ((App->player->position.y < position.y) && (App->player->position.x == position.x))
+	{
+		&Animation::HasFinished;
+		path.PushBack({ -0.5f,0.0f },10, &walkUp);
+		
+	}
+	/*
+	while ((App->player->position.y < position.y) && (App->player->position.x < position.x))
+	{
+		path.PushBack({ -0.5f,-0.5f }, 5, &walkUpLeft);
+	}
+	while ((App->player->position.y < position.y) && (App->player->position.x > position.x))
+	{
+		path.PushBack({ -0.5f,0.5f }, 5, &walkUpRight);
+	}
+	while ((App->player->position.y > position.y) && (App->player->position.x > position.x))
+	{
+		path.PushBack({ 0.5f,0.5f }, 5, &walkDownRight);
+	}
+	while ((App->player->position.y > position.y) && (App->player->position.x < position.x))
+	{
+		path.PushBack({ 0.5f,-0.5f }, 5, &walkDownLeft);
+	}
+	*/
+	
+	/*
+	if(this->collider->Intersects()
 	{
 		if (currentAnim = &walkUp)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,0.5f }, 1000, &walkDown);
@@ -109,7 +153,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkDown)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,-0.5f }, 50, &walkUp);
@@ -138,7 +182,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkUpRight)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,0.5f }, 50, &walkDown);
@@ -167,7 +211,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkUpLeft)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,0.5f }, 1000, &walkDown);
@@ -196,7 +240,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkDownRight)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,-0.5f }, 1000, &walkUp);
@@ -225,7 +269,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkDownLeft)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,-0.5f }, 1000, &walkUp);
@@ -254,7 +298,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkLeft)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,-0.5f }, 1000, &walkUp);
@@ -283,7 +327,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		if (currentAnim = &walkRight)
 		{
 			srand(1);
-			int random = rand() % 4 + 1;
+			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
 				path.PushBack({ 0.0f,0.5f }, 50, &walkUp);
@@ -310,7 +354,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			}
 		}
 	}
-	
+	*/
 }
 
 void Enemy_Soldier::Update()
@@ -319,7 +363,7 @@ void Enemy_Soldier::Update()
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();
 	
-	if (position.DistanceTo(App->player->position) < 250)
+	if (position.DistanceTo(App->player->position) < 150)
 	{
 		
 		if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
@@ -327,7 +371,7 @@ void Enemy_Soldier::Update()
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotDown, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.PushBack({ 0.0f,0.0f }, 10, &shootDown);
+			
 			
 		}
 		if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
@@ -335,7 +379,7 @@ void Enemy_Soldier::Update()
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.PushBack({ 0.0f,0.0f }, 10, &shootUp);
+			
 		}
 		if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
 		{
@@ -352,7 +396,7 @@ void Enemy_Soldier::Update()
 			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->shotLeft, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
-			path.PushBack({ 0.0f,0.0f }, 10, &shootLeft);
+			
 			
 		}
 		/*
