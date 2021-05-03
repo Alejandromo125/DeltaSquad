@@ -8,6 +8,9 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 
+#include "ModuleFadeToBlack.h"
+#include "SceneIntro.h"
+
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
 
@@ -123,6 +126,11 @@ Update_Status SceneLevel1::Update()
 {
 	//App->render->camera.x = App->player->position.x - ((SCREEN_WIDTH / 2));
 	//App->render->camera.y = App->player->position.y - ((SCREEN_HEIGHT / 2));
+	
+	if (GetAsyncKeyState(VK_ESCAPE))
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
