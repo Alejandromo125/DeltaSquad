@@ -1,7 +1,7 @@
 # DeltaSquad
 ***
 Games Development - Project I - My first amazing game
-* **https://github.com/Alejandromo125/DeltaSquad**
+* **https://github.com/Alejandromo125/DeltaSquad** *
 
 # Mercs
 ***
