@@ -73,7 +73,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	
 
 	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
-
+	
 	
 	
 }
@@ -81,72 +81,80 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 void Enemy_Soldier::Update()
 {
 	
-	if (App->player->position.y < position.y)
-	{
-			currentAnim = &walkUp;
-			position.y = position.y - 1;
-			App->player->EnemyLookingPosition = 1;
-	}
-
-	if (App->player->position.y > position.y)
-	{
-		
-			currentAnim = &walkDown;
-			position.y = position.y + 1;
-			App->player->EnemyLookingPosition = 2;
-	}
-
-	if (App->player->position.x < position.x)
-	{
-		
-			currentAnim = &walkLeft;
-			position.x = position.x - 1;
-			App->player->EnemyLookingPosition = 3;
-
-	}
-	if (App->player->position.x > position.x)
-	{
-			currentAnim = &walkRight;
-			position.x = position.x + 1;
-			App->player->EnemyLookingPosition = 4;
-	}
-
-	if ((App->player->position.y < position.y)&& (App->player->position.x < position.x))
-	{
-			currentAnim = &walkUpLeft;
-			position.y = position.y - 1;
-			position.x = position.x - 1;
-			App->player->EnemyLookingPosition = 5;
-
-	}
-
-	if ((App->player->position.x > position.x) && (App->player->position.y < position.y))
-	{
-			currentAnim = &walkUpRight;
-			position.x = position.x + 1;
-			position.y = position.y - 1;
-			App->player->EnemyLookingPosition = 6;
-	}
-
-	if ((App->player->position.y > position.y)&& (App->player->position.x > position.x))
-	{
-			currentAnim = &walkDownRight;
-			position.y = position.y + 1;
-			position.x = position.x + 1;
-			App->player->EnemyLookingPosition = 7;
-	}
-
-	if ((App->player->position.x < position.x)&& (App->player->position.y > position.y))
-	{
-
-			currentAnim = &walkDownLeft;
-			position.x = position.x - 1;
-			position.y = position.y + 1;
-			App->player->EnemyLookingPosition = 8;
-	}
+	counterMovement++;
 	
-	for (int counter = 0; counter <= 60; counter++)
-	{
+	counter++;
+
+		if(counterMovement%10==0)
+		{
+			if (App->player->position.y < position.y)
+			{
+				currentAnim = &walkUp;
+				position.y = position.y - 1;
+				App->player->EnemyLookingPosition = 1;
+			}
+
+			if (App->player->position.y > position.y)
+			{
+
+				currentAnim = &walkDown;
+				position.y = position.y + 1;
+				App->player->EnemyLookingPosition = 2;
+			}
+
+			if (App->player->position.x < position.x)
+			{
+
+				currentAnim = &walkLeft;
+				position.x = position.x - 1;
+				App->player->EnemyLookingPosition = 3;
+
+			}
+			if (App->player->position.x > position.x)
+			{
+				currentAnim = &walkRight;
+				position.x = position.x + 1;
+				App->player->EnemyLookingPosition = 4;
+			}
+
+			if ((App->player->position.y < position.y) && (App->player->position.x < position.x))
+			{
+				currentAnim = &walkUpLeft;
+				position.y = position.y - 1;
+				position.x = position.x - 1;
+				App->player->EnemyLookingPosition = 5;
+
+			}
+
+			if ((App->player->position.x > position.x) && (App->player->position.y < position.y))
+			{
+				currentAnim = &walkUpRight;
+				position.x = position.x + 1;
+				position.y = position.y - 1;
+				App->player->EnemyLookingPosition = 6;
+			}
+
+			if ((App->player->position.y > position.y) && (App->player->position.x > position.x))
+			{
+				currentAnim = &walkDownRight;
+				position.y = position.y + 1;
+				position.x = position.x + 1;
+				App->player->EnemyLookingPosition = 7;
+			}
+
+			if ((App->player->position.x < position.x) && (App->player->position.y > position.y))
+			{
+
+				currentAnim = &walkDownLeft;
+				position.x = position.x - 1;
+				position.y = position.y + 1;
+				App->player->EnemyLookingPosition = 8;
+			}
+		}
+	
+		
+	
+	
 		if (counter % 30 == 0)
 		{
 			if (position.DistanceTo(App->player->position) < 250)
@@ -188,7 +196,7 @@ void Enemy_Soldier::Update()
 				
 			}
 		}
-	}
+	
 	
 		
 	

@@ -16,8 +16,9 @@ public:
 	void Update() override;
 
 	
-
+	int counter = 0;
 	
+	int counterMovement;
 
 private:
 	// A set of steps that define the position in the screen
