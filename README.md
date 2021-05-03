@@ -5,11 +5,11 @@ Games Development - Project I - My first amazing game
 # Mercs
 ***
 
-**Short description**
+**Short description:**
 
 Mercs is a top-down run and gun arcade game, which means that the character or characters fights usually on foot. Run and gun games like this use side and vertical scrolling, they also use isometric projection – is a method for visually representing three dimensional objects in two dimensions – and it also features multidirectional movement.
 
-**Useful Information**
+**Useful Information:**
 
 Use the ARROW KEYS to move and SPACE BAR to shoot.
 
