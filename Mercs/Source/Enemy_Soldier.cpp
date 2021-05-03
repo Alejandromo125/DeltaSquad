@@ -74,6 +74,8 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		
 
 	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
+	path.PushBack({ 0.5f,0.0f }, 50, &walkRight);
+	path.PushBack({ -0.5f,0.0f }, 50, &walkLeft);
 	/*
 	if ((App->player->position.x > position.x) && (App->player->position.y == position.y))
 	{
