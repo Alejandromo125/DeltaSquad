@@ -74,7 +74,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		
 
 	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
-	
+	/*
 	if ((App->player->position.x > position.x) && (App->player->position.y == position.y))
 	{
 		&Animation::HasFinished;
