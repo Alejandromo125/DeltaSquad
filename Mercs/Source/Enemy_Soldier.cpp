@@ -8,6 +8,7 @@
 #include "ModuleAudio.h"
 #include "p2Point.h"
 
+
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {	
 	walkUp.speed = 0.1f;
@@ -74,58 +75,23 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 		
 
 	collider = App->collisions->AddCollider({position.x, position.y, 20, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
-	path.PushBack({ 0.5f,0.0f }, 50, &walkRight);
-	path.PushBack({ -0.5f,0.0f }, 50, &walkLeft);
-	/*
-	if ((App->player->position.x > position.x) && (App->player->position.y == position.y))
-	{
-		&Animation::HasFinished;
-		path.PushBack({ 0.0f,0.5f },10,&walkRight);
-		
-	}
-	if ((App->player->position.x < position.x) && (App->player->position.y == position.y))
-	{
-		&Animation::HasFinished;
-		path.PushBack({ 0.0f,-0.5f },10, &walkLeft);
-		
-	}
-	if ((App->player->position.y > position.y) && (App->player->position.x == position.x))
-	{
-		&Animation::HasFinished;
-		path.PushBack({ 0.5f,0.0f },10, &walkDown);
-		
-	}
-	if ((App->player->position.y < position.y) && (App->player->position.x == position.x))
-	{
-		&Animation::HasFinished;
-		path.PushBack({ -0.5f,0.0f },10, &walkUp);
-		
-	}
-	/*
-	while ((App->player->position.y < position.y) && (App->player->position.x < position.x))
-	{
-		path.PushBack({ -0.5f,-0.5f }, 5, &walkUpLeft);
-	}
-	while ((App->player->position.y < position.y) && (App->player->position.x > position.x))
-	{
-		path.PushBack({ -0.5f,0.5f }, 5, &walkUpRight);
-	}
-	while ((App->player->position.y > position.y) && (App->player->position.x > position.x))
-	{
-		path.PushBack({ 0.5f,0.5f }, 5, &walkDownRight);
-	}
-	while ((App->player->position.y > position.y) && (App->player->position.x < position.x))
-	{
-		path.PushBack({ 0.5f,-0.5f }, 5, &walkDownLeft);
-	}
-	*/
+
 	
-	/*
-	if(this->collider->Intersects()
+	path.PushBack({ 0.5f,0.0f }, 25, &walkRight);
+	path.PushBack({ -0.5f,0.0f }, 25, &walkLeft);
+
+	
+	
+		
+		
+	
+	
+	
+	if ((this->collider->Intersects({ 100 - 120, 1120 - 1100, 70, 80 }))|| (this->collider->Intersects({ 170 - 120, 1120 - 1100, 10, 70 })))
 	{
 		if (currentAnim = &walkUp)
 		{
-			srand(1);
+			srand(NULL);
 			int random = rand() % 5 + 1;
 			if (random == 1)
 			{
@@ -356,7 +322,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 			}
 		}
 	}
-	*/
+	
 }
 
 void Enemy_Soldier::Update()
