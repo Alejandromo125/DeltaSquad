@@ -40,6 +40,8 @@ public:
 	int speedX;
 	int speedY;
 
+	int EnemyLookingPosition;
+
 	// Camera limits
 	bool cameraXlimitation;
 	bool cameraYlimitation;
