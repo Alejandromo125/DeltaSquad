@@ -127,7 +127,7 @@ Update_Status SceneLevel1::Update()
 	//App->render->camera.x = App->player->position.x - ((SCREEN_WIDTH / 2));
 	//App->render->camera.y = App->player->position.y - ((SCREEN_HEIGHT / 2));
 	
-	if (GetAsyncKeyState(VK_ESCAPE))
+	if (GetAsyncKeyState(VK_F3))
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}

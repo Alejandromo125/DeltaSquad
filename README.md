@@ -17,6 +17,8 @@ F1 to see colliders
 
 F2 to turn ON/OFF god mode
 
+F3 direct Win / Lose
+
 # Members
 ***
 
