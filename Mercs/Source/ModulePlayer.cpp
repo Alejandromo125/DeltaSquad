@@ -340,10 +340,8 @@ Update_Status ModulePlayer::PostUpdate()
 
 	App->render->Blit(merc, 10, 10, NULL, 0, true);
 	App->render->Blit(mercLife, -15, 315, NULL, 0, true);
-
-	
-		App->render->Blit(insertcoin, 80, 360, NULL, 0, true);
-		App->render->Blit(insertcoin, 160, 360, NULL, 0, true);
+	App->render->Blit(insertcoin, 80, 360, NULL, 0, true);
+	App->render->Blit(insertcoin, 160, 360, NULL, 0, true);
 		
 
 	
