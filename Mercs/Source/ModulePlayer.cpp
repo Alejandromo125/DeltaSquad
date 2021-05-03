@@ -128,7 +128,7 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	texture = App->textures->Load("Assets/Art/Sprites/player1.png");
-	merc = App->textures->Load("Assets/Art/UI/merc1_ss.png");
+	merc = App->textures->Load("Assets/Art/UI/merc1.1_ss.png");
 	currentAnimation = &idledownAnim;
 
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
