@@ -540,4 +540,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		waterSink = 0;
 	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
+	{
+		bidimensionalCameraLimitation = true;
+	}
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
+	{
+		bidimensionalCameraLimitation = false;
+	}
 }

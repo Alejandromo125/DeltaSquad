@@ -45,6 +45,7 @@ public:
 	// Camera limits
 	bool cameraXlimitation;
 	bool cameraYlimitation;
+	bool bidimensionalCameraLimitation;
 
 	bool wallCollision;
 	bool trenchWallCollision;

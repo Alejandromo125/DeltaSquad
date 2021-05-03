@@ -70,7 +70,7 @@ Update_Status ModuleRender::Update()
 
 	if (App->player->wallCollision == false && App->player->trenchWallCollision == false)
 	{
-		if (App->player->cameraYlimitation == false)
+		if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
 		{
 			if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 				camera.y -= cameraSpeedY;
@@ -79,7 +79,7 @@ Update_Status ModuleRender::Update()
 				camera.y += cameraSpeedY;
 		}
 		
-		if (App->player->cameraXlimitation == false)
+		if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
 		{
 			if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 				camera.x -= cameraSpeedX;

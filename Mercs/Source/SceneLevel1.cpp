@@ -47,9 +47,12 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 100 - 120, 90 - 1100, 170, 430 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 430 - 120, 1120 - 1100, 220, 380 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 600 - 120, 360 - 1100, 220, 770 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
-	App->collisions->AddCollider({ 760 - 120, 50 - 1100, 220, 310 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+
+	App->collisions->AddCollider({ 760 - 120, 50 - 1100, 220, 310 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
 
 	App->collisions->AddCollider({ 90 - 120, 1300 - 1100, 670, 270 }, Collider::Type::VERTICAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 530 - 120, 120 - 1100, 220, 300 }, Collider::Type::VERTICAL_CAMERA_BOUND);
+
 	//App->collisions->AddCollider({ 90 - 120, 30 - 1100, 790, 240 }, Collider::Type::VERTICAL_CAMERA_BOUND); <-- Not needed
 
 	//Water Colliders
