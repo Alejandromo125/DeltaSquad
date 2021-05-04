@@ -622,6 +622,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
 	{
 		waterSink = 20;
+		cameraYlimitation = true; // Does not make sense but its needed
 		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 20, Collider::Type::NONE);
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WATER)

@@ -46,18 +46,18 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 90 - 120, 80 - 1100, 790, 1420 }, Collider::Type::NULL_COLLIDER);
 
 	//Camera Bound Colliders -=NOTE: Camera Bound Colliders stop working when colliding with another thing (water for example)=-
-	App->collisions->AddCollider({ 100 - 120, 900 - 1100, 130, 610 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 100 - 120, 900 - 1100, 130, 400 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 100 - 120, 520 - 1100, 170, 380 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 100 - 120, 90 - 1100, 170, 430 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
-	App->collisions->AddCollider({ 430 - 120, 1120 - 1100, 220, 380 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 430 - 120, 1120 - 1100, 220, 180 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 600 - 120, 360 - 1100, 220, 770 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 
 	App->collisions->AddCollider({ 760 - 120, 50 - 1100, 220, 310 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 90 - 120, 1300 - 1100, 150, 260 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 430 - 120, 1300 - 1100, 330, 260 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
 
-	App->collisions->AddCollider({ 90 - 120, 1300 - 1100, 670, 270 }, Collider::Type::VERTICAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 240 - 120, 1300 - 1100, 190, 270 }, Collider::Type::VERTICAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 530 - 120, 120 - 1100, 220, 300 }, Collider::Type::VERTICAL_CAMERA_BOUND);
-
-	//App->collisions->AddCollider({ 90 - 120, 30 - 1100, 790, 240 }, Collider::Type::VERTICAL_CAMERA_BOUND); <-- Not needed
 
 	//Water Colliders
 	App->collisions->AddCollider({ 160 - 120, 1480 - 1100, 590, 20 }, Collider::Type::WATER);
