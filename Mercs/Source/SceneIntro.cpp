@@ -27,7 +27,8 @@ bool SceneIntro::Start()
 	bgTexture = App->textures->Load("Assets/Art/Sequences/backgroundblack.png");
 	mercsTitle = App->textures->Load("Assets/Art/UI/mercsTitle.png");
 	mercsTitle2 = App->textures->Load("Assets/Art/UI/title2.png");
-	App->audio->PlayMusic("Assets/Music/Ranking.ogg", 1.0f);
+	
+	App->audio->PlayMusic("Assets/Music/None.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -39,6 +40,7 @@ Update_Status SceneIntro::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
+		App->audio->PlayMusic("Assets/Music/Credit.ogg", 1.0f);
 		App->fade->FadeToBlack(this, (Module*)App->sceneLevel_1, 90);
 	}
 
