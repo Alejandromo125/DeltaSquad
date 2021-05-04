@@ -210,10 +210,6 @@ Update_Status SceneLevel1::Update()
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
 	}
-	if (App->player->destroyed == true)
-	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
-	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -233,6 +229,15 @@ bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
 	App->enemies->Disable();
+
+	SDL_free(Level1FullMapTexture);
+	SDL_free(bgTexture);
+	SDL_free(Houses1Texture);
+	SDL_free(Houses2Texture);
+	SDL_free(LevelIntroTexture);
+	SDL_free(MovingAndChangingTilesTexture);
+
+	App->collisions->RemoveCollider(App->player->collider);
 
 	return true;
 }

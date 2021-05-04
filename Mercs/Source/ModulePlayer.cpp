@@ -442,6 +442,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			currentAnimation == &downAnim || currentAnimation == &downLeftAnim || currentAnimation == &downRightAnim || currentAnimation == &rightAnim)
 			currentAnimation = &deadFrontAnim;
 
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+
 		destroyed = true;
 	}
 
