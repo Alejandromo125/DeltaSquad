@@ -193,6 +193,8 @@ bool SceneLevel1::Start()
 	App->render->camera.x = 100;
 	App->render->camera.y = -215;
 
+	//App->player->activateWinCondition = false;
+
 	App->player->Enable();
 	App->enemies->Enable();
 
@@ -206,7 +208,7 @@ Update_Status SceneLevel1::Update()
 	
 	if (App->player->activateWinCondition == true)
 	{
-		App->player->activateWinCondition == false;
+		App->player->activateWinCondition = false;
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
 	}
