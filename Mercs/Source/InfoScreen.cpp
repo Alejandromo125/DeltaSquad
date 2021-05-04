@@ -24,9 +24,9 @@ bool InfoScreen::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Art/Sequences/titlescreenfin.png");
+	bgTexture = App->textures->Load("Assets/Art/Sequences/firstbg.png");
 
-	App->audio->PlayMusic("Assets/Music/Battleship.ogg", 1.0f);
+	//App->audio->PlayMusic("Assets/Music/Battleship.ogg", 1.0f);
 
 	delay = 0;
 
