@@ -210,24 +210,24 @@ void Enemy_Soldier::Update()
 			if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
 			{
 
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
 
 
 			}
 			if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
 			{
 
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotUpRight, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 20, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotUpRight, position.x + 20, position.y + 8, Collider::Type::ENEMY_SHOT);
 
 
 			}
 			if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
 			{
 
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
 
 
 			}
