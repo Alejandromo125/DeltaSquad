@@ -83,7 +83,7 @@ void Enemy_Soldier2::Update()
 
 	if (counterEnemy2 % 10 == 0)
 	{
-		if (position.DistanceTo(App->player->position) < 350)
+		if (position.DistanceTo(App->player->position) < 250)
 		{
 			
 
@@ -126,7 +126,7 @@ void Enemy_Soldier2::Update()
 	{
 		//DIAGONAL SHOT IMPLEMENTATION
 	
-		if (position.DistanceTo(App->player->position) < 350)
+		if (position.DistanceTo(App->player->position) < 250)
 		{
 
 		}if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
