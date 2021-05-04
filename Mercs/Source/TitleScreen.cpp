@@ -28,6 +28,8 @@ bool TitleScreen::Start()
 
 	App->audio->PlayMusic("Assets/Music/Battleship.ogg", 1.0f);
 
+	delay = 0;
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
@@ -36,7 +38,12 @@ bool TitleScreen::Start()
 
 Update_Status TitleScreen::Update()
 {
+	delay++;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+	}
+	if (delay >= 360)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
