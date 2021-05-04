@@ -107,11 +107,19 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	// Die Up
 	//Insert pushBack
+	deadFrontAnim.PushBack({ 0, 420, 34, 45 - waterSink });
+	deadFrontAnim.PushBack({ 178, 375, 35, 45 - waterSink });
+	deadFrontAnim.PushBack({ 83, 420, 35, 45 - waterSink });
+	deadFrontAnim.PushBack({ 148, 420, 38, 45 - waterSink });
 	deadFrontAnim.loop = false;
 	deadFrontAnim.speed = 0.1f;
 
 	// Die Down
 	//Insert pushBack
+	deadBackAnim.PushBack({ 4, 375, 35, 45 - waterSink });
+	deadBackAnim.PushBack({ 37, 375, 35, 45 - waterSink });
+	deadBackAnim.PushBack({ 70, 375, 35, 45 - waterSink });
+	deadBackAnim.PushBack({ 108, 375, 35, 45 - waterSink });
 	deadBackAnim.loop = false;
 	deadBackAnim.speed = 0.1f;
 }
@@ -152,7 +160,6 @@ bool ModulePlayer::Start()
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
 
-	
 
 	//App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
 	//App->render->camera.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
@@ -181,210 +188,214 @@ Update_Status ModulePlayer::Update()
 
 	//App->player->position.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
 	//App->player->position.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
-
-	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+	if (destroyed == false)
 	{
-		App->player->position.x = App->player->position.x - speedX;
-		//App->render->camera.x -= cameraSpeedX;
-		if (currentAnimation != &leftAnim)
+		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 		{
-			//leftAnim.Reset();
-			currentAnimation = &leftAnim;
+			App->player->position.x = App->player->position.x - speedX;
+			//App->render->camera.x -= cameraSpeedX;
+			if (currentAnimation != &leftAnim)
+			{
+				//leftAnim.Reset();
+				currentAnimation = &leftAnim;
+			}
 		}
+
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+		{
+			App->player->position.x = App->player->position.x + speedX;
+			//App->render->camera.x += cameraSpeedX;
+			if (currentAnimation != &rightAnim)
+			{
+				//rightAnim.Reset();
+				currentAnimation = &rightAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+		{
+			App->player->position.y = App->player->position.y + speedY;
+			//App->render->camera.y += cameraSpeedY;
+			if (currentAnimation != &downAnim)
+			{
+				//downAnim.Reset();
+				currentAnimation = &downAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+		{
+			if (currentAnimation != &downLeftAnim)
+			{
+				//downLeftAnim.Reset();
+				currentAnimation = &downLeftAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+		{
+			if (currentAnimation != &downRightAnim)
+			{
+				//downRightAnim.Reset();
+				currentAnimation = &downRightAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
+		{
+			App->player->position.y = App->player->position.y - speedY;
+			//App->render->camera.y -= cameraSpeedY;
+			if (currentAnimation != &upAnim)
+			{
+				//upAnim.Reset();
+				currentAnimation = &upAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
+		{
+			if (currentAnimation != &upLeftAnim)
+			{
+				//upLeftAnim.Reset();
+				currentAnimation = &upLeftAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
+		{
+			if (currentAnimation != &upRightAnim)
+			{
+				//upRightAnim.Reset();
+				currentAnimation = &upRightAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+		{
+			App->audio->PlayFx(shot06);
+
+			if (currentAnimation == &idleUpAnim || currentAnimation == &upAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idledownAnim || currentAnimation == &downAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idleLeftAnim || currentAnimation == &leftAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idleRightAnim || currentAnimation == &rightAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idleUpLeftAnim || currentAnimation == &upLeftAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idleDownLeftAnim || currentAnimation == &downLeftAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idleUpRightAnim || currentAnimation == &upRightAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+				}
+			}
+
+			if (currentAnimation == &idleDownRightAnim || currentAnimation == &downRightAnim)
+			{
+				if (collectedItemID == 0)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->shotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 1)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+				}
+			}
+		}
+
+		// If no up/down movement detected, set the current animation back to idle
+		if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_IDLE
+			&& App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_IDLE
+			&& App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_IDLE
+			&& App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_IDLE)
+			currentAnimation = &idledownAnim;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
-	{
-		App->player->position.x = App->player->position.x + speedX;
-		//App->render->camera.x += cameraSpeedX;
-		if (currentAnimation != &rightAnim)
-		{
-			//rightAnim.Reset();
-			currentAnimation = &rightAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
-	{
-		App->player->position.y = App->player->position.y + speedY;
-		//App->render->camera.y += cameraSpeedY;
-		if (currentAnimation != &downAnim)
-		{
-			//downAnim.Reset();
-			currentAnimation = &downAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
-	{
-		if (currentAnimation != &downLeftAnim)
-		{
-			//downLeftAnim.Reset();
-			currentAnimation = &downLeftAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
-	{
-		if (currentAnimation != &downRightAnim)
-		{
-			//downRightAnim.Reset();
-			currentAnimation = &downRightAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
-	{
-		App->player->position.y = App->player->position.y - speedY;
-		//App->render->camera.y -= cameraSpeedY;
-		if (currentAnimation != &upAnim)
-		{
-			//upAnim.Reset();
-			currentAnimation = &upAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
-	{
-		if (currentAnimation != &upLeftAnim)
-		{
-			//upLeftAnim.Reset();
-			currentAnimation = &upLeftAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
-	{
-		if (currentAnimation != &upRightAnim)
-		{
-			//upRightAnim.Reset();
-			currentAnimation = &upRightAnim;
-		}
-	}
-
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
-	{
-		App->audio->PlayFx(shot06);
-
-		if (currentAnimation == &idleUpAnim || currentAnimation == &upAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idledownAnim || currentAnimation == &downAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idleLeftAnim || currentAnimation == &leftAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idleRightAnim || currentAnimation == &rightAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idleUpLeftAnim || currentAnimation == &upLeftAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idleDownLeftAnim || currentAnimation == &downLeftAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idleUpRightAnim || currentAnimation == &upRightAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
-			}
-		}
-
-		if (currentAnimation == &idleDownRightAnim || currentAnimation == &downRightAnim)
-		{
-			if (collectedItemID == 0)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->shotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
-			}
-			else if (collectedItemID == 1)
-			{
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
-			}
-		}
-	}
-
-	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_IDLE)
-		currentAnimation = &idledownAnim;
+	
 
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
 	{
@@ -436,13 +447,17 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
 			currentAnimation == &upAnim || currentAnimation == &upLeftAnim || currentAnimation == &upRightAnim || currentAnimation == &leftAnim)
+		{
 			currentAnimation = &deadBackAnim;
+		}
 
 		if (currentAnimation == &idledownAnim || currentAnimation == &idleDownLeftAnim || currentAnimation == &idleRightAnim || currentAnimation == &idleDownRightAnim ||
 			currentAnimation == &downAnim || currentAnimation == &downLeftAnim || currentAnimation == &downRightAnim || currentAnimation == &rightAnim)
+		{
 			currentAnimation = &deadFrontAnim;
-
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
+		}
+		
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
 
 		destroyed = true;
 	}

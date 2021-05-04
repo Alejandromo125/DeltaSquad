@@ -113,6 +113,10 @@ public:
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
 
+	// Delay for some smooth experience
+	
+	int playerDelay; // Not sure if it works well with player...
+
 };
 
 #endif //!__MODULE_PLAYER_H__
