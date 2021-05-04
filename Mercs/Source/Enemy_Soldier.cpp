@@ -34,11 +34,13 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	walkRight.PushBack({ 113,448,30,43 });
 	walkRight.PushBack({ 73,448,30,43 });
 	walkRight.PushBack({ 113,448,30,43 });
+	walkRight.PushBack({ 73,448,30,43 });
 	walkRight.loop = true;
 
 	walkLeft.PushBack({ 113,495,30,43 });
 	walkLeft.PushBack({ 73,495,30,43 });
 	walkLeft.PushBack({ 113,495,30,43 });
+	walkLeft.PushBack({ 73,495,30,43 });
 	walkLeft.loop = true;
 
 	walkUpRight.PushBack({ 113,598,30,43 });
