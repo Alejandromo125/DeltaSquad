@@ -24,7 +24,7 @@ bool SceneIntro::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Art/Sequences/background.png");
+	bgTexture = App->textures->Load("Assets/Art/Sequences/backgroundblack.png");
 	mercsTitle = App->textures->Load("Assets/Art/UI/mercsTitle.png");
 	mercsTitle2 = App->textures->Load("Assets/Art/UI/title2.png");
 	App->audio->PlayMusic("Assets/Music/Ranking.ogg", 1.0f);
