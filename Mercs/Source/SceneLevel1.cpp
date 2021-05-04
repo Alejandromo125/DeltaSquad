@@ -171,9 +171,8 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 320 - 120, 530 - 1100, 100, 20 }, Collider::Type::TRENCH_WALL);
 
 	//Item Collisions
-	//App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
-
+	App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	// Enemies ---
 	//SOLDIER
 

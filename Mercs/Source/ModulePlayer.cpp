@@ -642,5 +642,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOUBLE_SHOT_WEAPON_ID01)
 	{
 		collectedItemID = 1;
+		App->particles->doubleShotWeapon.lifetime = 1;
+		App->particles->doubleShotWeapon.SetToDelete();
 	}
 }
