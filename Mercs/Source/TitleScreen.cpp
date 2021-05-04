@@ -26,7 +26,7 @@ bool TitleScreen::Start()
 
 	bgTexture = App->textures->Load("Assets/Art/Sequences/titlescreenfin.png");
 
-	App->audio->PlayMusic("Assets/Music/Opening.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Battleship.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
