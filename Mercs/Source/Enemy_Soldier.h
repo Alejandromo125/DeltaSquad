@@ -44,8 +44,6 @@ private:
 	Animation shootDownRight;
 
 
-	uint EnemyShot = 0;
-	
 	
 };
 

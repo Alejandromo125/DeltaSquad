@@ -28,7 +28,7 @@ Enemy_Soldier2::Enemy_Soldier2(int x, int y) : Enemy(x, y)
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 20, 30 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
-	EnemyShot2 = App->audio->LoadFx("Assets/FX/06.wav");
+	
 
 }
 
@@ -81,7 +81,7 @@ void Enemy_Soldier2::Update()
 	}
 
 
-	if (counterEnemy2 % 10 == 0)
+	if (counterEnemy2 % 60 == 0)
 	{
 		if (position.DistanceTo(App->player->position) < 250)
 		{
@@ -89,7 +89,7 @@ void Enemy_Soldier2::Update()
 
 			if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 			{
-				App->audio->PlayFx(EnemyShot2);
+				
 				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
 
@@ -97,14 +97,14 @@ void Enemy_Soldier2::Update()
 			}
 			if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
 			{
-				App->audio->PlayFx(EnemyShot2);
+				
 				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->EnemyshotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
 
 			}
 			if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
 			{
-				App->audio->PlayFx(EnemyShot2);
+				
 				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->EnemyshotRight, position.x + 18, position.y + 8, Collider::Type::ENEMY_SHOT);
 
@@ -113,7 +113,7 @@ void Enemy_Soldier2::Update()
 			}
 			if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
 			{
-				App->audio->PlayFx(EnemyShot2);
+				
 				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->EnemyshotLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
 
@@ -122,7 +122,7 @@ void Enemy_Soldier2::Update()
 
 		}
 	}
-	if (counterEnemy2 % 50 == 0)
+	if (counterEnemy2 % 200 == 0)
 	{
 		//DIAGONAL SHOT IMPLEMENTATION
 	
@@ -131,7 +131,7 @@ void Enemy_Soldier2::Update()
 
 		}if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
 		{
-			App->audio->PlayFx(EnemyShot2);
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->EnemyshotUpLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
 
@@ -139,7 +139,7 @@ void Enemy_Soldier2::Update()
 		}
 		if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
 		{
-			App->audio->PlayFx(EnemyShot2);
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
 
@@ -147,7 +147,7 @@ void Enemy_Soldier2::Update()
 		}
 		if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
 		{
-			App->audio->PlayFx(EnemyShot2);
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 20, position.y + 8, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->EnemyshotUpRight, position.x + 20, position.y + 8, Collider::Type::ENEMY_SHOT);
 
@@ -155,7 +155,7 @@ void Enemy_Soldier2::Update()
 		}
 		if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
 		{
-			App->audio->PlayFx(EnemyShot2);
+			
 			App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
 			App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
 
