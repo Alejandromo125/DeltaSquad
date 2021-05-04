@@ -438,6 +438,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			currentAnimation = &deadFrontAnim;
 
 		destroyed = true;
+
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 180);
 	}
 
 	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)

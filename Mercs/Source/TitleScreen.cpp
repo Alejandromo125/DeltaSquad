@@ -43,7 +43,7 @@ Update_Status TitleScreen::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	if (delay >= 360)
+	if (delay >= 600)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
