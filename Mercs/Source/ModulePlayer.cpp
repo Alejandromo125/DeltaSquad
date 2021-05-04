@@ -446,12 +446,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		destroyed = true;
 	}
-
-	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
-	{
-		 score += 150;
-	}
-
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 	{
 		speedX = 0;
