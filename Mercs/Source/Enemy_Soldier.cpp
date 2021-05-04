@@ -196,7 +196,7 @@ void Enemy_Soldier::Update()
 				
 			}
 		}
-		if (counter % 50 == 0)
+		if (counter % 100 == 0)
 		{
 			//DIAGONAL SHOT IMPLEMENTATION
 			if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
