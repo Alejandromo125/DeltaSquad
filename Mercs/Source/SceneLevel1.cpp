@@ -204,9 +204,15 @@ Update_Status SceneLevel1::Update()
 	//App->render->camera.x = App->player->position.x - ((SCREEN_WIDTH / 2));
 	//App->render->camera.y = App->player->position.y - ((SCREEN_HEIGHT / 2));
 	
-	if (GetAsyncKeyState(VK_F3))
+	if (App->player->activateWinCondition == true)
 	{
-			 App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->player->activateWinCondition == false;
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
+	}
+	if (App->player->destroyed == true)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

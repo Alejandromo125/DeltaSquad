@@ -42,6 +42,9 @@ public:
 
 	int EnemyLookingPosition;
 
+	// F3
+	bool activateWinCondition;
+
 	// Camera limits
 	bool cameraXlimitation;
 	bool cameraYlimitation;

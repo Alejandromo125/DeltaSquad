@@ -386,6 +386,11 @@ Update_Status ModulePlayer::Update()
 		&& App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_IDLE)
 		currentAnimation = &idledownAnim;
 
+	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
+	{
+		activateWinCondition = true;
+	}
+
 	collider->SetPos(position.x + 6, position.y + 3);
 
 	currentAnimation->Update();
@@ -438,8 +443,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			currentAnimation = &deadFrontAnim;
 
 		destroyed = true;
-
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 180);
 	}
 
 	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
