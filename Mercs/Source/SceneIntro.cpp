@@ -6,6 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "ModulePlayer.h"
 
 SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled)
 {
@@ -32,6 +33,9 @@ bool SceneIntro::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	App->player->cameraXlimitation = true;
+	App->player->cameraYlimitation = true;
 
 	return ret;
 }

@@ -11,6 +11,9 @@
 #include "ModuleFadeToBlack.h"
 #include "SceneIntro.h"
 
+#include "SDL_image/include/SDL_image.h"
+#pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
+
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
 
@@ -198,6 +201,9 @@ bool SceneLevel1::Start()
 	App->player->Enable();
 	App->enemies->Enable();
 
+	App->player->cameraXlimitation = false;
+	App->player->cameraYlimitation = false;
+
 	return ret;
 }
 
@@ -231,13 +237,21 @@ bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
 	App->enemies->Disable();
+	App->collisions->CleanUp();
 
-	SDL_free(Level1FullMapTexture);
-	SDL_free(bgTexture);
-	SDL_free(Houses1Texture);
-	SDL_free(Houses2Texture);
-	SDL_free(LevelIntroTexture);
-	SDL_free(MovingAndChangingTilesTexture);
+	SDL_DestroyTexture(Level1FullMapTexture);
+	SDL_DestroyTexture(bgTexture);
+	SDL_DestroyTexture(Houses1Texture);
+	SDL_DestroyTexture(Houses2Texture);
+	SDL_DestroyTexture(LevelIntroTexture);
+	SDL_DestroyTexture(MovingAndChangingTilesTexture);
+
+	//SDL_free(Level1FullMapTexture);
+	//SDL_free(bgTexture);
+	//SDL_free(Houses1Texture);
+	//SDL_free(Houses2Texture);
+	//SDL_free(LevelIntroTexture);
+	//SDL_free(MovingAndChangingTilesTexture);
 
 	App->collisions->RemoveCollider(App->player->collider);
 
