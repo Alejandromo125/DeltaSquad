@@ -37,7 +37,7 @@ private:
 	Animation Enemy2shootDownRight;
 
 
-	uint EnemyShot2 = 0;
+	
 };
 
 #endif // __ENEMY_BROWNSHIP_H__
