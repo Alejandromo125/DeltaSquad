@@ -43,6 +43,8 @@ private:
 	Animation shootDownLeft;
 	Animation shootDownRight;
 
+
+	uint EnemyShot = 0;
 	
 	
 };

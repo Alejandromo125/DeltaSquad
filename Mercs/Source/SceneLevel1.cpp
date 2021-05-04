@@ -178,9 +178,9 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 307 - 120, 287 - 1100);
 
 	//SOLDIER2
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 264 - 120, 571 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 251 - 120, 357 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 359 - 120, 765 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 370 - 120, 489 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 386 - 120, 650 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 278 - 120, 346 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 501 - 120, 215 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
 
