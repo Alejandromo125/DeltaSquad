@@ -97,6 +97,11 @@ public:
 	//Template particle for player in water
 	Particle waterParticles;
 
+	//Item Particles
+	Particle doubleShotWeapon;
+	Particle megaBomb;
+	Particle healingFood;
+
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* texture = nullptr;

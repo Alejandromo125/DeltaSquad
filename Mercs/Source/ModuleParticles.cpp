@@ -67,12 +67,26 @@ bool ModuleParticles::Start()
 	shotRight.anim.loop = false;
 	shotRight.anim.speed = 0.2f;
 
+	dualShotRight.anim.PushBack({ 30, 165, 10, 10 });
+	dualShotRight.speed.x = 6;
+	dualShotRight.speed.y = 0;
+	dualShotRight.lifetime = 180;
+	dualShotRight.anim.loop = false;
+	dualShotRight.anim.speed = 0.2f;
+
 	shotLeft.anim.PushBack({ 6, 180, 10, 10 });
 	shotLeft.speed.x = -6;
 	shotLeft.speed.y = 0;
 	shotLeft.lifetime = 180;
 	shotLeft.anim.loop = false;
 	shotLeft.anim.speed = 0.2f;
+
+	dualShotLeft.anim.PushBack({ 6, 192, 10, 10 });
+	dualShotLeft.speed.x = -6;
+	dualShotLeft.speed.y = 0;
+	dualShotLeft.lifetime = 180;
+	dualShotLeft.anim.loop = false;
+	dualShotLeft.anim.speed = 0.2f;
 
 	shotUp.anim.PushBack({ 6, 151, 10, 10 });
 	shotUp.speed.x = 0;
@@ -81,12 +95,26 @@ bool ModuleParticles::Start()
 	shotUp.anim.loop = false;
 	shotUp.anim.speed = 0.2f;
 
+	dualShotUp.anim.PushBack({ 6, 164, 10, 10 });
+	dualShotUp.speed.x = 0;
+	dualShotUp.speed.y = -6;
+	dualShotUp.lifetime = 180;
+	dualShotUp.anim.loop = false;
+	dualShotUp.anim.speed = 0.2f;
+
 	shotDown.anim.PushBack({ 28, 218, 10, 10 });
 	shotDown.speed.x = 0;
 	shotDown.speed.y = 6;
 	shotDown.lifetime = 180;
 	shotDown.anim.loop = false;
 	shotDown.anim.speed = 0.2f;
+
+	dualShotDown.anim.PushBack({ 28, 205, 10, 10 });
+	dualShotDown.speed.x = 0;
+	dualShotDown.speed.y = 6;
+	dualShotDown.lifetime = 180;
+	dualShotDown.anim.loop = false;
+	dualShotDown.anim.speed = 0.2f;
 
 	shotUpLeft.anim.PushBack({ 18, 178, 10, 10 });
 	shotUpLeft.speed.x = -5;
@@ -95,12 +123,26 @@ bool ModuleParticles::Start()
 	shotUpLeft.anim.loop = false;
 	shotUpLeft.anim.speed = 0.2f;
 
+	dualShotUpLeft.anim.PushBack({ 18, 190, 10, 10 });
+	dualShotUpLeft.speed.x = -5;
+	dualShotUpLeft.speed.y = -5;
+	dualShotUpLeft.lifetime = 180;
+	dualShotUpLeft.anim.loop = false;
+	dualShotUpLeft.anim.speed = 0.2f;
+
 	shotDownRight.anim.PushBack({ 16, 244, 10, 10 });
 	shotDownRight.speed.x = 5;
 	shotDownRight.speed.y = 5;
 	shotDownRight.lifetime = 180;
 	shotDownRight.anim.loop = false;
 	shotDownRight.anim.speed = 0.2f;
+
+	dualShotDownRight.anim.PushBack({ 16, 232, 10, 10 });
+	dualShotDownRight.speed.x = 5;
+	dualShotDownRight.speed.y = 5;
+	dualShotDownRight.lifetime = 180;
+	dualShotDownRight.anim.loop = false;
+	dualShotDownRight.anim.speed = 0.2f;
 
 	shotDownLeft.anim.PushBack({ 18, 217, 10, 10 });
 	shotDownLeft.speed.x = -5;
@@ -109,6 +151,13 @@ bool ModuleParticles::Start()
 	shotDownLeft.anim.loop = false;
 	shotDownLeft.anim.speed = 0.2f;
 
+	dualShotDownLeft.anim.PushBack({ 18, 205, 10, 10 });
+	dualShotDownLeft.speed.x = -5;
+	dualShotDownLeft.speed.y = 5;
+	dualShotDownLeft.lifetime = 180;
+	dualShotDownLeft.anim.loop = false;
+	dualShotDownLeft.anim.speed = 0.2f;
+
 	shotUpRight.anim.PushBack({ 17, 152, 10, 10 });
 	shotUpRight.speed.x = 5;
 	shotUpRight.speed.y = -5;
@@ -116,16 +165,23 @@ bool ModuleParticles::Start()
 	shotUpRight.anim.loop = false;
 	shotUpRight.anim.speed = 0.2f;
 
+	dualShotUpRight.anim.PushBack({ 17, 164, 10, 10 });
+	dualShotUpRight.speed.x = 5;
+	dualShotUpRight.speed.y = -5;
+	dualShotUpRight.lifetime = 180;
+	dualShotUpRight.anim.loop = false;
+	dualShotUpRight.anim.speed = 0.2f;
+
 	//Enemy shots
 	EnemyshotRight.anim.PushBack({ 30, 153, 10, 10 });
-	EnemyshotRight.speed.x = 1;
+	EnemyshotRight.speed.x = 2;
 	EnemyshotRight.speed.y = 0;
 	EnemyshotRight.lifetime = 180;
 	EnemyshotRight.anim.loop = false;
 	EnemyshotRight.anim.speed = 0.2f;
 
 	EnemyshotLeft.anim.PushBack({ 6, 180, 10, 10 });
-	EnemyshotLeft.speed.x = -1;
+	EnemyshotLeft.speed.x = -2;
 	EnemyshotLeft.speed.y = 0;
 	EnemyshotLeft.lifetime = 180;
 	EnemyshotLeft.anim.loop = false;
@@ -133,45 +189,53 @@ bool ModuleParticles::Start()
 
 	EnemyshotUp.anim.PushBack({ 6, 151, 10, 10 });
 	EnemyshotUp.speed.x = 0;
-	EnemyshotUp.speed.y = -1;
+	EnemyshotUp.speed.y = -2;
 	EnemyshotUp.lifetime = 180;
 	EnemyshotUp.anim.loop = false;
 	EnemyshotUp.anim.speed = 0.2f;
 
 	EnemyshotDown.anim.PushBack({ 28, 218, 10, 10 });
 	EnemyshotDown.speed.x = 0;
-	EnemyshotDown.speed.y = 1;
+	EnemyshotDown.speed.y = 2;
 	EnemyshotDown.lifetime = 180;
 	EnemyshotDown.anim.loop = false;
 	EnemyshotDown.anim.speed = 0.2f;
 
 	EnemyshotUpLeft.anim.PushBack({ 18, 178, 10, 10 });
-	EnemyshotUpLeft.speed.x = -1;
-	EnemyshotUpLeft.speed.y = -1;
+	EnemyshotUpLeft.speed.x = -2;
+	EnemyshotUpLeft.speed.y = -2;
 	EnemyshotUpLeft.lifetime = 180;
 	EnemyshotUpLeft.anim.loop = false;
 	EnemyshotUpLeft.anim.speed = 0.2f;
 
 	EnemyshotDownRight.anim.PushBack({ 16, 244, 10, 10 });
-	EnemyshotDownRight.speed.x = 1;
-	EnemyshotDownRight.speed.y = 1;
+	EnemyshotDownRight.speed.x = 2;
+	EnemyshotDownRight.speed.y = 2;
 	EnemyshotDownRight.lifetime = 180;
 	EnemyshotDownRight.anim.loop = false;
 	EnemyshotDownRight.anim.speed = 0.2f;
 
 	EnemyshotDownLeft.anim.PushBack({ 18, 217, 10, 10 });
-	EnemyshotDownLeft.speed.x = -1;
-	EnemyshotDownLeft.speed.y = 1;
+	EnemyshotDownLeft.speed.x = -2;
+	EnemyshotDownLeft.speed.y = 2;
 	EnemyshotDownLeft.lifetime = 180;
 	EnemyshotDownLeft.anim.loop = false;
 	EnemyshotDownLeft.anim.speed = 0.2f;
 
 	EnemyshotUpRight.anim.PushBack({ 17, 152, 10, 10 });
-	EnemyshotUpRight.speed.x = 1;
-	EnemyshotUpRight.speed.y = -1;
+	EnemyshotUpRight.speed.x = 2;
+	EnemyshotUpRight.speed.y = -2;
 	EnemyshotUpRight.lifetime = 180;
 	EnemyshotUpRight.anim.loop = false;
 	EnemyshotUpRight.anim.speed = 0.2f;
+
+	//Items
+	doubleShotWeapon.anim.PushBack({ 0, 50, 30, 30 });
+	doubleShotWeapon.speed.x = 0;
+	doubleShotWeapon.speed.y = 0;
+	//doubleShotWeapon.lifetime = 180;
+	doubleShotWeapon.anim.loop = false;
+	doubleShotWeapon.anim.speed = 0.0f;
 
 	return true;
 }

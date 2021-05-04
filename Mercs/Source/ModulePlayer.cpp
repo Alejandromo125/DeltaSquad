@@ -147,10 +147,12 @@ bool ModulePlayer::Start()
 
 	//playerLife = 100;   <-- Not used for now
 
-	collectedItemID = 0; // ID 0 is single shot, ID 1 is dual shot, then you can add more weapons with ID 3, 4, 5, etc... (note: in level 1 only weapons 0 and 1 are available)
-	collectedMegaBombsNumber = 0; // Player starts with 1 MegaBomb available (MegaBomb mechanic is not implemented yet so it wont have any effect for now)
+	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is triple shot weapon (only ID 0 and 1 are used in level 1)
+	//collectedMegaBombsNumber = 1; // Player starts with 1 MegaBomb available -=(MegaBomb mechanic is not implemented yet so it wont have any effect for now)=-
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
+
+	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 
 	//App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
 	//App->render->camera.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
@@ -266,50 +268,114 @@ Update_Status ModulePlayer::Update()
 
 		if (currentAnimation == &idleUpAnim || currentAnimation == &upAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idledownAnim || currentAnimation == &downAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idleLeftAnim || currentAnimation == &leftAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idleRightAnim || currentAnimation == &rightAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idleUpLeftAnim || currentAnimation == &upLeftAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idleDownLeftAnim || currentAnimation == &downLeftAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idleUpRightAnim || currentAnimation == &upRightAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+			}
 		}
 
 		if (currentAnimation == &idleDownRightAnim || currentAnimation == &downRightAnim)
 		{
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->shotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+			if (collectedItemID == 0)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->shotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+			}
+			else if (collectedItemID == 1)
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+			}
 		}
 	}
 
@@ -554,5 +620,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
 	{
 		bidimensionalCameraLimitation = false;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOUBLE_SHOT_WEAPON_ID01)
+	{
+		collectedItemID = 1;
 	}
 }
