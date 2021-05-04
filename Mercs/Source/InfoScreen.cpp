@@ -26,7 +26,7 @@ bool InfoScreen::Start()
 
 	bgTexture = App->textures->Load("Assets/Art/Sequences/firstbg.png");
 
-	//App->audio->PlayMusic("Assets/Music/Battleship.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Assassin.ogg", 1.0f);
 
 	delay = 0;
 
