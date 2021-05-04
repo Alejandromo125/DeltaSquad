@@ -20,6 +20,8 @@ F2 to turn ON/OFF god mode
 
 F3 direct Win / Lose
 
+SPACE BAR to skip the initial screen
+
 # Members
 ***
 
