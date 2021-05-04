@@ -10,6 +10,7 @@
 
 #include "ModuleFadeToBlack.h"
 #include "SceneIntro.h"
+#include "ModuleParticles.h"
 
 #include "SDL_image/include/SDL_image.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
@@ -171,6 +172,7 @@ bool SceneLevel1::Start()
 
 	//Item Collisions
 	//App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
+	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 
 	// Enemies ---
 	//SOLDIER
@@ -195,6 +197,8 @@ bool SceneLevel1::Start()
 
 	App->render->camera.x = 100;
 	App->render->camera.y = -215;
+
+	App->player->score = 0;
 
 	//App->player->activateWinCondition = false;
 

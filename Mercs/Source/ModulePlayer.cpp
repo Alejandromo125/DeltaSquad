@@ -152,7 +152,7 @@ bool ModulePlayer::Start()
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
 
-	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
+	
 
 	//App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
 	//App->render->camera.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
