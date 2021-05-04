@@ -39,6 +39,8 @@ public:
 	SDL_Texture* Houses2Texture = nullptr;
 	SDL_Texture* LevelIntroTexture = nullptr;
 	SDL_Texture* MovingAndChangingTilesTexture = nullptr;
+
+	int SceneCounter;
 };
 
 #endif

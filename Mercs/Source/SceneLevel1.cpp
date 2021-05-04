@@ -167,8 +167,22 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 320 - 120, 530 - 1100, 100, 20 }, Collider::Type::TRENCH_WALL);
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 80, 150);
+	//SOLDIER
+
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 178-120, 1340-1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 401 - 120, 1280 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 596 - 120, 965 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 400 - 120, 871 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 380 - 120, 711 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 260 - 120, 565 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 307 - 120, 287 - 1100);
+
+	//SOLDIER2
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 264 - 120, 571 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 251 - 120, 357 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 359 - 120, 765 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 501 - 120, 215 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
 
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;
@@ -189,7 +203,7 @@ Update_Status SceneLevel1::Update()
 	
 	if (GetAsyncKeyState(VK_F3))
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+			 App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

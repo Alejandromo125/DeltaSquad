@@ -84,8 +84,9 @@ void Enemy_Soldier::Update()
 	
 	
 	counter++;
-
-		if(counter%10==0)
+	if (position.DistanceTo(App->player->position) < 250)
+	{
+		if (counter % 10 == 0)
 		{
 			if (App->player->position.y < position.y)
 			{
@@ -151,6 +152,8 @@ void Enemy_Soldier::Update()
 				App->player->EnemyLookingPosition = 8;
 			}
 		}
+	}
+		
 	
 		
 	
