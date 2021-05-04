@@ -145,6 +145,11 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
+	//playerLife = 100;   <-- Not used for now
+
+	collectedItemID = 0; // ID 0 is single shot, ID 1 is dual shot, then you can add more weapons with ID 3, 4, 5, etc... (note: in level 1 only weapons 0 and 1 are available)
+	collectedMegaBombsNumber = 0; // Player starts with 1 MegaBomb available (MegaBomb mechanic is not implemented yet so it wont have any effect for now)
+
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
 
 	//App->render->camera.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
@@ -355,6 +360,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
 		(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false)
 	{
+
 		App->audio->PlayFx(dead26);
 
 		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||

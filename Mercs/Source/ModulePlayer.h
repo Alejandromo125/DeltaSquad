@@ -47,6 +47,7 @@ public:
 	bool cameraYlimitation;
 	bool bidimensionalCameraLimitation;
 
+	//Collision variables for mechanics
 	bool wallCollision;
 	bool trenchWallCollision;
 
@@ -58,6 +59,13 @@ public:
 	SDL_Texture* merc = nullptr;
 	SDL_Texture* insertcoin = nullptr;
 	SDL_Texture* mercLife = nullptr;
+
+	// Player Life Variable
+	int playerLife; //Not used for now
+
+	// Items variables
+	int collectedItemID;
+	int collectedMegaBombsNumber;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
