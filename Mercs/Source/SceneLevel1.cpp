@@ -168,6 +168,7 @@ bool SceneLevel1::Start()
 
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 80, 100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 80, 150);
 
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;

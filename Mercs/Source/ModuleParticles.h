@@ -68,6 +68,10 @@ public:
 	Particle EnemyshotDown;
 	Particle EnemyshotLeft;
 	Particle EnemyshotRight;
+	Particle EnemyshotUpLeft;
+	Particle EnemyshotDownRight;
+	Particle EnemyshotDownLeft;
+	Particle EnemyshotUpRight;
 
 	Particle dualShotUp;
 	Particle dualShotDown;

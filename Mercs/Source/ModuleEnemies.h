@@ -9,6 +9,7 @@ enum class Enemy_Type
 {
 	NO_TYPE,
 	SOLDIER,
+	SOLDIER2,
 
 };
 

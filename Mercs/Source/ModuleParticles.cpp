@@ -145,6 +145,34 @@ bool ModuleParticles::Start()
 	EnemyshotDown.anim.loop = false;
 	EnemyshotDown.anim.speed = 0.2f;
 
+	EnemyshotUpLeft.anim.PushBack({ 18, 178, 10, 10 });
+	EnemyshotUpLeft.speed.x = -1;
+	EnemyshotUpLeft.speed.y = -1;
+	EnemyshotUpLeft.lifetime = 180;
+	EnemyshotUpLeft.anim.loop = false;
+	EnemyshotUpLeft.anim.speed = 0.2f;
+
+	EnemyshotDownRight.anim.PushBack({ 16, 244, 10, 10 });
+	EnemyshotDownRight.speed.x = 1;
+	EnemyshotDownRight.speed.y = 1;
+	EnemyshotDownRight.lifetime = 180;
+	EnemyshotDownRight.anim.loop = false;
+	EnemyshotDownRight.anim.speed = 0.2f;
+
+	EnemyshotDownLeft.anim.PushBack({ 18, 217, 10, 10 });
+	EnemyshotDownLeft.speed.x = -1;
+	EnemyshotDownLeft.speed.y = 1;
+	EnemyshotDownLeft.lifetime = 180;
+	EnemyshotDownLeft.anim.loop = false;
+	EnemyshotDownLeft.anim.speed = 0.2f;
+
+	EnemyshotUpRight.anim.PushBack({ 17, 152, 10, 10 });
+	EnemyshotUpRight.speed.x = 1;
+	EnemyshotUpRight.speed.y = -1;
+	EnemyshotUpRight.lifetime = 180;
+	EnemyshotUpRight.anim.loop = false;
+	EnemyshotUpRight.anim.speed = 0.2f;
+
 	return true;
 }
 

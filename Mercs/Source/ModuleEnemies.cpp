@@ -8,6 +8,7 @@
 
 #include "Enemy.h"
 #include "Enemy_Soldier.h"
+#include "Enemy_Soldier2.h"
 
 #define SPAWN_MARGIN 50
 
@@ -157,6 +158,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			{
 				case Enemy_Type::SOLDIER:
 					enemies[i] = new Enemy_Soldier(info.x, info.y);
+					break;
+				case Enemy_Type::SOLDIER2:
+					enemies[i] = new Enemy_Soldier2(info.x, info.y);
 					break;
 
 			}
