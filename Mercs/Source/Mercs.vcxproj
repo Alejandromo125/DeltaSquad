@@ -80,6 +80,7 @@
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_Soldier.h" />
     <ClInclude Include="Enemy_Soldier2.h" />
+    <ClInclude Include="InfoScreen.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollisions.h" />
     <ClInclude Include="ModuleEnemies.h" />
@@ -108,6 +109,7 @@
     <ClCompile Include="Enemy_Soldier.cpp" />
     <ClCompile Include="Enemy_Soldier2.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="InfoScreen.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollisions.cpp" />
     <ClCompile Include="ModuleEnemies.cpp" />
