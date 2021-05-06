@@ -199,6 +199,7 @@ Update_Status ModulePlayer::Update()
 				//leftAnim.Reset();
 				currentAnimation = &leftAnim;
 			}
+			PlayerLookingPosition = 1;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
@@ -210,6 +211,7 @@ Update_Status ModulePlayer::Update()
 				//rightAnim.Reset();
 				currentAnimation = &rightAnim;
 			}
+			PlayerLookingPosition = 2;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
@@ -221,6 +223,7 @@ Update_Status ModulePlayer::Update()
 				//downAnim.Reset();
 				currentAnimation = &downAnim;
 			}
+			PlayerLookingPosition = 3;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
@@ -230,6 +233,8 @@ Update_Status ModulePlayer::Update()
 				//downLeftAnim.Reset();
 				currentAnimation = &downLeftAnim;
 			}
+			PlayerLookingPosition = 5;
+
 		}
 
 		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
@@ -239,6 +244,7 @@ Update_Status ModulePlayer::Update()
 				//downRightAnim.Reset();
 				currentAnimation = &downRightAnim;
 			}
+			PlayerLookingPosition = 6;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
@@ -250,6 +256,7 @@ Update_Status ModulePlayer::Update()
 				//upAnim.Reset();
 				currentAnimation = &upAnim;
 			}
+			PlayerLookingPosition = 4;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
@@ -259,6 +266,7 @@ Update_Status ModulePlayer::Update()
 				//upLeftAnim.Reset();
 				currentAnimation = &upLeftAnim;
 			}
+			PlayerLookingPosition = 7;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT && App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
@@ -268,6 +276,7 @@ Update_Status ModulePlayer::Update()
 				//upRightAnim.Reset();
 				currentAnimation = &upRightAnim;
 			}
+			PlayerLookingPosition = 8;
 		}
 
 		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
@@ -392,7 +401,36 @@ Update_Status ModulePlayer::Update()
 			&& App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_IDLE
 			&& App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_IDLE
 			&& App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_IDLE)
-			currentAnimation = &idledownAnim;
+		{
+			switch(PlayerLookingPosition)
+			{
+			case 1:
+				currentAnimation = &idleLeftAnim;
+				break;
+			case 2:
+				currentAnimation = &idleRightAnim;
+				break;
+			case 3:
+				currentAnimation = &idledownAnim;
+				break;
+			case 4:
+				currentAnimation = &idleUpAnim;
+				break;
+			case 5:
+				currentAnimation = &idleDownLeftAnim;
+				break;
+			case 6:
+				currentAnimation = &idleDownRightAnim;
+				break;
+			case 7:
+				currentAnimation = &idleUpLeftAnim;
+				break;
+			case 8:
+				currentAnimation = &idleUpRightAnim;
+				break;
+			}
+		}
+			
 	}
 
 	

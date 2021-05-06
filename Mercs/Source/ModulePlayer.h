@@ -66,6 +66,10 @@ public:
 	// Player Life Variable
 	int playerLife; //Not used for now
 
+	//Player Direction of Looking variable
+
+	int PlayerLookingPosition;
+
 	// Items variables
 	int collectedItemID;
 	int collectedMegaBombsNumber;
