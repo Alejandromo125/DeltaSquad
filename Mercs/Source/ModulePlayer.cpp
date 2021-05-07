@@ -17,7 +17,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 
 	// Idle Animations
 	// Up
-	idleUpAnim.PushBack({ 140, 0, 30, 43 - waterSink }); //Water sink effect does not work
+	idleUpAnim.PushBack({ 140, 7, 30, 43 - waterSink }); //Water sink effect does not work
 	idleUpAnim.loop = false;
 	// Down
 	idledownAnim.PushBack({ 140, 196, 30, 43 - waterSink });
