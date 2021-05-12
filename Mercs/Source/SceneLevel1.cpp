@@ -32,6 +32,14 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
+	App->player->Enable();
+
+	App->enemies->Enable();
+
+	App->particles->Enable();
+
+	App->collisions->Enable();
+
 	//TileMaps
 	Level1FullMapTexture = App->textures->Load("Assets/Art/TileMaps/FullMap.png");
 	bgTexture = App->textures->Load("Assets/Art/TileMaps/background.png");
@@ -172,7 +180,7 @@ bool SceneLevel1::Start()
 
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
-	App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
+	//App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	// Enemies ---
 	//SOLDIER
 
@@ -239,8 +247,17 @@ Update_Status SceneLevel1::PostUpdate()
 bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
+	//App->player->CleanUp();
+
 	App->enemies->Disable();
-	App->collisions->CleanUp();
+	//App->enemies->CleanUp();
+
+	App->particles->Disable();
+	//App->particles->CleanUp();
+
+	App->collisions->Disable();
+	//App->collisions->CleanUp();
+	//App->collisions->RemoveCollider(App->collisions->AddCollider({ 640 - 120, 130 - 1100, 240, 10 }, Collider::Type::TRENCH_WALL));
 
 	SDL_DestroyTexture(Level1FullMapTexture);
 	SDL_DestroyTexture(bgTexture);
