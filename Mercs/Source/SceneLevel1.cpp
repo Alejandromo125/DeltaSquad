@@ -32,9 +32,9 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	App->player->Enable();
+	//App->player->Enable();
 
-	App->enemies->Enable();
+	//App->enemies->Enable();
 
 	App->particles->Enable();
 
