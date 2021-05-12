@@ -246,17 +246,7 @@ Update_Status SceneLevel1::PostUpdate()
 
 bool SceneLevel1::CleanUp()
 {
-	App->player->Disable();
-	//App->player->CleanUp();
-
-	App->enemies->Disable();
-	//App->enemies->CleanUp();
-
-	App->particles->Disable();
-	//App->particles->CleanUp();
-
-	App->collisions->Disable();
-	//App->collisions->CleanUp();
+	
 	//NULL COLLIDER --> (experimental test for camera functions and other mechanical stuff related with colliders)
 	App->collisions->RemoveCollider(App->collisions->AddCollider({ 90 - 120, 80 - 1100, 790, 1420 }, Collider::Type::NULL_COLLIDER));
 
@@ -399,6 +389,18 @@ bool SceneLevel1::CleanUp()
 	//SDL_free(Houses2Texture);
 	//SDL_free(LevelIntroTexture);
 	//SDL_free(MovingAndChangingTilesTexture);
+
+	App->player->Disable();
+	App->player->CleanUp();
+
+	App->enemies->Disable();
+	App->enemies->CleanUp();
+
+	App->particles->Disable();
+	App->particles->CleanUp();
+
+	App->collisions->CleanUp();
+	App->collisions->Disable();
 
 	App->collisions->RemoveCollider(App->player->collider);
 
