@@ -572,7 +572,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		speedX = 1;
 		speedY = 1;
 
-		wallCollision = false;
+		if (wallCollision == true)
+		{
+			wallCollision = false;
+		}
+
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::TRENCH_WALL)
@@ -642,31 +646,56 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		speedX = 1;
 		speedY = 1;
 
-		trenchWallCollision = false;
+		if (trenchWallCollision == true)
+		{
+			trenchWallCollision = false;
+		}
+
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
-		cameraXlimitation = true;
+		if (cameraXlimitation == false)
+		{
+			cameraXlimitation = true;
+		}
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::HORIZONTAL_CAMERA_BOUND)
 	{
-		cameraXlimitation = false;
+		if (cameraXlimitation == true)
+		{
+			cameraXlimitation = false;
+		}
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
 	{
-		cameraYlimitation = true;
+		if (cameraYlimitation == false)
+		{
+			cameraYlimitation = true;
+		}
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::VERTICAL_CAMERA_BOUND)
 	{
-		cameraYlimitation = false;
+		if (cameraYlimitation == true)
+		{
+			cameraYlimitation = false;
+		}
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
 	{
 		waterSink = 20;
-		cameraYlimitation = true; // Does not make sense but its needed
+		if (cameraYlimitation == false)
+		{
+			cameraYlimitation = true; // Does not make sense but its needed
+		}
+
+		if (cameraXlimitation == false)
+		{
+			cameraXlimitation = true; // Does not make sense but its needed
+		}
+		
 		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 20, Collider::Type::NONE);
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WATER)
@@ -676,11 +705,17 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
 	{
-		bidimensionalCameraLimitation = true;
+		if (bidimensionalCameraLimitation == false)
+		{
+			bidimensionalCameraLimitation = true;
+		}
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
 	{
-		bidimensionalCameraLimitation = false;
+		if (bidimensionalCameraLimitation == true)
+		{
+			bidimensionalCameraLimitation = false;
+		}
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOUBLE_SHOT_WEAPON_ID01)
