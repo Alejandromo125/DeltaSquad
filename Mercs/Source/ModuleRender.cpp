@@ -68,32 +68,6 @@ Update_Status ModuleRender::Update()
 	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
 		camera.x += cameraSpeedX;
 
-	if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
-	{
-		if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
-		{
-			if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
-				camera.y -= cameraSpeedY;
-
-			if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
-				camera.y += cameraSpeedY;
-		}
-		
-		if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
-		{
-			if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
-				camera.x -= cameraSpeedX;
-			if (camera.x < 0) camera.x = 0;
-
-			if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
-				camera.x += cameraSpeedX;
-		}
-		
-	}
-	
-
-
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 

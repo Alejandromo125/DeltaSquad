@@ -285,6 +285,8 @@ Update_Status ModulePlayer::Update()
 			
 		}
 
+		
+
 		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 		{
 			App->audio->PlayFx(shot06);
@@ -509,6 +511,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		speedX = 0;
 		speedY = 0;
+
 		if (wallCollision == false)
 		{
 			wallCollision = true;
@@ -583,6 +586,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		speedX = 0;
 		speedY = 0;
+
 		if (trenchWallCollision == false)
 		{
 			trenchWallCollision = true;

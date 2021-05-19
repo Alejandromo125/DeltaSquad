@@ -13,6 +13,7 @@
 #include "ModuleParticles.h"
 
 #include "SDL_image/include/SDL_image.h"
+#include "ModuleInput.h"
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
@@ -220,8 +221,30 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	//App->render->camera.x = App->player->position.x - ((SCREEN_WIDTH / 2));
-	//App->render->camera.y = App->player->position.y - ((SCREEN_HEIGHT / 2));
+
+
+	if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
+	{
+		if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
+		{
+			if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
+				App->render->camera.y -= App->render->cameraSpeedY;
+
+			if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+				App->render->camera.y += App->render->cameraSpeedY;
+		}
+
+		if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
+		{
+			if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+				App->render->camera.x -= App->render->cameraSpeedX;
+			if (App->render->camera.x < 0) App->render->camera.x = 0;
+
+			if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+				App->render->camera.x += App->render->cameraSpeedX;
+		}
+
+	}
 	
 	if (App->player->activateWinCondition == true)
 	{
