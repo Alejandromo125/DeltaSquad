@@ -246,11 +246,6 @@ Update_Status SceneLevel1::Update()
 	}
 	*/
 
-	App->player->collider->AddListener(this);
-	App->player->collider->AddListener((Module*)App->collisions);
-	App->player->collider->AddListener((Module*)App->particles);
-	App->player->collider->AddListener((Module*)App->enemies);
-
 	if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
 	{
 		if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
