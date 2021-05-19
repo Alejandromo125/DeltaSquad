@@ -177,17 +177,8 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	// Moving the player with the camera scroll
-	//App->player->position.x = App->render->camera.x;
-	//App->player->position.y = App->render->camera.y;
-
-	//App->render->camera.x = App->player->position.x - (SCREEN_WIDTH / 2);
-	//App->render->camera.y = App->player->position.y - (SCREEN_HEIGHT / 2);
-	//App->player->position.x = App->player->position.x - (App->render->camera.x / 20);
-	//App->player->position.y = App->player->position.y - (App->render->camera.y / 20);
-
-	//App->player->position.x = (SCREEN_WIDTH / 2) * SCREEN_SIZE;
-	//App->player->position.y = (SCREEN_HEIGHT / 2) * SCREEN_SIZE;
+	
+	
 	if (destroyed == false)
 	{
 		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)

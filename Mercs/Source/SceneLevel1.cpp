@@ -221,7 +221,35 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
+	/*
+	if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
+	{
+		if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
+		{
+			if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
+				App->render->camera.y -= App->render->cameraSpeedY;
 
+			if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+				App->render->camera.y += App->render->cameraSpeedY;
+		}
+
+		if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
+		{
+			if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+				App->render->camera.x -= App->render->cameraSpeedX;
+			if (App->render->camera.x < 0) App->render->camera.x = 0;
+
+			if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+				App->render->camera.x += App->render->cameraSpeedX;
+		}
+
+	}
+	*/
+
+	App->player->collider->AddListener(this);
+	App->player->collider->AddListener((Module*)App->collisions);
+	App->player->collider->AddListener((Module*)App->particles);
+	App->player->collider->AddListener((Module*)App->enemies);
 
 	if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
 	{
