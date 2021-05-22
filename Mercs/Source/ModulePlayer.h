@@ -40,6 +40,10 @@ public:
 	int speedX;
 	int speedY;
 
+	//Margin of movement
+	int horizontalMargin = 45;
+	int verticalMargin = 160;
+
 	int EnemyLookingPosition;
 
 	// F3

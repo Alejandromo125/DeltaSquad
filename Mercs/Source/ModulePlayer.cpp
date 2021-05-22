@@ -9,6 +9,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
+#include "ModuleInput.h"
 
 #include <stdio.h>
 
@@ -148,8 +149,8 @@ bool ModulePlayer::Start()
 	position.x = 150;
 	position.y = 100;
 
-	speedX = 1;
-	speedY = 1;
+	speedX = 1 * SCREEN_SIZE;
+	speedY = 1 * SCREEN_SIZE;
 
 	destroyed = false;
 
@@ -393,6 +394,77 @@ Update_Status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
 				}
 			}
+		}
+
+
+
+		if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
+		{
+			if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
+			{
+				if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT) {
+
+					if (App->render->camera.y + App->render->camera.h > 500) {
+
+
+						if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1083)
+						{
+
+							if (position.x + 43 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								App->render->camera.x += speedX + 2;
+							}
+
+						}
+
+					}
+					else
+					{
+
+						if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1242)
+						{
+
+							if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								App->render->camera.x += speedX + 2;
+							}
+
+						}
+					}
+
+				}
+				if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT) {
+
+
+					if (App->render->camera.x / SCREEN_SIZE - speedX > 474)
+					{
+
+						if (position.x - 65 < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							App->render->camera.x -= speedX + 1;
+						}
+
+					}
+					else
+					{
+
+						if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
+						{
+
+							if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin) {
+								App->render->camera.x -= speedX + 1;
+							}
+
+						}
+					}
+				}
+			}
+
+			if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
+			{
+				if (App->render->camera.y <= 1156 * SCREEN_SIZE) {
+
+					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + 2;
+				}
+			}
+
 		}
 
 		// If no up/down movement detected, set the current animation back to idle
