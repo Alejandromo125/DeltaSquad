@@ -68,7 +68,7 @@ public:
 	SDL_Texture* mercLife = nullptr;
 
 	// Player Life Variable
-	int playerLife; //Not used for now
+	int playerLife;
 
 	//Player Direction of Looking variable
 
@@ -121,9 +121,10 @@ public:
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
 
-	// Delay for some smooth experience
+	// Delay and time for some smooth experience
 	
-	int playerDelay; // Not sure if it works well with player...
+	int playerDelay;
+	int time;
 
 };
 

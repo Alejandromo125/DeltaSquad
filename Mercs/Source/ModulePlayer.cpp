@@ -12,6 +12,7 @@
 #include "ModuleInput.h"
 
 #include <stdio.h>
+#include <SDL\include\SDL_timer.h>
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -154,7 +155,7 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
-	//playerLife = 100;   <-- Not used for now
+	playerLife = 100;
 
 	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is triple shot weapon (only ID 0 and 1 are used in level 1)
 	//collectedMegaBombsNumber = 1; // Player starts with 1 MegaBomb available -=(MegaBomb mechanic is not implemented yet so it wont have any effect for now)=-
@@ -402,15 +403,18 @@ Update_Status ModulePlayer::Update()
 		{
 			if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
 			{
-				if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT) {
+				if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+				{
 
-					if (App->render->camera.y + App->render->camera.h > 500) {
+					if (App->render->camera.y + App->render->camera.h > 500)
+					{
 
 
 						if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1083)
 						{
 
-							if (position.x + 43 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+							if (position.x + 43 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
+							{
 								App->render->camera.x += speedX + 2;
 							}
 
@@ -423,7 +427,8 @@ Update_Status ModulePlayer::Update()
 						if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1242)
 						{
 
-							if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+							if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
+							{
 								App->render->camera.x += speedX + 2;
 							}
 
@@ -431,13 +436,15 @@ Update_Status ModulePlayer::Update()
 					}
 
 				}
-				if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT) {
+				if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+				{
 
 
 					if (App->render->camera.x / SCREEN_SIZE - speedX > 474)
 					{
 
-						if (position.x - 65 < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+						if (position.x - 65 < App->render->camera.x / SCREEN_SIZE + horizontalMargin)
+						{
 							App->render->camera.x -= speedX + 1;
 						}
 
@@ -448,7 +455,8 @@ Update_Status ModulePlayer::Update()
 						if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
 						{
 
-							if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin) {
+							if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
+							{
 								App->render->camera.x -= speedX + 1;
 							}
 
@@ -459,7 +467,8 @@ Update_Status ModulePlayer::Update()
 
 			if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
 			{
-				if (App->render->camera.y <= 1156 * SCREEN_SIZE) {
+				if (App->render->camera.y <= 1156 * SCREEN_SIZE)
+				{
 
 					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + 2;
 				}
@@ -504,6 +513,20 @@ Update_Status ModulePlayer::Update()
 			
 	}
 
+	if (destroyed == true)
+	{
+		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
+			currentAnimation == &upAnim || currentAnimation == &upLeftAnim || currentAnimation == &upRightAnim || currentAnimation == &leftAnim)
+		{
+			currentAnimation = &deadBackAnim;
+		}
+
+		if (currentAnimation == &idledownAnim || currentAnimation == &idleDownLeftAnim || currentAnimation == &idleRightAnim || currentAnimation == &idleDownRightAnim ||
+			currentAnimation == &downAnim || currentAnimation == &downLeftAnim || currentAnimation == &downRightAnim || currentAnimation == &rightAnim)
+		{
+			currentAnimation = &deadFrontAnim;
+		}
+	}
 	
 
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
@@ -514,6 +537,8 @@ Update_Status ModulePlayer::Update()
 	collider->SetPos(position.x + 6, position.y + 3);
 
 	currentAnimation->Update();
+
+	playerDelay++;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -551,24 +576,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
 		(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false)
 	{
+		playerLife -= 10;
+		if (playerLife < 0) playerLife = 0;
 
-		App->audio->PlayFx(dead26);
-
-		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
-			currentAnimation == &upAnim || currentAnimation == &upLeftAnim || currentAnimation == &upRightAnim || currentAnimation == &leftAnim)
+		if (playerLife == 0)
 		{
-			currentAnimation = &deadBackAnim;
-		}
+			App->audio->PlayFx(dead26);
+			destroyed = true;
 
-		if (currentAnimation == &idledownAnim || currentAnimation == &idleDownLeftAnim || currentAnimation == &idleRightAnim || currentAnimation == &idleDownRightAnim ||
-			currentAnimation == &downAnim || currentAnimation == &downLeftAnim || currentAnimation == &downRightAnim || currentAnimation == &rightAnim)
-		{
-			currentAnimation = &deadFrontAnim;
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
 		}
-		
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
-
-		destroyed = true;
 	}
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 	{
