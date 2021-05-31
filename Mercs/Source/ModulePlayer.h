@@ -69,6 +69,7 @@ public:
 
 	// Player Life Variable
 	int playerLife;
+	int immunityTime;
 
 	//Player Direction of Looking variable
 

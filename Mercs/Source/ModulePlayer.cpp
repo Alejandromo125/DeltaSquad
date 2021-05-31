@@ -156,6 +156,8 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	playerLife = 100;
+	immunityTime = 0;
+	playerDelay = 0;
 
 	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is triple shot weapon (only ID 0 and 1 are used in level 1)
 	//collectedMegaBombsNumber = 1; // Player starts with 1 MegaBomb available -=(MegaBomb mechanic is not implemented yet so it wont have any effect for now)=-
@@ -406,33 +408,14 @@ Update_Status ModulePlayer::Update()
 				if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
 				{
 
-					if (App->render->camera.y + App->render->camera.h > 500)
+					if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1242)
 					{
 
-
-						if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1083)
+						if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
 						{
-
-							if (position.x + 43 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
-							{
-								App->render->camera.x += speedX + 2;
-							}
-
+							App->render->camera.x += speedX + 2;
 						}
 
-					}
-					else
-					{
-
-						if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speedX < 1242)
-						{
-
-							if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
-							{
-								App->render->camera.x += speedX + 2;
-							}
-
-						}
 					}
 
 				}
@@ -440,27 +423,14 @@ Update_Status ModulePlayer::Update()
 				{
 
 
-					if (App->render->camera.x / SCREEN_SIZE - speedX > 474)
+					if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
 					{
 
-						if (position.x - 65 < App->render->camera.x / SCREEN_SIZE + horizontalMargin)
+						if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
 						{
 							App->render->camera.x -= speedX + 1;
 						}
 
-					}
-					else
-					{
-
-						if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
-						{
-
-							if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
-							{
-								App->render->camera.x -= speedX + 1;
-							}
-
-						}
 					}
 				}
 			}
@@ -518,12 +488,14 @@ Update_Status ModulePlayer::Update()
 		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
 			currentAnimation == &upAnim || currentAnimation == &upLeftAnim || currentAnimation == &upRightAnim || currentAnimation == &leftAnim)
 		{
+			deadBackAnim.Reset();
 			currentAnimation = &deadBackAnim;
 		}
 
 		if (currentAnimation == &idledownAnim || currentAnimation == &idleDownLeftAnim || currentAnimation == &idleRightAnim || currentAnimation == &idleDownRightAnim ||
 			currentAnimation == &downAnim || currentAnimation == &downLeftAnim || currentAnimation == &downRightAnim || currentAnimation == &rightAnim)
 		{
+			deadFrontAnim.Reset();
 			currentAnimation = &deadFrontAnim;
 		}
 	}
@@ -539,6 +511,7 @@ Update_Status ModulePlayer::Update()
 	currentAnimation->Update();
 
 	playerDelay++;
+	immunityTime++;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -547,13 +520,17 @@ Update_Status ModulePlayer::PostUpdate()
 {
 	if (!destroyed)
 	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect, 1.0);
+		// Can do something interesting
 	}
-
+	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	App->render->Blit(texture, position.x, position.y, &rect, 1.0);
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%5d", score);
 
+	if (immunityTime <= 120)
+	{
+		App->fonts->BlitText(100, 200, scoreFont, "immune"); // Text UI does not work
+	}
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
 	App->fonts->BlitText(40, 25, scoreFont, scoreText);
@@ -574,13 +551,16 @@ Update_Status ModulePlayer::PostUpdate()
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
-		(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false)
+		(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false && immunityTime >= 120)
 	{
+
 		playerLife -= 10;
 		if (playerLife < 0) playerLife = 0;
+		immunityTime = 0;
 
-		if (playerLife == 0)
+		if (playerLife <= 0)
 		{
+			playerLife = 0;
 			App->audio->PlayFx(dead26);
 			destroyed = true;
 
