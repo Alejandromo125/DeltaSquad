@@ -498,6 +498,8 @@ Update_Status ModulePlayer::Update()
 			deadFrontAnim.Reset();
 			currentAnimation = &deadFrontAnim;
 		}
+
+		playerDelay++;
 	}
 	
 
@@ -510,7 +512,7 @@ Update_Status ModulePlayer::Update()
 
 	currentAnimation->Update();
 
-	playerDelay++;
+	
 	immunityTime++;
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -518,9 +520,12 @@ Update_Status ModulePlayer::Update()
 
 Update_Status ModulePlayer::PostUpdate()
 {
-	if (!destroyed)
+	if (destroyed == true) // Sould also print "mission failed"
 	{
-		// Can do something interesting
+		if (playerDelay >= 240)
+		{
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
+		}
 	}
 	SDL_Rect rect = currentAnimation->GetCurrentFrame();
 	App->render->Blit(texture, position.x, position.y, &rect, 1.0);
@@ -560,11 +565,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		if (playerLife <= 0)
 		{
+			
 			playerLife = 0;
 			App->audio->PlayFx(dead26);
 			destroyed = true;
-
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
+			
 		}
 	}
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
