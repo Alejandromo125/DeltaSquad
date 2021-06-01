@@ -288,6 +288,7 @@ void Enemy::OnCollision(Collider* c2)
 		EnemywallCollision = false;
 	}
 }
+/*
 void Enemy::OnCollisionOther(Collider* c1, Collider* c2)
 {
 	if (c1->type == Collider::Type::BOSS) {
@@ -320,6 +321,7 @@ void Enemy::OnCollisionOther(Collider* c1, Collider* c2)
 		}
 	}
 }
+*/
 
 void Enemy::SetToDelete()
 {

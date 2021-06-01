@@ -11,6 +11,7 @@
 
 Boss::Boss(int x, int y) : Enemy(x, y)
 {
+	Enemy::EnemyHP = 10;
 	Idle.PushBack({ 0,0,128,102 });
 	Idle.loop = true;
 
@@ -33,7 +34,7 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	
 
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 20, 30 }, Collider::Type::BOSS, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ position.x, position.y, 128, 102 }, Collider::Type::BOSS, (Module*)App->enemies);
 
 }
 

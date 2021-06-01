@@ -11,6 +11,7 @@
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {	
+	Enemy::EnemyHP = 2;
 	walkUp.speed = 0.1f;
 	walkDown.speed = 0.1f;
 	walkRight.speed = 0.1f;

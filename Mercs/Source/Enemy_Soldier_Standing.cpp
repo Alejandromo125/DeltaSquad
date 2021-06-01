@@ -12,7 +12,7 @@
 Enemy_Soldier_Standing::Enemy_Soldier_Standing(int x, int y) : Enemy(x, y)
 {
 	
-
+	Enemy::EnemyHP = 2;
 	//SHOOTING ANIMATIONS
 	Enemy2shootDown.PushBack({ 113,358,30,43 });
 	Enemy2shootUp.PushBack({ 113,547,30,43 });

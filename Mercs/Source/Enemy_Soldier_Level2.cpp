@@ -11,6 +11,7 @@
 
 Enemy_Soldier_Level2::Enemy_Soldier_Level2(int x, int y) : Enemy(x, y)
 {
+	Enemy::EnemyHP = 2;
 	walkUp_Soldier_Level2.speed = 0.1f;
 	walkDown_Soldier_Level2.speed = 0.1f;
 	walkRight_Soldier_Level2.speed = 0.1f;
