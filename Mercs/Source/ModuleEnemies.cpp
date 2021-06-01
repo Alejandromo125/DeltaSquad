@@ -8,7 +8,9 @@
 
 #include "Enemy.h"
 #include "Enemy_Soldier.h"
-#include "Enemy_Soldier2.h"
+#include "Enemy_Soldier_Standing.h"
+#include "Enemy_Soldier_Level2.h"
+#include "Boss.h"
 
 #define SPAWN_MARGIN 50
 
@@ -27,6 +29,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Art/Sprites/soldier.png");
+	
 	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
 
 	return true;
@@ -160,7 +163,13 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_Soldier(info.x, info.y);
 					break;
 				case Enemy_Type::SOLDIER2:
-					enemies[i] = new Enemy_Soldier2(info.x, info.y);
+					enemies[i] = new Enemy_Soldier_Standing(info.x, info.y);
+					break;
+				case Enemy_Type::SOLDIER_LEVEL2:
+					enemies[i] = new Enemy_Soldier_Level2(info.x, info.y);
+					break;
+				case Enemy_Type::BOSS:
+					enemies[i] = new Boss(info.x, info.y);
 					break;
 
 			}

@@ -10,6 +10,8 @@ enum class Enemy_Type
 	NO_TYPE,
 	SOLDIER,
 	SOLDIER2,
+	SOLDIER_LEVEL2,
+	BOSS,
 
 };
 

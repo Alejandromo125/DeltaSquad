@@ -1,4 +1,4 @@
-#include "Enemy_Soldier2.h"
+#include "Enemy_Soldier_Standing.h"
 
 #include "Application.h"
 #include "ModuleCollisions.h"
@@ -9,7 +9,7 @@
 #include "p2Point.h"
 
 
-Enemy_Soldier2::Enemy_Soldier2(int x, int y) : Enemy(x, y)
+Enemy_Soldier_Standing::Enemy_Soldier_Standing(int x, int y) : Enemy(x, y)
 {
 	
 
@@ -32,7 +32,7 @@ Enemy_Soldier2::Enemy_Soldier2(int x, int y) : Enemy(x, y)
 
 }
 
-void Enemy_Soldier2::Update()
+void Enemy_Soldier_Standing::Update()
 {
 
 	

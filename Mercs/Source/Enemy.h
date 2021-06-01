@@ -30,6 +30,9 @@ public:
 	// Collision response
 	virtual void OnCollision(Collider* c2);
 
+	//Collision for the boss
+	virtual void OnCollisionOther(Collider*c1,Collider* c2);
+
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
 
@@ -46,7 +49,12 @@ public:
 	//speedEnemy
 	int EnemySpeedX;
 	int EnemySpeedY;
-
+	//EnemyHits
+	int EnemyHP=2;
+	//BossHits
+	int BossHP=10;
+	
+	//Test for hp implementing
 
 	//wall Collision
 	bool EnemywallCollision;

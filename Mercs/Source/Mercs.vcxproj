@@ -76,10 +76,12 @@
   <ItemGroup>
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Boss.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_Soldier.h" />
-    <ClInclude Include="Enemy_Soldier2.h" />
+    <ClInclude Include="Enemy_Soldier_Standing.h" />
+    <ClInclude Include="Enemy_Soldier_Level2.h" />
     <ClInclude Include="InfoScreen.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollisions.h" />
@@ -87,6 +89,7 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleParticles.h" />
+    <ClInclude Include="ModuleBreakable.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -104,10 +107,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_Soldier.cpp" />
-    <ClCompile Include="Enemy_Soldier2.cpp" />
+    <ClCompile Include="Enemy_Soldier_Standing.cpp" />
+    <ClCompile Include="Enemy_Soldier_Level2.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="InfoScreen.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
@@ -116,6 +121,7 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModuleBreakable.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ModuleInput.cpp" />

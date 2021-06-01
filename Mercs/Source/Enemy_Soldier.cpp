@@ -26,7 +26,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	walkUp.PushBack({ 35,547,30,43 });
 	walkUp.loop = true;
 
-	walkDown.PushBack({ 113,358,30,43 });
+	walkDown.PushBack({ 57,180,30,43 });
 	walkDown.PushBack({ 76,358,30,43 });
 	walkDown.PushBack({ 40,358,30,43 });
 	walkDown.loop = true;
@@ -88,9 +88,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 void Enemy_Soldier::Update()
 {
-	
-	
-	
+
 	counter++;
 	if (position.DistanceTo(App->player->position) < 250)
 	{
@@ -243,12 +241,7 @@ void Enemy_Soldier::Update()
 			
 		}
 	
-	
-		
-	
-		
-	
-	
+
 	
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position

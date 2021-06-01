@@ -403,7 +403,7 @@ Update_Status ModulePlayer::Update()
 
 
 
-		if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->destroyed == false)
+		if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->breakableObjectCollision == false && App->player->destroyed == false)
 		{
 			if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
 			{
@@ -428,7 +428,7 @@ Update_Status ModulePlayer::Update()
 					if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
 					{
 
-						if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
+						if (position.x - 70 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
 						{
 							App->render->camera.x -= speedX + 1;
 						}
@@ -554,7 +554,7 @@ Update_Status ModulePlayer::PostUpdate()
 	quad = { 5, 338, playerLife, 10 };
 
 	SDL_Rect bgquad;
-	bgquad = { 3, 336, playerLife + 4, 14 };
+	bgquad = { 3, 336, 104, 14 };
 	App->render->DrawQuad(bgquad, 255, 255, 255, 165, 0.0f, true);
 
 	if (playerLife > 50)
@@ -688,6 +688,83 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		}
 
 	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE_OBJECT)
+	{
+		speedX = 0;
+		speedY = 0;
+
+		if (breakableObjectCollision == false)
+		{
+			breakableObjectCollision = true;
+		}
+
+		if (currentAnimation == &downAnim)
+		{
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upAnim)
+		{
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &leftAnim)
+		{
+			position.x = position.x + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &rightAnim)
+		{
+			position.x = position.x - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upRightAnim)
+		{
+			position.x = position.x - 1;
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &upLeftAnim)
+		{
+			position.x = position.x + 1;
+			position.y = position.y + 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &downRightAnim)
+		{
+			position.x = position.x - 1;
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+		if (currentAnimation == &downLeftAnim)
+		{
+			position.x = position.x + 1;
+			position.y = position.y - 1;
+			speedX = 1;
+			speedY = 1;
+		}
+	}
+	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BREAKABLE_OBJECT)
+	{
+		speedX = 1;
+		speedY = 1;
+
+		if (breakableObjectCollision == true)
+		{
+			breakableObjectCollision = false;
+		}
+
+	}
+
+	
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::TRENCH_WALL)
 	{
