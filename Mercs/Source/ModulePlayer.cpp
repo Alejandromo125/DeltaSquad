@@ -533,12 +533,28 @@ Update_Status ModulePlayer::PostUpdate()
 		}
 	}
 
+	if (immunityTime <= 120)
+	{
+		if ((playerFPS / 5) % 2 == 0)
+		{
+			SDL_Rect rect = currentAnimation->GetCurrentFrame();
+			App->render->Blit(texture, position.x, position.y, &rect, 1.0);
+		}
+	}
+	else
+	{
+		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		App->render->Blit(texture, position.x, position.y, &rect, 1.0);
+	}
+	
+	// Draw UI (score) --------------------------------------
+	sprintf_s(scoreText, 10, "%5d", score);
 
 	SDL_Rect quad;
-	quad = {5, 338, playerLife, 10};
+	quad = { 5, 338, playerLife, 10 };
 
 	SDL_Rect bgquad;
-	bgquad = { 3, 336, 104, 14 };
+	bgquad = { 3, 336, playerLife + 4, 14 };
 	App->render->DrawQuad(bgquad, 255, 255, 255, 165, 0.0f, true);
 
 	if (playerLife > 50)
@@ -559,29 +575,8 @@ Update_Status ModulePlayer::PostUpdate()
 		{
 			App->render->DrawQuad(quad, 255, 150, 0, 165, 0.0f, true);
 		}
-		
-	}
-	
 
-
-	if (immunityTime <= 120)
-	{
-		if ((playerFPS / 5) % 2 == 0)
-		{
-			SDL_Rect rect = currentAnimation->GetCurrentFrame();
-			App->render->Blit(texture, position.x, position.y, &rect, 1.0);
-		}
 	}
-	else
-	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect, 1.0);
-	}
-	
-	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%5d", score);
-
-	
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
 	App->fonts->BlitText(40, 25, scoreFont, scoreText);
