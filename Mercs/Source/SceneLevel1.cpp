@@ -11,6 +11,7 @@
 #include "ModuleFadeToBlack.h"
 #include "SceneIntro.h"
 #include "ModuleParticles.h"
+#include "ModuleBreakable.h"
 
 #include "SDL_image/include/SDL_image.h"
 #include "ModuleInput.h"
@@ -38,16 +39,17 @@ bool SceneLevel1::Start()
 	//App->enemies->Enable();
 
 	App->particles->Enable();
+	App->breakableParticles->Enable();
 
 	App->collisions->Enable();
 
 	//TileMaps
 	Level1FullMapTexture = App->textures->Load("Assets/Art/TileMaps/FullMap.png");
 	bgTexture = App->textures->Load("Assets/Art/TileMaps/background.png");
-	Houses1Texture = App->textures->Load("Assets/Art/TileMaps/background.png");
-	Houses2Texture = App->textures->Load("Assets/Art/TileMaps/background.png");
-	LevelIntroTexture = App->textures->Load("Assets/Art/TileMaps/background.png");
-	MovingAndChangingTilesTexture = App->textures->Load("Assets/Art/TileMaps/background.png");
+	Houses1Texture = App->textures->Load("Assets/Art/TileMaps/houses1.png");
+	Houses2Texture = App->textures->Load("Assets/Art/TileMaps/houses2.png");
+	LevelIntroTexture = App->textures->Load("Assets/Art/TileMaps/LevelIntro.png");
+	MovingAndChangingTilesTexture = App->textures->Load("Assets/Art/TileMaps/MovingAndChagingTiles.png");
 
 	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 0.0f);
 
@@ -181,6 +183,10 @@ bool SceneLevel1::Start()
 
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
+
+	// Breakable Collisions
+	App->breakableParticles->AddParticle(App->breakableParticles->palm, 420 - 120, 940 - 1100, Collider::Type::BREAKABLE_OBJECT);
+
 	//App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	// Enemies ---
 	//SOLDIER
@@ -421,6 +427,9 @@ bool SceneLevel1::CleanUp()
 
 	App->particles->Disable();
 	App->particles->CleanUp();
+
+	App->breakableParticles->Disable();
+	App->breakableParticles->CleanUp();
 
 	App->collisions->CleanUp();
 	App->collisions->Disable();

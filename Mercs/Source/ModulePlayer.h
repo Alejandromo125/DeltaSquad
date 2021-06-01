@@ -57,6 +57,7 @@ public:
 	//Collision variables for mechanics
 	bool wallCollision;
 	bool trenchWallCollision;
+	bool breakableObjectCollision;
 
 	// Player sink effect (in water)
 	int waterSink; // 0 in ground, 20 in water

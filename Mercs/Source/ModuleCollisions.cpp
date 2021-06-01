@@ -124,6 +124,25 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::TRENCH_WALL] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::DOUBLE_SHOT_WEAPON_ID01] = false;
 
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::WALL] = true;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::WATER] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::BREAKABLE_OBJECT] = true;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::HORIZONTAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::NULL_COLLIDER] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::BIDIMENSIONAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::TRENCH_WALL] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::DOUBLE_SHOT_WEAPON_ID01] = false;
+
 	matrix[Collider::Type::BOSS][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::ENEMY] = false;
@@ -188,7 +207,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::WATER] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS] = false;
-	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::ENEMY_BOMB] = true;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BOSS_ATTACK] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::BREAKABLE_OBJECT] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::HORIZONTAL_CAMERA_BOUND] = false;
