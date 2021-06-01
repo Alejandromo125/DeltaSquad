@@ -533,6 +533,37 @@ Update_Status ModulePlayer::PostUpdate()
 		}
 	}
 
+
+	SDL_Rect quad;
+	quad = {5, 338, playerLife, 10};
+
+	SDL_Rect bgquad;
+	bgquad = { 3, 336, 104, 14 };
+	App->render->DrawQuad(bgquad, 255, 255, 255, 165, 0.0f, true);
+
+	if (playerLife > 50)
+	{
+		App->render->DrawQuad(quad, 0, 255, 0, 165, 0.0f, true);
+	}
+	else if (playerLife > 20 && playerLife <= 50)
+	{
+		App->render->DrawQuad(quad, 255, 255, 0, 165, 0.0f, true);
+	}
+	else
+	{
+		if ((playerFPS / 5) % 2 == 0)
+		{
+			App->render->DrawQuad(quad, 255, 0, 0, 165, 0.0f, true);
+		}
+		else
+		{
+			App->render->DrawQuad(quad, 255, 150, 0, 165, 0.0f, true);
+		}
+		
+	}
+	
+
+
 	if (immunityTime <= 120)
 	{
 		if ((playerFPS / 5) % 2 == 0)
