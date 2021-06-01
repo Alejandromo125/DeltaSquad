@@ -32,6 +32,7 @@ bool ModuleBreakable::Start()
 	palm.anim.loop = false;
 	palm.anim.speed = 0.0f;
 
+	canBeDestoryed = true;
 
 	return true;
 }
@@ -70,14 +71,35 @@ bool ModuleBreakable::CleanUp()
 
 void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 {
+	// Always destroy particles that collide except with characters
 	if ((c1->type != Collider::Type::PLAYER && c2->type != Collider::Type::BREAKABLE_OBJECT)
 		|| (c1->type != Collider::Type::ENEMY && c2->type != Collider::Type::BREAKABLE_OBJECT)
 		|| (c1->type != Collider::Type::ENEMY_BOMB && c2->type != Collider::Type::BREAKABLE_OBJECT)
-		|| (c1->type != Collider::Type::ENEMY_SHOT && c2->type != Collider::Type::BREAKABLE_OBJECT))
+		|| (c1->type != Collider::Type::ENEMY_SHOT && c2->type != Collider::Type::BREAKABLE_OBJECT)
+		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::PLAYER)
+		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY)
+		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY_BOMB)
+		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY_SHOT))
+	{
+		canBeDestoryed = true;
+	}
+
+	if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE_OBJECT)
+		|| (c1->type == Collider::Type::ENEMY && c2->type == Collider::Type::BREAKABLE_OBJECT)
+		|| (c1->type == Collider::Type::ENEMY_BOMB && c2->type == Collider::Type::BREAKABLE_OBJECT)
+		|| (c1->type == Collider::Type::ENEMY_SHOT && c2->type == Collider::Type::BREAKABLE_OBJECT)
+		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::PLAYER)
+		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY)
+		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY_BOMB)
+		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY_SHOT))
+	{
+		canBeDestoryed = false;
+	}
+
+	if (canBeDestoryed == true)
 	{
 		for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		{
-			// Always destroy particles that collide
 			if (particles[i] != nullptr && particles[i]->collider == c1)
 			{
 				particles[i]->pendingToDelete = true;

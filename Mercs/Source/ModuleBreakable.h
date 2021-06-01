@@ -53,6 +53,8 @@ public:
 	Particle* AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 public:
+	bool canBeDestoryed;
+
 	//Template particle for ...
 	Particle palm;
 	

@@ -185,7 +185,11 @@ bool SceneLevel1::Start()
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 
 	// Breakable Collisions
-	App->breakableParticles->AddParticle(App->breakableParticles->palm, 420 - 120, 940 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 870 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->palm, 505 - 120, 890 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->palm, 475 - 120, 920 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->palm, 410 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
 
 	//App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	// Enemies ---
