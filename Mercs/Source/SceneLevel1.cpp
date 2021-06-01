@@ -212,7 +212,7 @@ bool SceneLevel1::Start()
 
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;
-	App->enemies->AddEnemy(Enemy_Type::BOSS, 178 - 120, 1340 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::BOSS, 401 - 120, 1280 - 1100);
 
 	App->render->camera.x = 100;
 	App->render->camera.y = -215;

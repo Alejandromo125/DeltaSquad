@@ -16,14 +16,7 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	Idle.loop = true;
 
 	// TODO 3: Have the Brown Cookies describe a path in the screen
-	path.PushBack({ 1.0f, 0.5f }, 20,(&(Animation)Idle));
-	path.PushBack({ 0.0f, 0.0f }, 20, (&(Animation)Idle));
-	path.PushBack({ 1.0f, -0.5f }, 20,(&(Animation)Idle));
-	path.PushBack({ 0.0f, 0.0f }, 20, (&(Animation)Idle));
-	path.PushBack({ -1.0f, 0.5f }, 20,(&(Animation)Idle));
-	path.PushBack({ 0.0f, 0.0f }, 20, (&(Animation)Idle));
-	path.PushBack({ -1.0f, -0.5f }, 20, (&(Animation)Idle));
-	path.PushBack({ 0.0f, 0.0f }, 20, (&(Animation)Idle));
+	
 
 	//SHOOTING ANIMATIONS
 	Shot.PushBack({ 0,0,128,102 });
@@ -40,8 +33,13 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 
 void Boss::Update()
 {
-
+	currentAnim = &Idle;
 	counter++;
+	
+	position.x++;
+	position.x++;
+	position.x--;
+	position.x--;
 
 	if (counter % 60 == 0)
 	{

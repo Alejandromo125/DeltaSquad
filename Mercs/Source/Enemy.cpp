@@ -53,25 +53,20 @@ void Enemy::OnCollision(Collider* c2)
 		if (App->player->collectedItemID==0)
 		{
 			EnemyHP = EnemyHP - 1;
-			if (EnemyHP == 0)
-			{
-				App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-				App->audio->PlayFx(destroyedFx);
-				App->player->score += 150;
-				SetToDelete();
-			}
 			
 		}
 		if (App->player->collectedItemID == 1)
 		{
 			EnemyHP = EnemyHP - 2;
-			if (EnemyHP == 0)
-			{
-				App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-				App->audio->PlayFx(destroyedFx);
-				App->player->score += 150;
-				SetToDelete();
-			}
+			
+		}
+
+		if (EnemyHP == 0)
+		{
+			App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+			App->audio->PlayFx(destroyedFx);
+			App->player->score += 150;
+			SetToDelete();
 		}
 		
 	}
@@ -288,40 +283,7 @@ void Enemy::OnCollision(Collider* c2)
 		EnemywallCollision = false;
 	}
 }
-/*
-void Enemy::OnCollisionOther(Collider* c1, Collider* c2)
-{
-	if (c1->type == Collider::Type::BOSS) {
-		if (c2->type == Collider::Type::PLAYER_SHOT)
-		{
 
-			if (App->player->collectedItemID == 0)
-			{
-				BossHP = BossHP - 1;
-				if (BossHP == 0)
-				{
-					App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-					App->audio->PlayFx(destroyedFx);
-					App->player->score += 150;
-					SetToDelete();
-				}
-
-			}
-			if (App->player->collectedItemID == 1)
-			{
-				BossHP = BossHP - 2;
-				if (BossHP == 0)
-				{
-					App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-					App->audio->PlayFx(destroyedFx);
-					App->player->score += 150;
-					SetToDelete();
-				}
-			}
-		}
-	}
-}
-*/
 
 void Enemy::SetToDelete()
 {
