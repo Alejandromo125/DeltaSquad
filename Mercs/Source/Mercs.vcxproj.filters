@@ -107,7 +107,6 @@
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
 <<<<<<< HEAD
-<<<<<<< HEAD
     <ClInclude Include="Enemy_Soldier_Level2.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
@@ -116,10 +115,6 @@
     </ClInclude>
     <ClInclude Include="Boss.h">
       <Filter>Source Files\Entities\Enemies</Filter>
-=======
-    <ClInclude Include="ModuleBreakable.h">
-      <Filter>Source Files\Modules\Core</Filter>
->>>>>>> 8b2679bbf45fb7df14c5827e403c3926f6bd24c6
 =======
     <ClInclude Include="ModuleBreakable.h">
       <Filter>Source Files\Modules\Core</Filter>
@@ -200,7 +195,6 @@
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
 <<<<<<< HEAD
-<<<<<<< HEAD
     <ClCompile Include="Enemy_Soldier_Level2.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
@@ -209,10 +203,6 @@
     </ClCompile>
     <ClCompile Include="Boss.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
-=======
-    <ClCompile Include="ModuleBreakable.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
->>>>>>> 8b2679bbf45fb7df14c5827e403c3926f6bd24c6
 =======
     <ClCompile Include="ModuleBreakable.cpp">
       <Filter>Source Files\Modules\Core</Filter>
