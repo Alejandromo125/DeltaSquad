@@ -22,11 +22,19 @@ int main(int argc, char* argv[])
 {
 	ReportMemoryLeaks();
 
+	const int FPS = 60;
+	const int frameDelay = 1000 / FPS;
+
+	Uint32 frameStart;
+	int frameTime;
+
 	int main_return = EXIT_FAILURE;
 	Main_States state = Main_States::MAIN_CREATION;
 
 	while (state != Main_States::MAIN_EXIT)
 	{
+		
+
 		switch (state)
 		{
 			case Main_States::MAIN_CREATION:
@@ -52,7 +60,16 @@ int main(int argc, char* argv[])
 
 			case Main_States::MAIN_UPDATE:
 			{
+				frameStart = SDL_GetTicks();
+
 				Update_Status status = App->Update();
+
+				frameTime = SDL_GetTicks() - frameStart;
+
+				if (frameDelay > frameTime)
+				{
+					SDL_Delay(frameDelay - frameTime);
+				}
 
 				if (status == Update_Status::UPDATE_ERROR)
 				{
@@ -79,6 +96,8 @@ int main(int argc, char* argv[])
 				state = Main_States::MAIN_EXIT;
 			}
 		}
+
+		
 	}
 
 	LOG("\nBye :)\n");
