@@ -146,6 +146,7 @@ bool ModulePlayer::Start()
 
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
 	dead26 = App->audio->LoadFx("Assets/FX/26.wav");
+	hit28 = App->audio->LoadFx("Assets/FX/28.wav");
 
 	position.x = 150;
 	position.y = 100;
@@ -158,6 +159,7 @@ bool ModulePlayer::Start()
 	playerLife = 100;
 	immunityTime = 0;
 	playerDelay = 0;
+	playerFPS = 0;
 
 	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is triple shot weapon (only ID 0 and 1 are used in level 1)
 	//collectedMegaBombsNumber = 1; // Player starts with 1 MegaBomb available -=(MegaBomb mechanic is not implemented yet so it wont have any effect for now)=-
@@ -514,28 +516,41 @@ Update_Status ModulePlayer::Update()
 
 	
 	immunityTime++;
+	playerFPS++;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 Update_Status ModulePlayer::PostUpdate()
 {
-	if (destroyed == true) // Sould also print "mission failed"
+	if (destroyed == true)
 	{
+		App->fonts->BlitText(30, 100, scoreFont, "Mission Failed"); // Text UI does not work
+
 		if (playerDelay >= 240)
 		{
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
 		}
 	}
-	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	App->render->Blit(texture, position.x, position.y, &rect, 1.0);
-	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%5d", score);
 
 	if (immunityTime <= 120)
 	{
-		App->fonts->BlitText(100, 200, scoreFont, "immune"); // Text UI does not work
+		if ((playerFPS / 5) % 2 == 0)
+		{
+			SDL_Rect rect = currentAnimation->GetCurrentFrame();
+			App->render->Blit(texture, position.x, position.y, &rect, 1.0);
+		}
 	}
+	else
+	{
+		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		App->render->Blit(texture, position.x, position.y, &rect, 1.0);
+	}
+	
+	// Draw UI (score) --------------------------------------
+	sprintf_s(scoreText, 10, "%5d", score);
+
+	
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
 	App->fonts->BlitText(40, 25, scoreFont, scoreText);
@@ -562,6 +577,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		playerLife -= 10;
 		if (playerLife < 0) playerLife = 0;
 		immunityTime = 0;
+		if (playerLife != 0) App->audio->PlayFx(hit28);
 
 		if (playerLife <= 0)
 		{

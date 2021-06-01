@@ -116,6 +116,7 @@ public:
 	// Sound effects indices
 	uint shot06 = 0;
 	uint dead26 = 0;
+	uint hit28 = 0;
 
 	// Font score index
 	uint score = 000;
@@ -126,6 +127,7 @@ public:
 	
 	int playerDelay;
 	int time;
+	int playerFPS;
 
 };
 
