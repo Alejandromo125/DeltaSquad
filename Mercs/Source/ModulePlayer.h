@@ -119,6 +119,9 @@ public:
 	uint dead26 = 0;
 	uint hit28 = 0;
 
+	uint roundClear = 0;
+	uint gameOver = 0;
+
 	// Font score index
 	uint score = 000;
 	int scoreFont = -1;

@@ -13,6 +13,7 @@
 
 #include <stdio.h>
 #include <SDL\include\SDL_timer.h>
+#include <SDL_mixer/include/SDL_mixer.h>
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -147,6 +148,9 @@ bool ModulePlayer::Start()
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
 	dead26 = App->audio->LoadFx("Assets/FX/26.wav");
 	hit28 = App->audio->LoadFx("Assets/FX/28.wav");
+
+	roundClear = App->audio->LoadFx("Assets/FX/RoundClear.wav");
+	gameOver = App->audio->LoadFx("Assets/FX/GameOver.wav");
 
 	position.x = 150;
 	position.y = 100;
@@ -529,8 +533,12 @@ Update_Status ModulePlayer::PostUpdate()
 	{
 		App->fonts->BlitText(30, 100, scoreFont, "Mission Failed"); // Text UI does not work
 
-		if (playerDelay >= 240)
+		Mix_PauseMusic();
+		if(playerDelay <= 1) App->audio->PlayFx(gameOver);
+
+		if (playerDelay >= 420)
 		{
+			
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
 		}
 	}

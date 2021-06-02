@@ -15,6 +15,7 @@
 
 #include "SDL_image/include/SDL_image.h"
 #include "ModuleInput.h"
+#include <SDL_mixer/include/SDL_mixer.h>
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
@@ -50,6 +51,8 @@ bool SceneLevel1::Start()
 	Houses2Texture = App->textures->Load("Assets/Art/TileMaps/houses2.png");
 	LevelIntroTexture = App->textures->Load("Assets/Art/TileMaps/LevelIntro.png");
 	MovingAndChangingTilesTexture = App->textures->Load("Assets/Art/TileMaps/MovingAndChagingTiles.png");
+
+	Mix_ResumeMusic();
 
 	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 0.0f);
 
