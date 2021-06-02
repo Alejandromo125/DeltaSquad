@@ -417,7 +417,7 @@ Update_Status ModulePlayer::Update()
 
 						if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
 						{
-							App->render->camera.x += speedX + 1;
+							App->render->camera.x += speedX + (SCREEN_SIZE - 1);
 						}
 
 					}
@@ -432,7 +432,7 @@ Update_Status ModulePlayer::Update()
 
 						if (position.x - 285 < App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
 						{
-							App->render->camera.x -= speedX + 1;
+							App->render->camera.x -= speedX + (SCREEN_SIZE - 1);
 						}
 
 					}
@@ -444,7 +444,7 @@ Update_Status ModulePlayer::Update()
 				if (App->render->camera.y <= 1156 * SCREEN_SIZE)
 				{
 
-					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + 1;
+					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + (SCREEN_SIZE - 1);
 				}
 			}
 
