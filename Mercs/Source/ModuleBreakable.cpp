@@ -6,6 +6,9 @@
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
 #include "SceneLevel1.h"
+#include "SceneLevel1.h"
+#include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -32,6 +35,13 @@ bool ModuleBreakable::Start()
 	palm.anim.loop = false;
 	palm.anim.speed = 0.0f;
 
+	house.anim.PushBack({ 260, 290, 130, 130 });
+	house.speed.x = 0;
+	house.speed.y = 0;
+	house.lifetime = 0;
+	house.anim.loop = false;
+	house.anim.speed = 0.0f;
+
 	fallingWall.anim.PushBack({ 283, 0, 130, 220 });
 	fallingWall.speed.x = 0;
 	fallingWall.speed.y = 0;
@@ -53,7 +63,7 @@ bool ModuleBreakable::Start()
 	fallingWallEnd.anim.loop = false;
 	fallingWallEnd.anim.speed = 0.0f;
 
-
+	broken04 = App->audio->LoadFx("Assets/FX/04.wav");
 
 
 	canBeDestoryed = true;
@@ -129,6 +139,19 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (particles[i] != nullptr && particles[i]->collider == c1)
 			{
+
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 20, particles[i]->position.y + 40, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 40, particles[i]->position.y + 60, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 30, particles[i]->position.y + 90, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 80, particles[i]->position.y + 70, Collider::Type::NONE, 5);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 10, particles[i]->position.y + 100, Collider::Type::NONE, 5);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 100, particles[i]->position.y + 20, Collider::Type::NONE, 5);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 60, particles[i]->position.y + 10, Collider::Type::NONE, 10);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 50, particles[i]->position.y + 20, Collider::Type::NONE, 10);
+				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 70, particles[i]->position.y + 80, Collider::Type::NONE, 10);
+
+				App->audio->PlayFx(broken04);
+
 				particles[i]->pendingToDelete = true;
 				particles[i]->collider->pendingToDelete = true;
 				break;

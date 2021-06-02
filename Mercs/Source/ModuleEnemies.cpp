@@ -11,6 +11,7 @@
 #include "Enemy_Soldier_Standing.h"
 #include "Enemy_Soldier_Level2.h"
 #include "Boss.h"
+#include "Tower_Enemy_Level2.h"
 
 #define SPAWN_MARGIN 50
 
@@ -170,6 +171,9 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					break;
 				case Enemy_Type::BOSS:
 					enemies[i] = new Boss(info.x, info.y);
+					break;
+				case Enemy_Type::TOWER_ENEMY:
+					enemies[i] = new TowerEnemy(info.x, info.y);
 					break;
 
 			}

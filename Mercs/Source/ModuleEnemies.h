@@ -12,6 +12,7 @@ enum class Enemy_Type
 	SOLDIER2,
 	SOLDIER_LEVEL2,
 	BOSS,
+	TOWER_ENEMY,
 
 };
 

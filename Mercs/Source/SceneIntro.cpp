@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
+#include <SDL_mixer/include/SDL_mixer.h>
 
 SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled)
 {
@@ -24,6 +25,8 @@ bool SceneIntro::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
+
+	Mix_ResumeMusic();
 
 	bgTexture = App->textures->Load("Assets/Art/Sequences/backgroundblack.png");
 	mercsTitle = App->textures->Load("Assets/Art/UI/mercsTitle.png");

@@ -85,6 +85,9 @@
     <ClCompile Include="Path.cpp">
       <Filter>Source FIles\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Tower_Enemy_Level2.cpp">
+      <Filter>Source FIles\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="p2Point.h">
       <Filter>Source FIles\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Tower_Enemy_Level2.h">
+      <Filter>Source FIles\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

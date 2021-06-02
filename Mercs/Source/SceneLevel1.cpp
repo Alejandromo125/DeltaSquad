@@ -15,6 +15,7 @@
 
 #include "SDL_image/include/SDL_image.h"
 #include "ModuleInput.h"
+#include <SDL_mixer/include/SDL_mixer.h>
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
@@ -50,6 +51,8 @@ bool SceneLevel1::Start()
 	Houses2Texture = App->textures->Load("Assets/Art/TileMaps/houses2.png");
 	LevelIntroTexture = App->textures->Load("Assets/Art/TileMaps/LevelIntro.png");
 	MovingAndChangingTilesTexture = App->textures->Load("Assets/Art/TileMaps/MovingAndChagingTiles.png");
+
+	Mix_ResumeMusic();
 
 	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 0.0f);
 
@@ -184,6 +187,8 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 100 - 120, 630 - 1100, 90, 130 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 100 - 120, 760 - 1100, 50, 60 }, Collider::Type::WALL);
 
+	App->collisions->AddCollider({ 480 - 120, 500 - 1100, 10, 10 }, Collider::Type::MULTI_USE);
+
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 
@@ -194,10 +199,14 @@ bool SceneLevel1::Start()
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 410 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
 
+	App->breakableParticles->AddParticle(App->breakableParticles->house, 70 - 120, 630 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->house, 200 - 120, 650 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->house, 170 - 120, 700 - 1100, Collider::Type::BREAKABLE_OBJECT);
+
 	// Event triggered particle and event triggerer collider
 	fallingWallEventDelays = 0;
 	App->breakableParticles->AddParticle(App->breakableParticles->fallingWall, 400 - 120, 440 - 1100, Collider::Type::WALL);
-	App->collisions->AddCollider({ 90 - 120, 790 - 1100, 630, 50 }, Collider::Type::EVENT_TRIGGER);
+	App->collisions->AddCollider({ 280 - 120, 790 - 1100, 560, 50 }, Collider::Type::EVENT_TRIGGER);
 	App->collisions->AddCollider({ 350 - 120, 650 - 1100, 120, 130 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 340 - 120, 660 - 1100, 10, 100 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 370 - 120, 630 - 1100, 60, 30 }, Collider::Type::WALL);
@@ -221,16 +230,17 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 501 - 120, 215 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
 
+	//BOSS
+	
+	
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;
-	App->enemies->AddEnemy(Enemy_Type::BOSS, 401 - 120, 1280 - 1100);
+	
 
 	App->render->camera.x = 100;
 	App->render->camera.y = -215;
 
 	App->player->score = 0;
-
-	//App->player->activateWinCondition = false;
 
 	App->player->Enable();
 	App->enemies->Enable();
@@ -267,13 +277,21 @@ Update_Status SceneLevel1::Update()
 
 	}
 	*/
+<<<<<<< HEAD
+	if ((App->player->position.x == 600)) {
+		App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 75 - 1100);
+		
+	}
 	
+
 	if (App->player->activateWinCondition == true)
 	{
 		App->player->activateWinCondition = false;
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
 	}
+=======
+>>>>>>> b8dff2612074a45acdd59561dc703ab82b4dd2a0
 
 	if (App->player->fallingWallEvent == true)
 	{
