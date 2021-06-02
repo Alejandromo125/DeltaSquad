@@ -163,6 +163,7 @@ bool ModulePlayer::Start()
 	speedY = 1 * SCREEN_SIZE;
 
 	destroyed = false;
+	activateWinCondition = false;
 
 	playerLife = 100;
 	immunityTime = 0;
@@ -525,6 +526,7 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
 	{
+		playerDelay = 0;
 		activateWinCondition = true;
 	}
 

@@ -116,12 +116,7 @@ void Boss::Update()
 	}
 	if (EnemyHP == 0) App->player->activateWinCondition = true;
 	
-		if (App->player->activateWinCondition == true)
-		{
-			App->player->activateWinCondition = false;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 90);
-			App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
-		}
+
 	
 	
 
