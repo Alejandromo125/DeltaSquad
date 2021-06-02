@@ -283,14 +283,6 @@ Update_Status SceneLevel1::Update()
 		App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 75 - 1100);
 		
 	}
-	
-
-	if (App->player->activateWinCondition == true)
-	{
-		App->player->activateWinCondition = false;
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
-		App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
-	}
 
 
 	if (App->player->fallingWallEvent == true)

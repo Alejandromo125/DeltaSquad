@@ -196,7 +196,7 @@ Update_Status ModulePlayer::Update()
 {
 	
 	
-	if (destroyed == false)
+	if (destroyed == false && activateWinCondition == false)
 	{
 		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 		{
@@ -552,8 +552,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 		if (playerDelay >= 420)
 		{
-			
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
 		}
 	}
 
@@ -567,8 +566,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 		if (playerDelay >= 480)
 		{
-			activateWinCondition = false;
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
 		}
 	}
 
@@ -635,324 +633,327 @@ Update_Status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
-		(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false && immunityTime >= 120)
+	if (activateWinCondition == false)
 	{
-
-		playerLife -= 10;
-		if (playerLife < 0) playerLife = 0;
-		immunityTime = 0;
-		if (playerLife != 0) App->audio->PlayFx(hit28);
-
-		if (playerLife <= 0)
+		if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
+			(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false && immunityTime >= 120)
 		{
-			
-			playerLife = 0;
-			App->audio->PlayFx(dead26);
-			destroyed = true;
-			
+
+			playerLife -= 10;
+			if (playerLife < 0) playerLife = 0;
+			immunityTime = 0;
+			if (playerLife != 0) App->audio->PlayFx(hit28);
+
+			if (playerLife <= 0)
+			{
+
+				playerLife = 0;
+				App->audio->PlayFx(dead26);
+				destroyed = true;
+
+			}
 		}
-	}
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
-	{
-		speedX = 0;
-		speedY = 0;
-
-		if (wallCollision == false)
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 		{
-			wallCollision = true;
+			speedX = 0;
+			speedY = 0;
+
+			if (wallCollision == false)
+			{
+				wallCollision = true;
+			}
+
+			if (currentAnimation == &downAnim)
+			{
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upAnim)
+			{
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &leftAnim)
+			{
+				position.x = position.x + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &rightAnim)
+			{
+				position.x = position.x - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upRightAnim)
+			{
+				position.x = position.x - 1;
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upLeftAnim)
+			{
+				position.x = position.x + 1;
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &downRightAnim)
+			{
+				position.x = position.x - 1;
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &downLeftAnim)
+			{
+				position.x = position.x + 1;
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
 		}
-
-		if (currentAnimation == &downAnim)
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WALL)
 		{
-			position.y = position.y - 1;
 			speedX = 1;
 			speedY = 1;
-		}
-		if (currentAnimation == &upAnim)
-		{
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &leftAnim)
-		{
-			position.x = position.x + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &rightAnim)
-		{
-			position.x = position.x - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &upRightAnim)
-		{
-			position.x = position.x - 1;
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &upLeftAnim)
-		{
-			position.x = position.x + 1;
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &downRightAnim)
-		{
-			position.x = position.x - 1;
-			position.y = position.y - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &downLeftAnim)
-		{
-			position.x = position.x + 1;
-			position.y = position.y - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WALL)
-	{
-		speedX = 1;
-		speedY = 1;
 
-		if (wallCollision == true)
-		{
-			wallCollision = false;
+			if (wallCollision == true)
+			{
+				wallCollision = false;
+			}
+
 		}
 
-	}
-
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE_OBJECT)
-	{
-		speedX = 0;
-		speedY = 0;
-
-		if (breakableObjectCollision == false)
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE_OBJECT)
 		{
-			breakableObjectCollision = true;
+			speedX = 0;
+			speedY = 0;
+
+			if (breakableObjectCollision == false)
+			{
+				breakableObjectCollision = true;
+			}
+
+			if (currentAnimation == &downAnim)
+			{
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upAnim)
+			{
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &leftAnim)
+			{
+				position.x = position.x + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &rightAnim)
+			{
+				position.x = position.x - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upRightAnim)
+			{
+				position.x = position.x - 1;
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upLeftAnim)
+			{
+				position.x = position.x + 1;
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &downRightAnim)
+			{
+				position.x = position.x - 1;
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &downLeftAnim)
+			{
+				position.x = position.x + 1;
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
 		}
-
-		if (currentAnimation == &downAnim)
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BREAKABLE_OBJECT)
 		{
-			position.y = position.y - 1;
 			speedX = 1;
 			speedY = 1;
-		}
-		if (currentAnimation == &upAnim)
-		{
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &leftAnim)
-		{
-			position.x = position.x + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &rightAnim)
-		{
-			position.x = position.x - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &upRightAnim)
-		{
-			position.x = position.x - 1;
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &upLeftAnim)
-		{
-			position.x = position.x + 1;
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &downRightAnim)
-		{
-			position.x = position.x - 1;
-			position.y = position.y - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &downLeftAnim)
-		{
-			position.x = position.x + 1;
-			position.y = position.y - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BREAKABLE_OBJECT)
-	{
-		speedX = 1;
-		speedY = 1;
 
-		if (breakableObjectCollision == true)
-		{
-			breakableObjectCollision = false;
+			if (breakableObjectCollision == true)
+			{
+				breakableObjectCollision = false;
+			}
+
 		}
 
-	}
 
-	
 
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::TRENCH_WALL)
-	{
-		speedX = 0;
-		speedY = 0;
-
-		if (trenchWallCollision == false)
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::TRENCH_WALL)
 		{
-			trenchWallCollision = true;
+			speedX = 0;
+			speedY = 0;
+
+			if (trenchWallCollision == false)
+			{
+				trenchWallCollision = true;
+			}
+
+			if (currentAnimation == &downAnim)
+			{
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upAnim)
+			{
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &leftAnim)
+			{
+				position.x = position.x + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &rightAnim)
+			{
+				position.x = position.x - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upRightAnim)
+			{
+				position.x = position.x - 1;
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &upLeftAnim)
+			{
+				position.x = position.x + 1;
+				position.y = position.y + 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &downRightAnim)
+			{
+				position.x = position.x - 1;
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
+			if (currentAnimation == &downLeftAnim)
+			{
+				position.x = position.x + 1;
+				position.y = position.y - 1;
+				speedX = 1;
+				speedY = 1;
+			}
 		}
-
-		if (currentAnimation == &downAnim)
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::TRENCH_WALL)
 		{
-			position.y = position.y - 1;
 			speedX = 1;
 			speedY = 1;
-		}
-		if (currentAnimation == &upAnim)
-		{
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &leftAnim)
-		{
-			position.x = position.x + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &rightAnim)
-		{
-			position.x = position.x - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &upRightAnim)
-		{
-			position.x = position.x - 1;
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &upLeftAnim)
-		{
-			position.x = position.x + 1;
-			position.y = position.y + 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &downRightAnim)
-		{
-			position.x = position.x - 1;
-			position.y = position.y - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-		if (currentAnimation == &downLeftAnim)
-		{
-			position.x = position.x + 1;
-			position.y = position.y - 1;
-			speedX = 1;
-			speedY = 1;
-		}
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::TRENCH_WALL)
-	{
-		speedX = 1;
-		speedY = 1;
 
-		if (trenchWallCollision == true)
-		{
-			trenchWallCollision = false;
+			if (trenchWallCollision == true)
+			{
+				trenchWallCollision = false;
+			}
+
 		}
 
-	}
-
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
-	{
-		if (cameraXlimitation == false)
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HORIZONTAL_CAMERA_BOUND)
 		{
-			cameraXlimitation = true;
+			if (cameraXlimitation == false)
+			{
+				cameraXlimitation = true;
+			}
 		}
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::HORIZONTAL_CAMERA_BOUND)
-	{
-		if (cameraXlimitation == true)
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::HORIZONTAL_CAMERA_BOUND)
 		{
-			cameraXlimitation = false;
-		}
-	}
-
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
-	{
-		if (cameraYlimitation == false)
-		{
-			cameraYlimitation = true;
-		}
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::VERTICAL_CAMERA_BOUND)
-	{
-		if (cameraYlimitation == true)
-		{
-			cameraYlimitation = false;
-		}
-	}
-
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
-	{
-		waterSink = 20;
-		if (cameraYlimitation == false)
-		{
-			cameraYlimitation = true; // Does not make sense but its needed
+			if (cameraXlimitation == true)
+			{
+				cameraXlimitation = false;
+			}
 		}
 
-		if (cameraXlimitation == false)
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::VERTICAL_CAMERA_BOUND)
 		{
-			cameraXlimitation = true; // Does not make sense but its needed
+			if (cameraYlimitation == false)
+			{
+				cameraYlimitation = true;
+			}
 		}
-		
-		App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 20, Collider::Type::NONE);
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WATER)
-	{
-		waterSink = 0;
-	}
-
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
-	{
-		if (bidimensionalCameraLimitation == false)
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::VERTICAL_CAMERA_BOUND)
 		{
-			bidimensionalCameraLimitation = true;
+			if (cameraYlimitation == true)
+			{
+				cameraYlimitation = false;
+			}
 		}
-	}
-	else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
-	{
-		if (bidimensionalCameraLimitation == true)
+
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WATER)
 		{
-			bidimensionalCameraLimitation = false;
+			waterSink = 20;
+			if (cameraYlimitation == false)
+			{
+				cameraYlimitation = true; // Does not make sense but its needed
+			}
+
+			if (cameraXlimitation == false)
+			{
+				cameraXlimitation = true; // Does not make sense but its needed
+			}
+
+			App->particles->AddParticle(App->particles->waterParticles, position.x, position.y + 20, Collider::Type::NONE);
 		}
-	}
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::WATER)
+		{
+			waterSink = 0;
+		}
 
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOUBLE_SHOT_WEAPON_ID01)
-	{
-		collectedItemID = 1;
-		App->particles->doubleShotWeapon.SetToDelete();
-	}
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
+		{
+			if (bidimensionalCameraLimitation == false)
+			{
+				bidimensionalCameraLimitation = true;
+			}
+		}
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::BIDIMENSIONAL_CAMERA_BOUND)
+		{
+			if (bidimensionalCameraLimitation == true)
+			{
+				bidimensionalCameraLimitation = false;
+			}
+		}
 
-	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::EVENT_TRIGGER)
-	{
-		fallingWallEvent = true;
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOUBLE_SHOT_WEAPON_ID01)
+		{
+			collectedItemID = 1;
+			App->particles->doubleShotWeapon.SetToDelete();
+		}
+
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::EVENT_TRIGGER)
+		{
+			fallingWallEvent = true;
+		}
 	}
 }
