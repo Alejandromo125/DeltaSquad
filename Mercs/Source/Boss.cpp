@@ -10,9 +10,10 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleRender.h"
 
+
 Boss::Boss(int x, int y) : Enemy(x, y)
 {
-	Enemy::EnemyHP = 10;
+	Enemy::EnemyHP = 20;
 	Idle.PushBack({ 0,0,128,102 });
 	Idle.loop = true;
 
@@ -23,10 +24,13 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	Shot.PushBack({ 0,0,128,102 });
 	Shot.PushBack({ 140,0,128,102 });
 	Shot.PushBack({ 280,0,128,102 });
+	Shot.PushBack({ 0,0,128,102 });
+	Shot.PushBack({ 140,0,128,102 });
+	Shot.PushBack({ 280,0,128,102 });
 	Shot.loop = true;
 
 	
-
+	
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 128, 102 }, Collider::Type::BOSS, (Module*)App->enemies);
 
@@ -36,7 +40,7 @@ void Boss::Update()
 {
 	currentAnim = &Idle;
 	counter++;
-	int half = position.x + 64;
+	int half = position.x + 54;
 	
 	if (counter % 2 == 0)
 	{
@@ -60,16 +64,20 @@ void Boss::Update()
 	
 	
 
-	if (counter % 60 == 0)
+	if (counter % 40 == 0)
 	{
 		if (position.DistanceTo(App->player->position) < 250)
 		{
 
-			if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
+			if ((half == App->player->position.x) && (position.y < App->player->position.y))
 			{
 				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, position.x, position.y + 25, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, half-40, position.y +50, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDown, half-40, position.y + 50, Collider::Type::ENEMY_SHOT);
+				currentAnim = &Shot;
+				App->particles->AddParticle(App->particles->shotEffect, half+50, position.y + 50, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDown,half+50, position.y + 50, Collider::Type::ENEMY_SHOT);
+
 				
 
 
@@ -80,20 +88,26 @@ void Boss::Update()
 		{
 
 			
-			if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
+			if ((half > App->player->position.x) && (position.y < App->player->position.y))
 			{
 				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, position.x, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, half - 40, position.y + 50, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownLeft, half - 40, position.y + 50, Collider::Type::ENEMY_SHOT);
+				currentAnim = &Shot;
+				App->particles->AddParticle(App->particles->shotEffect, half + 50, position.y + 50, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownLeft, half + 50, position.y + 50, Collider::Type::ENEMY_SHOT);
 				
 
 
 			}
-			if ((position.x  < App->player->position.x) && (position.y < App->player->position.y))
+			if ((half  < App->player->position.x) && (position.y < App->player->position.y))
 			{
 				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, position.x, position.y + 15, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, half - 40, position.y + 50, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownRight, half - 40, position.y + 50, Collider::Type::ENEMY_SHOT);
+				currentAnim = &Shot;
+				App->particles->AddParticle(App->particles->shotEffect, half + 50, position.y + 50, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownRight, half + 50, position.y + 50, Collider::Type::ENEMY_SHOT);
 				
 
 			}
