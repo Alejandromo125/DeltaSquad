@@ -4,7 +4,11 @@
 #include "SDL/include/SDL.h"
 
 ModuleInput::ModuleInput(bool startEnabled) : Module(startEnabled)
-{}
+{
+	for (uint i = 0; i < MAX_KEYS; ++i) keys[i] = KEY_IDLE;
+
+	memset(&pads[0], 0, sizeof(GamePad) * MAX_PADS);
+}
 
 ModuleInput::~ModuleInput()
 {}
@@ -38,45 +42,37 @@ bool ModuleInput::Init()
 
 Update_Status ModuleInput::PreUpdate()
 {
-	//Read new SDL events, mostly from the window
-	SDL_Event event;
-	if (SDL_PollEvent(&event))
-	{
-		if (event.type == SDL_QUIT)	return Update_Status::UPDATE_STOP;
-	}
-
-	//Read all keyboard data and update our custom array
-	SDL_PumpEvents();
+	// Read all keyboard data and update our custom array
 	const Uint8* keyboard = SDL_GetKeyboardState(NULL);
 	for (int i = 0; i < MAX_KEYS; ++i)
 	{
 		if (keyboard[i])
-			keys[i] = (keys[i] == KEY_IDLE) ? KEY_DOWN : KEY_REPEAT;
+			keys[i] = (keys[i] == Key_State::KEY_IDLE) ? Key_State::KEY_DOWN : Key_State::KEY_REPEAT;
 		else
-			keys[i] = (keys[i] == KEY_REPEAT || keys[i] == KEY_DOWN) ? KEY_UP : KEY_IDLE;
+			keys[i] = (keys[i] == Key_State::KEY_REPEAT || keys[i] == Key_State::KEY_DOWN) ? Key_State::KEY_UP : Key_State::KEY_IDLE;
 	}
 
 	// Read new SDL events
-
+	SDL_Event event;
 	while (SDL_PollEvent(&event) != 0)
 	{
 		switch (event.type)
 		{
-		case(SDL_CONTROLLERDEVICEADDED):
-		{
-			HandleDeviceConnection(event.cdevice.which);
-			break;
-		}
-		case(SDL_CONTROLLERDEVICEREMOVED):
-		{
-			HandleDeviceRemoval(event.cdevice.which);
-			break;
-		}
-		case(SDL_QUIT):
-		{
-			return Update_Status::UPDATE_STOP;
-			break;
-		}
+			case(SDL_CONTROLLERDEVICEADDED):
+			{
+				HandleDeviceConnection(event.cdevice.which);
+				break;
+			}
+			case(SDL_CONTROLLERDEVICEREMOVED):
+			{
+				HandleDeviceRemoval(event.cdevice.which);
+				break;
+			}
+			case(SDL_QUIT):
+			{
+				return Update_Status::UPDATE_STOP;
+				break;
+			}
 		}
 	}
 
@@ -86,7 +82,7 @@ Update_Status ModuleInput::PreUpdate()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-bool ModuleInput::CleanUp() // Exception produced somewhere here...
+bool ModuleInput::CleanUp()
 {
 	LOG("Quitting SDL input event subsystem");
 
@@ -98,7 +94,7 @@ bool ModuleInput::CleanUp() // Exception produced somewhere here...
 			SDL_HapticStopAll(pads[i].haptic);
 			SDL_HapticClose(pads[i].haptic);
 		}
-		if (pads[i].controller != nullptr) SDL_GameControllerClose(pads[i].controller);
+		if (pads[i].controller != nullptr) SDL_GameControllerClose(pads[i].controller); // This line produces exception
 	}
 
 	SDL_QuitSubSystem(SDL_INIT_HAPTIC);

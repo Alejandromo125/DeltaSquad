@@ -10,6 +10,7 @@
 
 struct _SDL_GameController;
 struct _SDL_Haptic;
+
 enum Key_State
 {
 	KEY_IDLE,
