@@ -125,6 +125,10 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	deadBackAnim.PushBack({ 108, 375, 35, 45 - waterSink });
 	deadBackAnim.loop = false;
 	deadBackAnim.speed = 0.1f;
+
+	winAnim.PushBack({ 393, 255, 35, 45 - waterSink });
+	winAnim.loop = false;
+	winAnim.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -509,6 +513,14 @@ Update_Status ModulePlayer::Update()
 
 		playerDelay++;
 	}
+
+	if (activateWinCondition == true)
+	{
+		winAnim.Reset();
+		currentAnimation = &winAnim;
+
+		playerDelay++;
+	}
 	
 
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
@@ -539,6 +551,21 @@ Update_Status ModulePlayer::PostUpdate()
 		if (playerDelay >= 420)
 		{
 			
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
+		}
+	}
+
+	if (activateWinCondition == true)
+	{
+		
+		App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
+
+		Mix_PauseMusic();
+		if (playerDelay <= 1) App->audio->PlayFx(roundClear);
+
+		if (playerDelay >= 480)
+		{
+			activateWinCondition = false;
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 120);
 		}
 	}

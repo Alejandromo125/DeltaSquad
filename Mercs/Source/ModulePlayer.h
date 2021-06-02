@@ -108,6 +108,8 @@ public:
 	Animation deadBackAnim;
 	Animation deadFrontAnim;
 
+	Animation winAnim;
+
 	// The player's collider
 	Collider* collider = nullptr;
 
