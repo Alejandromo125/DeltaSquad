@@ -29,6 +29,7 @@ struct Collider
 		TRENCH_WALL,
 		DOUBLE_SHOT_WEAPON_ID01,
 		NULL_COLLIDER,
+		MULTI_USE,
 
 		MAX
 	};

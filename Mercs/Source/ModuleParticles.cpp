@@ -54,13 +54,13 @@ bool ModuleParticles::Start()
 
 	// Explosion particle
 	explosion.anim.PushBack({ 201, 152, 32, 30 });
-	explosion.anim.PushBack({ 251, 296, 32, 30 });
-	explosion.anim.PushBack({ 306, 296, 32, 30 });
-	explosion.anim.PushBack({ 360, 296, 32, 30 });
+	explosion.anim.PushBack({ 251, 152, 32, 30 });
+	explosion.anim.PushBack({ 306, 152, 32, 30 });
+	explosion.anim.PushBack({ 360, 152, 32, 30 });
 	explosion.speed.x = 0;
 	explosion.speed.y = 0;
 	explosion.anim.loop = false;
-	explosion.anim.speed = 0.25f;
+	explosion.anim.speed = 0.15f;
 
 	// Shots particles
 

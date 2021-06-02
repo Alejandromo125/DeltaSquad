@@ -184,6 +184,8 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 100 - 120, 630 - 1100, 90, 130 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 100 - 120, 760 - 1100, 50, 60 }, Collider::Type::WALL);
 
+	App->collisions->AddCollider({ 480 - 120, 500 - 1100, 10, 10 }, Collider::Type::MULTI_USE);
+
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 
@@ -194,10 +196,14 @@ bool SceneLevel1::Start()
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 410 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
 
+	App->breakableParticles->AddParticle(App->breakableParticles->house, 70 - 120, 630 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->house, 200 - 120, 650 - 1100, Collider::Type::BREAKABLE_OBJECT);
+	App->breakableParticles->AddParticle(App->breakableParticles->house, 170 - 120, 700 - 1100, Collider::Type::BREAKABLE_OBJECT);
+
 	// Event triggered particle and event triggerer collider
 	fallingWallEventDelays = 0;
 	App->breakableParticles->AddParticle(App->breakableParticles->fallingWall, 400 - 120, 440 - 1100, Collider::Type::WALL);
-	App->collisions->AddCollider({ 90 - 120, 790 - 1100, 630, 50 }, Collider::Type::EVENT_TRIGGER);
+	App->collisions->AddCollider({ 280 - 120, 790 - 1100, 560, 50 }, Collider::Type::EVENT_TRIGGER);
 	App->collisions->AddCollider({ 350 - 120, 650 - 1100, 120, 130 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 340 - 120, 660 - 1100, 10, 100 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 370 - 120, 630 - 1100, 60, 30 }, Collider::Type::WALL);

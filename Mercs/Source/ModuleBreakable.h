@@ -57,9 +57,13 @@ public:
 
 	//Template particle for ...
 	Particle palm;
+	Particle house;
 	Particle fallingWall;
 	Particle fallingWallMoving;
 	Particle fallingWallEnd;
+
+	// Sound effects indices
+	uint broken04 = 0;
 	
 
 private:
