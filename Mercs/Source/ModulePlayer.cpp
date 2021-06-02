@@ -430,7 +430,7 @@ Update_Status ModulePlayer::Update()
 					if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
 					{
 
-						if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
+						if (position.x - 285 < App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
 						{
 							App->render->camera.x -= speedX + 1;
 						}
