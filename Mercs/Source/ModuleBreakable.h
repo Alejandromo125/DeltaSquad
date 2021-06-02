@@ -57,6 +57,9 @@ public:
 
 	//Template particle for ...
 	Particle palm;
+	Particle fallingWall;
+	Particle fallingWallMoving;
+	Particle fallingWallEnd;
 	
 
 private:

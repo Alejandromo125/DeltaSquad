@@ -41,6 +41,17 @@ bool ModuleParticles::Start()
 	shadow.anim.loop = false;
 	shadow.anim.speed = 0.25f;
 
+	// Dirt particle
+	dirt.anim.PushBack({ 246, 322, 30, 30 });
+	dirt.anim.PushBack({ 282, 322, 30, 30 });
+	dirt.anim.PushBack({ 310, 322, 30, 30 });
+	dirt.anim.PushBack({ 336, 322, 30, 30 });
+	dirt.anim.PushBack({ 361, 322, 30, 30 });
+	dirt.speed.x = 0;
+	dirt.speed.y = 0;
+	dirt.anim.loop = false;
+	dirt.anim.speed = 0.15f;
+
 	// Explosion particle
 	explosion.anim.PushBack({ 201, 152, 32, 30 });
 	explosion.anim.PushBack({ 251, 296, 32, 30 });

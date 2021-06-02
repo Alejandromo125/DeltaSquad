@@ -130,6 +130,10 @@ public:
 	int time;
 	int playerFPS;
 
+	//Events
+
+	bool fallingWallEvent;
+
 };
 
 #endif //!__MODULE_PLAYER_H__

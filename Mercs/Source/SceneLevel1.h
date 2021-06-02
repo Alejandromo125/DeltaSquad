@@ -41,6 +41,10 @@ public:
 	SDL_Texture* MovingAndChangingTilesTexture = nullptr;
 
 	int SceneCounter;
+	int fallingWallEventDelays;
+
+	int fallingWallX;
+	int fallingWallY;
 };
 
 #endif

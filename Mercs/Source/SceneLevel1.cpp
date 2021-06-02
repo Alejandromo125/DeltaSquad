@@ -181,15 +181,26 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 195 - 120, 480 - 1100, 100, 20 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 320 - 120, 530 - 1100, 100, 20 }, Collider::Type::TRENCH_WALL);
 
+	App->collisions->AddCollider({ 100 - 120, 630 - 1100, 90, 130 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 100 - 120, 760 - 1100, 50, 60 }, Collider::Type::WALL);
+
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 
-	// Breakable Collisions
+	// Breakable and special Collisions
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 870 - 1100, Collider::Type::BREAKABLE_OBJECT);
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 505 - 120, 890 - 1100, Collider::Type::BREAKABLE_OBJECT);
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 475 - 120, 920 - 1100, Collider::Type::BREAKABLE_OBJECT);
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 410 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 930 - 1100, Collider::Type::BREAKABLE_OBJECT);
+
+	// Event triggered particle and event triggerer collider
+	fallingWallEventDelays = 0;
+	App->breakableParticles->AddParticle(App->breakableParticles->fallingWall, 400 - 120, 440 - 1100, Collider::Type::WALL);
+	App->collisions->AddCollider({ 90 - 120, 790 - 1100, 630, 50 }, Collider::Type::EVENT_TRIGGER);
+	App->collisions->AddCollider({ 350 - 120, 650 - 1100, 120, 130 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 340 - 120, 660 - 1100, 10, 100 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 370 - 120, 630 - 1100, 60, 30 }, Collider::Type::WALL);
 
 	//App->collisions->AddCollider({ 570 - 120, 970 - 1100, 30, 30 }, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	// Enemies ---
@@ -263,6 +274,60 @@ Update_Status SceneLevel1::Update()
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 		App->fade->FadeToBlack((Module*)App->player, (Module*)App->sceneIntro, 90);
 	}
+
+	if (App->player->fallingWallEvent == true)
+	{
+		fallingWallEventDelays++;
+	}
+	if (fallingWallEventDelays > 0 && fallingWallEventDelays <= 1)
+	{
+		App->breakableParticles->fallingWall.SetToDelete();
+		App->breakableParticles->AddParticle(App->breakableParticles->fallingWallMoving, 400 - 120, 440 - 1100);
+
+		App->particles->AddParticle(App->particles->dirt, 460 - 120, 470 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 500 - 120, 500 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 520 - 120, 560 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 510 - 120, 610 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 460 - 650, 610 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 440 - 650, 600 - 1100, Collider::Type::NONE);
+
+		App->particles->AddParticle(App->particles->dirt, 470 - 120, 620 - 1100, Collider::Type::NONE, 10);
+		App->particles->AddParticle(App->particles->dirt, 500 - 120, 660 - 1100, Collider::Type::NONE, 15);
+		App->particles->AddParticle(App->particles->dirt, 450 - 120, 670 - 1100, Collider::Type::NONE, 20);
+		App->particles->AddParticle(App->particles->dirt, 430 - 120, 710 - 1100, Collider::Type::NONE, 20);
+		App->particles->AddParticle(App->particles->dirt, 400 - 120, 650 - 1100, Collider::Type::NONE, 25);
+		App->particles->AddParticle(App->particles->dirt, 450 - 120, 730 - 1100, Collider::Type::NONE, 25);
+		App->particles->AddParticle(App->particles->dirt, 420 - 120, 710 - 1100, Collider::Type::NONE, 25);
+		App->particles->AddParticle(App->particles->dirt, 420 - 120, 750 - 1100, Collider::Type::NONE, 30);
+		App->particles->AddParticle(App->particles->dirt, 470 - 120, 630 - 1100, Collider::Type::NONE, 30);
+		App->particles->AddParticle(App->particles->dirt, 450 - 120, 670 - 1100, Collider::Type::NONE, 35);
+		App->particles->AddParticle(App->particles->dirt, 480 - 120, 690 - 1100, Collider::Type::NONE, 35);
+		App->particles->AddParticle(App->particles->dirt, 440 - 120, 690 - 1100, Collider::Type::NONE, 35);
+		App->particles->AddParticle(App->particles->dirt, 420 - 120, 720 - 1100, Collider::Type::NONE, 40);
+		App->particles->AddParticle(App->particles->dirt, 470 - 120, 700 - 1100, Collider::Type::NONE, 40);
+		App->particles->AddParticle(App->particles->dirt, 390 - 120, 680 - 1100, Collider::Type::NONE, 45);
+		App->particles->AddParticle(App->particles->dirt, 410 - 120, 680 - 1100, Collider::Type::NONE, 45);
+		App->particles->AddParticle(App->particles->dirt, 480 - 120, 630 - 1100, Collider::Type::NONE, 50);
+		App->particles->AddParticle(App->particles->dirt, 450 - 120, 680 - 1100, Collider::Type::NONE, 55);
+
+	}
+	else if (fallingWallEventDelays > 75 && fallingWallEventDelays <= 76)
+	{
+		App->particles->AddParticle(App->particles->dirt, 350 - 120, 780 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 380 - 120, 790 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 410 - 120, 790 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 440 - 120, 760 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 450 - 650, 730 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 440 - 650, 690 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 340 - 650, 740 - 1100, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->dirt, 350 - 650, 680 - 1100, Collider::Type::NONE);
+
+		App->particles->AddParticle(App->particles->dirt, 390 - 650, 720 - 1100, Collider::Type::NONE, 5);
+		App->particles->AddParticle(App->particles->dirt, 410 - 650, 700 - 1100, Collider::Type::NONE, 5);
+
+		App->breakableParticles->AddParticle(App->breakableParticles->fallingWallEnd, 330 - 120, 630 - 1100);
+	}
+
 
 	return Update_Status::UPDATE_CONTINUE;
 }

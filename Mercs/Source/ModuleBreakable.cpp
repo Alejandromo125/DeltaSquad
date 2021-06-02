@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
+#include "SceneLevel1.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -24,13 +25,36 @@ bool ModuleBreakable::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Art/TileMaps/MovingAndChagingTiles.png"); // Should load a breakable object spritesheet
 
-	// Example
 	palm.anim.PushBack({ 416, 292, 90, 163 });
 	palm.speed.x = 0;
 	palm.speed.y = 0;
 	palm.lifetime = 0;
 	palm.anim.loop = false;
 	palm.anim.speed = 0.0f;
+
+	fallingWall.anim.PushBack({ 283, 0, 130, 220 });
+	fallingWall.speed.x = 0;
+	fallingWall.speed.y = 0;
+	fallingWall.lifetime = 0;
+	fallingWall.anim.loop = false;
+	fallingWall.anim.speed = 0.0f;
+
+	fallingWallMoving.anim.PushBack({ 283, 0, 130, 220 });
+	fallingWallMoving.speed.x = -1;
+	fallingWallMoving.speed.y = 2;
+	fallingWallMoving.lifetime = 75;
+	fallingWallMoving.anim.loop = false;
+	fallingWall.anim.speed = 0.0f;
+
+	fallingWallEnd.anim.PushBack({ 100, 270, 130, 170 });
+	fallingWallEnd.speed.x = 0;
+	fallingWallEnd.speed.y = 0;
+	fallingWallEnd.lifetime = 0;
+	fallingWallEnd.anim.loop = false;
+	fallingWallEnd.anim.speed = 0.0f;
+
+
+
 
 	canBeDestoryed = true;
 
@@ -79,9 +103,11 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::PLAYER)
 		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY)
 		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY_BOMB)
-		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY_SHOT))
+		|| (c1->type != Collider::Type::BREAKABLE_OBJECT && c2->type != Collider::Type::ENEMY_SHOT)
+		|| c1->type != Collider::Type::NONE || (c1->type == Collider::Type::WALL && App->sceneLevel_1->fallingWallEventDelays != 0))
 	{
 		canBeDestoryed = true;
+		App->breakableParticles->fallingWall.SetToDelete();
 	}
 
 	if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE_OBJECT)
@@ -91,7 +117,8 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::PLAYER)
 		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY)
 		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY_BOMB)
-		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY_SHOT))
+		|| (c1->type == Collider::Type::BREAKABLE_OBJECT && c2->type == Collider::Type::ENEMY_SHOT)
+		|| c1->type == Collider::Type::NONE || (c1->type == Collider::Type::WALL && App->sceneLevel_1->fallingWallEventDelays == 0))
 	{
 		canBeDestoryed = false;
 	}

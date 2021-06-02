@@ -161,6 +161,8 @@ bool ModulePlayer::Start()
 	playerDelay = 0;
 	playerFPS = 0;
 
+	fallingWallEvent = false;
+
 	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is triple shot weapon (only ID 0 and 1 are used in level 1)
 	//collectedMegaBombsNumber = 1; // Player starts with 1 MegaBomb available -=(MegaBomb mechanic is not implemented yet so it wont have any effect for now)=-
 
@@ -415,7 +417,7 @@ Update_Status ModulePlayer::Update()
 
 						if (position.x + 70 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
 						{
-							App->render->camera.x += speedX + 2;
+							App->render->camera.x += speedX + 1;
 						}
 
 					}
@@ -428,7 +430,7 @@ Update_Status ModulePlayer::Update()
 					if (App->render->camera.x / SCREEN_SIZE - App->render->camera.w - speedX < 1242)
 					{
 
-						if (position.x - 70 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
+						if (position.x - 65 > App->render->camera.x / SCREEN_SIZE - App->render->camera.w + horizontalMargin)
 						{
 							App->render->camera.x -= speedX + 1;
 						}
@@ -442,7 +444,7 @@ Update_Status ModulePlayer::Update()
 				if (App->render->camera.y <= 1156 * SCREEN_SIZE)
 				{
 
-					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + 2;
+					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + 1;
 				}
 			}
 
@@ -910,5 +912,10 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	{
 		collectedItemID = 1;
 		App->particles->doubleShotWeapon.SetToDelete();
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::EVENT_TRIGGER)
+	{
+		fallingWallEvent = true;
 	}
 }
