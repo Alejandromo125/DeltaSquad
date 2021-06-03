@@ -545,6 +545,7 @@ Update_Status ModulePlayer::PostUpdate()
 {
 	if (destroyed == true)
 	{
+
 		App->fonts->BlitText(30, 100, scoreFont, "Mission Failed"); // Text UI does not work
 
 		Mix_PauseMusic();

@@ -248,6 +248,8 @@ bool SceneLevel1::Start()
 	App->player->cameraXlimitation = false;
 	App->player->cameraYlimitation = false;
 
+	SceneCounter = 0;
+
 	return ret;
 }
 
@@ -336,6 +338,15 @@ Update_Status SceneLevel1::Update()
 		App->particles->AddParticle(App->particles->dirt, 410 - 650, 700 - 1100, Collider::Type::NONE, 5);
 
 		App->breakableParticles->AddParticle(App->breakableParticles->fallingWallEnd, 330 - 120, 630 - 1100);
+	}
+
+	if (App->player->activateWinCondition == true || App->player->destroyed == true)
+	{
+		SceneCounter = 0;
+	}
+	else
+	{
+		SceneCounter++;
 	}
 
 

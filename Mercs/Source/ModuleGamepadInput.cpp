@@ -1,5 +1,6 @@
 #include "ModuleGamepadInput.h"
 #include "ModulePlayer.h"
+#include "SceneLevel1.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -16,6 +17,7 @@
 #include <SDL\include\SDL_timer.h>
 #include <SDL_mixer/include/SDL_mixer.h>
 #include <SDL/include/SDL_gamecontroller.h>
+#include <SDL/include/SDL_haptic.h>
 
 ModuleGamepadInput::ModuleGamepadInput(bool startEnabled) : Module(startEnabled)
 {
@@ -96,11 +98,17 @@ Update_Status ModuleGamepadInput::Update()
 		App->input->keys[SDL_SCANCODE_UP] = Key_State::KEY_REPEAT;
 	}
 
-
+	
 
 	if (pad.a == true && keyDownDelay > 15)
 	{
 		App->input->keys[SDL_SCANCODE_SPACE] = Key_State::KEY_DOWN;
+
+		if (App->sceneLevel_1->SceneCounter != 0)
+		{
+			App->input->ShakeController(0, 120, 0.05f);
+		}
+		
 
 		keyDownDelay = 0;
 	}
