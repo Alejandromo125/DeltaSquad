@@ -3,6 +3,7 @@
 #include "Module.h"
 #include "ModuleWindow.h"
 #include "ModuleInput.h"
+#include "ModuleGamepadInput.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
@@ -26,22 +27,23 @@ Application::Application()
 
 	modules[0] =	window =		new ModuleWindow(true);
 	modules[1] =	input =			new ModuleInput(true);
-	modules[2] =	textures =		new ModuleTextures(true);
-	modules[3] =	audio =			new ModuleAudio(true);
+	modules[2] =	gamepadInput =  new ModuleGamepadInput(true);
+	modules[3] =	textures =		new ModuleTextures(true);
+	modules[4] =	audio =			new ModuleAudio(true);
 
-	modules[4] =	infoScreen =	new InfoScreen(true);
-	modules[5] =    titleScreen =   new TitleScreen(false);
-	modules[6] =	sceneIntro =	new SceneIntro(false);
-	modules[7] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[8] = breakableParticles = new ModuleBreakable(false);
-	modules[9] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[10] =	particles =		new ModuleParticles(false);
-	modules[11] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
+	modules[5] =	infoScreen =	new InfoScreen(true);
+	modules[6] =    titleScreen =   new TitleScreen(false);
+	modules[7] =	sceneIntro =	new SceneIntro(false);
+	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[9] = breakableParticles = new ModuleBreakable(false);
+	modules[10] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[11] =	particles =		new ModuleParticles(false);
+	modules[12] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[12] =	collisions =	new ModuleCollisions(true);
-	modules[13] =	fade =			new ModuleFadeToBlack(true);
-	modules[14] =	fonts =			new ModuleFonts(true);
-	modules[15] =	render =		new ModuleRender(true);
+	modules[13] =	collisions =	new ModuleCollisions(true);
+	modules[14] =	fade =			new ModuleFadeToBlack(true);
+	modules[15] =	fonts =			new ModuleFonts(true);
+	modules[16] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

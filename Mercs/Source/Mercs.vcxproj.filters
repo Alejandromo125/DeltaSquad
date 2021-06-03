@@ -88,6 +88,9 @@
     <ClCompile Include="Tower_Enemy_Level2.cpp">
       <Filter>Source FIles\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleGamepadInput.cpp">
+      <Filter>Source FIles\Modules\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Tower_Enemy_Level2.h">
       <Filter>Source FIles\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleGamepadInput.h">
+      <Filter>Source FIles\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

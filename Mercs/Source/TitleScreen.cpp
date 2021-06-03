@@ -42,6 +42,7 @@ bool TitleScreen::Start()
 
 Update_Status TitleScreen::Update()
 {
+
 	delay++;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{

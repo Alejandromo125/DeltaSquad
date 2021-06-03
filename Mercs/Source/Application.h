@@ -3,11 +3,12 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 16
+#define NUM_MODULES 17
 
 class Module;
 class ModuleWindow;
 class ModuleInput;
+class ModuleGamepadInput;
 class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
@@ -50,6 +51,7 @@ public:
 	// All the modules stored individually
 	ModuleWindow* window = nullptr;
 	ModuleInput* input = nullptr;
+	ModuleGamepadInput* gamepadInput = nullptr;
 	ModuleTextures* textures = nullptr;
 	ModuleAudio* audio = nullptr;
 
