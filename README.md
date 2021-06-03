@@ -20,7 +20,9 @@ F2 to turn ON/OFF god mode
 
 F3 direct Win / Lose
 
-SPACE BAR to skip the initial screen
+F11 Toggle fullScreen ON/OFF
+
+SPACE BAR to skip the initial screens
 
 # Members
 ***
