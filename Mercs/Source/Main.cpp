@@ -7,6 +7,7 @@
 #pragma comment( lib, "SDL/libx86/SDL2.lib")
 #pragma comment( lib, "SDL/libx86/SDL2main.lib")
 
+#include "ModuleWindow.h"
 
 enum class Main_States
 {
@@ -28,6 +29,8 @@ int main(int argc, char* argv[])
 
 	Uint64 frameStart;
 	int frameTime;
+
+	bool fullScreen = false;
 
 	int main_return = EXIT_FAILURE;
 	Main_States state = Main_States::MAIN_CREATION;
@@ -70,6 +73,20 @@ int main(int argc, char* argv[])
 				if (frameDelay > frameTime)
 				{
 					SDL_Delay(frameDelay - frameTime);
+				}
+
+				if (App->input->keys[SDL_SCANCODE_F11] == Key_State::KEY_DOWN)
+				{
+					fullScreen = !fullScreen;
+				}
+
+				if (fullScreen == false)
+				{
+					SDL_SetWindowFullscreen(App->window->window, 0);
+				}
+				else if (fullScreen == true)
+				{
+					SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 				}
 
 				if (status == Update_Status::UPDATE_ERROR)

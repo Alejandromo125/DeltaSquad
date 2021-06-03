@@ -2,6 +2,7 @@
 #define __MODULE_WINDOW_H__
 
 #include "Module.h"
+#include "SDL/include/SDL.h"
 
 //Try to figure out what this is used for
 struct SDL_Window;
@@ -30,6 +31,8 @@ public:
 
 	//The window's surface
 	SDL_Surface* screenSurface = nullptr;
+	SDL_Rect rectangleLimitation = { 0, 0, 224 * SCREEN_WIDTH, 384 * SCREEN_HEIGHT };
+
 };
 
 #endif // !__MODULE_WINDOW_H__

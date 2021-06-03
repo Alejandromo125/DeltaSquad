@@ -7,7 +7,9 @@
 
 
 ModuleWindow::ModuleWindow(bool startEnabled) : Module(startEnabled)
-{}
+{
+	
+}
 
 ModuleWindow::~ModuleWindow()
 {}
@@ -48,7 +50,11 @@ bool ModuleWindow::Init()
 		}
 		else
 		{
+			
+
 			screenSurface = SDL_GetWindowSurface(window);
+
+			SDL_SetClipRect(screenSurface, &rectangleLimitation); // Does not work ???
 		}
 	}
 
