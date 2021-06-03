@@ -14,16 +14,16 @@ TowerEnemy::TowerEnemy(int x, int y) : Enemy(x, y)
 
 	Enemy::EnemyHP = 5;
 	//SHOOTING ANIMATIONS
-	ShootDown.PushBack({ 0,774,137,249 });
-	ShootRight.PushBack({ 429,774,30,43 });
-	ShootLeft.PushBack({ 572,774,30,43 });
-	ShootDownRight.PushBack({ 286,774,30,43 });
-	ShootDownLeft.PushBack({ 143,774,30,43 });
+	ShootDown.PushBack({ 0,861,89,161 });
+	ShootRight.PushBack({ 94,861,89,161 });
+	ShootLeft.PushBack({ 188,861,89,161 });
+	ShootDownRight.PushBack({ 288,861,89,161 });
+	ShootDownLeft.PushBack({ 375,861,89,161 });
 
 	//Have the Soldiers describe a path in the screen taking into account the collisions
 
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 130, 141 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ position.x, position.y, 86, 92 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 
 
