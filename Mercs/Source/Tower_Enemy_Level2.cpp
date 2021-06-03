@@ -14,16 +14,16 @@ TowerEnemy::TowerEnemy(int x, int y) : Enemy(x, y)
 
 	Enemy::EnemyHP = 5;
 	//SHOOTING ANIMATIONS
-	ShootDown.PushBack({ 113,358,30,43 });
-	ShootRight.PushBack({ 113,448,30,43 });
-	ShootLeft.PushBack({ 113,495,30,43 });
-	ShootDownRight.PushBack({ 113,403,30,43 });
-	ShootDownLeft.PushBack({ 113,314,30,43 });
+	ShootDown.PushBack({ 0,774,137,249 });
+	ShootRight.PushBack({ 429,774,30,43 });
+	ShootLeft.PushBack({ 572,774,30,43 });
+	ShootDownRight.PushBack({ 286,774,30,43 });
+	ShootDownLeft.PushBack({ 143,774,30,43 });
 
 	//Have the Soldiers describe a path in the screen taking into account the collisions
 
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 20, 30 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ position.x, position.y, 130, 141 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 
 
@@ -71,17 +71,13 @@ void TowerEnemy::Update()
 
 			if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 			{
-
+				currentAnim = &ShootDown;
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
+				currentAnim = &ShootDown;
 				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
 
-
-			}
-			if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
-			{
-
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
 
 			}
 			if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
@@ -111,37 +107,29 @@ void TowerEnemy::Update()
 		if (position.DistanceTo(App->player->position) < 250)
 		{
 
-		}if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
-		{
 
-			App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->EnemyshotUpLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
-
-
-		}
-		if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
-		{
-
-			App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
+			if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
+			{
+				currentAnim = &ShootDownLeft;
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
+				currentAnim = &ShootDownLeft;
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x + 3, position.y + 20, Collider::Type::ENEMY_SHOT);
 
 
-		}
-		if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
-		{
-
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 20, position.y + 8, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->EnemyshotUpRight, position.x + 20, position.y + 8, Collider::Type::ENEMY_SHOT);
-
-
-		}
-		if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
-		{
-
-			App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
-			App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
+			}
+			if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
+			{
+				currentAnim = &ShootDownRight;
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
+				currentAnim = &ShootDownRight;
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 15, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x - 8, position.y + 15, Collider::Type::ENEMY_SHOT);
 
 
+			}
 		}
 
 	}
