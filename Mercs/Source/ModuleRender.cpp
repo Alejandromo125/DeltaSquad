@@ -55,17 +55,20 @@ Update_Status ModuleRender::PreUpdate()
 
 Update_Status ModuleRender::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT)
+	// Get gamepad info
+	GamePad& padRndr = App->input->pads[0];
+
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_REPEAT || padRndr.right_y < 0.0f)
 		camera.y -= cameraSpeedY;
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_REPEAT || padRndr.right_y > 0.0f)
 		camera.y += cameraSpeedY;
 
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_REPEAT || padRndr.right_x < 0.0f)
 		camera.x -= cameraSpeedX;
 	if (camera.x < 0) camera.x = 0;
 
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_REPEAT || padRndr.right_x > 0.0f)
 		camera.x += cameraSpeedX;
 
 	return Update_Status::UPDATE_CONTINUE;
