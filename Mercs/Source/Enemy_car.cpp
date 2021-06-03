@@ -47,7 +47,7 @@ Enemy_car::Enemy_car(int x, int y) : Enemy(x, y)
 	walkDownLeft.loop = true;
 
 	
-	collider = App->collisions->AddCollider({ position.x, position.y, 20, 30 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ position.x, position.y, 67, 63 }, Collider::Type::ENEMY, (Module*)App->enemies);
 
 
 
@@ -64,7 +64,7 @@ void Enemy_car::Update()
 			if (App->player->position.y < position.y)
 			{
 				currentAnim = &walkUp;
-				position.y = position.y - 1;
+				position.y = position.y - 2;
 				App->player->EnemyLookingPosition = 1;
 			}
 
@@ -72,7 +72,7 @@ void Enemy_car::Update()
 			{
 
 				currentAnim = &walkDown;
-				position.y = position.y + 1;
+				position.y = position.y + 2;
 				App->player->EnemyLookingPosition = 2;
 			}
 
@@ -80,22 +80,22 @@ void Enemy_car::Update()
 			{
 
 				currentAnim = &walkLeft;
-				position.x = position.x - 1;
+				position.x = position.x - 2;
 				App->player->EnemyLookingPosition = 3;
 
 			}
 			if (App->player->position.x > position.x)
 			{
 				currentAnim = &walkRight;
-				position.x = position.x + 1;
+				position.x = position.x + 2;
 				App->player->EnemyLookingPosition = 4;
 			}
 
 			if ((App->player->position.y < position.y) && (App->player->position.x < position.x))
 			{
 				currentAnim = &walkUpLeft;
-				position.y = position.y - 1;
-				position.x = position.x - 1;
+				position.y = position.y - 2;
+				position.x = position.x - 2;
 				App->player->EnemyLookingPosition = 5;
 
 			}
@@ -103,16 +103,16 @@ void Enemy_car::Update()
 			if ((App->player->position.x > position.x) && (App->player->position.y < position.y))
 			{
 				currentAnim = &walkUpRight;
-				position.x = position.x + 1;
-				position.y = position.y - 1;
+				position.x = position.x + 2;
+				position.y = position.y - 2;
 				App->player->EnemyLookingPosition = 6;
 			}
 
 			if ((App->player->position.y > position.y) && (App->player->position.x > position.x))
 			{
 				currentAnim = &walkDownRight;
-				position.y = position.y + 1;
-				position.x = position.x + 1;
+				position.y = position.y + 2;
+				position.x = position.x + 2;
 				App->player->EnemyLookingPosition = 7;
 			}
 
@@ -120,8 +120,8 @@ void Enemy_car::Update()
 			{
 
 				currentAnim = &walkDownLeft;
-				position.x = position.x - 1;
-				position.y = position.y + 1;
+				position.x = position.x - 2;
+				position.y = position.y + 2;
 				App->player->EnemyLookingPosition = 8;
 			}
 		}

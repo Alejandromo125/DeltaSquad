@@ -16,6 +16,8 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	int BossMovementCounter;
+
 	int counter;
 
 private:

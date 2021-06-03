@@ -38,29 +38,41 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 
 void Boss::Update()
 {
-	currentAnim = &Idle;
+	currentAnim = &Shot;
 	counter++;
+	BossMovementCounter++;
 	int half = position.x + 54;
+
+	
 	
 	if (counter % 2 == 0)
 	{
-		if (position.DistanceTo(App->player->position) < 250)
+		if (position.DistanceTo(App->player->position) < 1000)
 		{
-			if ((half > App->player->position.x) && (position.y < App->player->position.y))
+			if (BossMovementCounter<180)
 			{
 				currentAnim = &Shot;
 				position.x--;
-
+				position.x--;
+				
+				
 
 			}
-			if ((half < App->player->position.x) && (position.y < App->player->position.y))
+			if ((BossMovementCounter>180)&&(BossMovementCounter<360))
 			{
 				currentAnim = &Shot;
 				position.x++;
+				position.x++;
+				
+				
 			}
+			if (BossMovementCounter == 360) BossMovementCounter = 0;
+			
+			
 		}
-	}
 		
+	}
+	
 	
 	
 
@@ -68,50 +80,14 @@ void Boss::Update()
 	{
 		if (position.DistanceTo(App->player->position) < 250)
 		{
-
-			if ((half == App->player->position.x) && (position.y < App->player->position.y))
-			{
 				currentAnim = &Shot;
 				App->particles->AddParticle(App->particles->shotEffect, half-40, position.y +50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDown, half-40, position.y + 50, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->BossShot, half-40, position.y + 50, Collider::Type::ENEMY_SHOT);
 				currentAnim = &Shot;
 				App->particles->AddParticle(App->particles->shotEffect, half+50, position.y + 50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDown,half+50, position.y + 50, Collider::Type::ENEMY_SHOT);
-
-				
-
-
-			}
+				App->particles->AddParticle(App->particles->BossShot,half+50, position.y + 50, Collider::Type::ENEMY_SHOT);
 		}
-		//DIAGONAL SHOT IMPLEMENTATION
-		if (position.DistanceTo(App->player->position) < 250)
-		{
-
-			
-			if ((half > App->player->position.x) && (position.y < App->player->position.y))
-			{
-				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, half - 40, position.y + 50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownLeft, half - 40, position.y + 50, Collider::Type::ENEMY_SHOT);
-				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, half + 50, position.y + 50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownLeft, half + 50, position.y + 50, Collider::Type::ENEMY_SHOT);
-				
-
-
-			}
-			if ((half  < App->player->position.x) && (position.y < App->player->position.y))
-			{
-				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, half - 40, position.y + 50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownRight, half - 40, position.y + 50, Collider::Type::ENEMY_SHOT);
-				currentAnim = &Shot;
-				App->particles->AddParticle(App->particles->shotEffect, half + 50, position.y + 50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownRight, half + 50, position.y + 50, Collider::Type::ENEMY_SHOT);
-				
-
-			}
-		}
+		
 
 	}
 	if (EnemyHP == 0) App->player->activateWinCondition = true;

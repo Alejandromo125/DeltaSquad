@@ -240,6 +240,16 @@ bool ModuleParticles::Start()
 	EnemyshotUpRight.anim.loop = false;
 	EnemyshotUpRight.anim.speed = 0.2f;
 
+
+	BossShot.anim.PushBack({4,489,16,18});
+	BossShot.anim.PushBack({23,489,16,18});
+	BossShot.anim.PushBack({43,489,16,18});
+	BossShot.anim.PushBack({51,489,16,18});
+	BossShot.speed.y = 2;
+	BossShot.lifetime = 180;
+	BossShot.anim.loop = true;
+	BossShot.anim.speed = 0.2f;
+
 	//Items
 	doubleShotWeapon.anim.PushBack({ 0, 50, 30, 30 });
 	doubleShotWeapon.speed.x = 0;

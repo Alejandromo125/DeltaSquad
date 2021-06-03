@@ -82,6 +82,8 @@ public:
 	Particle dualShotDownLeft;
 	Particle dualShotUpRight;
 
+	Particle BossShot;
+
 	//Template particle for shot effect
 	Particle shotEffect;
 

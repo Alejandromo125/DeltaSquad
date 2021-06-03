@@ -231,7 +231,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
 
 	//BOSS
-	App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 75 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 50 - 1100);
 
 	App->enemies->AddEnemy(Enemy_Type::ENEMY_CAR, 220 - 120, 1340 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 200 - 120, 1340 - 1100);
