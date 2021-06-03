@@ -28,22 +28,22 @@ Enemy_car::Enemy_car(int x, int y) : Enemy(x, y)
 	walkDown.PushBack({ 798,933,38,89 });
 	walkDown.loop = true;
 
-	walkRight.PushBack({ 113,448,30,43 });
+	walkRight.PushBack({ 790,802,67,63 });
 	walkRight.loop = true;
 
-	walkLeft.PushBack({ 113,495,30,43 });
+	walkLeft.PushBack({ 792,726,67,63 });
 	walkLeft.loop = true;
 
-	walkUpRight.PushBack({ 113,598,30,43 });
+	walkUpRight.PushBack({ 957,667,67,63 });
 	walkUpRight.loop = true;
 
-	walkUpLeft.PushBack({ 113,647,30,43 });
+	walkUpLeft.PushBack({ 887,667,67,63 });
 	walkUpLeft.loop = true;
 
-	walkDownRight.PushBack({ 75,403,30,43 });
+	walkDownRight.PushBack({ 957,855,67,83 });
 	walkDownRight.loop = true;
 
-	walkDownLeft.PushBack({ 75,314,30,43 });
+	walkDownLeft.PushBack({ 886,853,67,83 });
 	walkDownLeft.loop = true;
 
 	

@@ -12,6 +12,7 @@
 #include "Enemy_Soldier_Level2.h"
 #include "Boss.h"
 #include "Tower_Enemy_Level2.h"
+#include "Enemy_car.h"
 
 #define SPAWN_MARGIN 50
 
@@ -174,7 +175,10 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					break;
 				case Enemy_Type::TOWER_ENEMY:
 					enemies[i] = new TowerEnemy(info.x, info.y);
-					break;
+					break; 
+				case Enemy_Type::ENEMY_CAR:
+						enemies[i] = new Enemy_car(info.x, info.y);
+						break;
 
 			}
 			enemies[i]->texture = texture;
