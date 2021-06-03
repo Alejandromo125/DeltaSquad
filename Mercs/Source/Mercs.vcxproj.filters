@@ -91,6 +91,9 @@
     <ClCompile Include="ModuleGamepadInput.cpp">
       <Filter>Source FIles\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy_car.cpp">
+      <Filter>Source FIles\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -188,6 +191,9 @@
     </ClInclude>
     <ClInclude Include="ModuleGamepadInput.h">
       <Filter>Source FIles\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy_car.h">
+      <Filter>Source FIles\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

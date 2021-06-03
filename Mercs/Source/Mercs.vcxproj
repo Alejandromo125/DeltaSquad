@@ -79,6 +79,7 @@
     <ClInclude Include="Boss.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="Enemy_car.h" />
     <ClInclude Include="Enemy_Soldier.h" />
     <ClInclude Include="Enemy_Soldier_Standing.h" />
     <ClInclude Include="Enemy_Soldier_Level2.h" />
@@ -112,6 +113,7 @@
     <ClCompile Include="Boss.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="Enemy_car.cpp" />
     <ClCompile Include="Enemy_Soldier.cpp" />
     <ClCompile Include="Enemy_Soldier_Standing.cpp" />
     <ClCompile Include="Enemy_Soldier_Level2.cpp" />
