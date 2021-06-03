@@ -231,7 +231,7 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
 
 	//BOSS
-	
+	App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 75 - 1100);
 	
 	//App->render->camera.x = 0;
 	//App->render->camera.y = 0;
@@ -280,11 +280,10 @@ Update_Status SceneLevel1::Update()
 	}
 	*/
 
-	if ((App->player->position.x == 600)) 
-	{
-		App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 75 - 1100);
+	
 		
-	}
+	
+	
 
 
 	if (App->player->fallingWallEvent == true)

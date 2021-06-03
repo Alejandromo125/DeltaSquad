@@ -22,10 +22,10 @@ Enemy_car::Enemy_car(int x, int y) : Enemy(x, y)
 
 
 	//WALKING ANIMATIONS
-	walkUp.PushBack({ 888,587,38,69 });
+	walkUp.PushBack({ 804,618,39,67 });
 	walkUp.loop = true;
 
-	walkDown.PushBack({ 888,936,38,86 });
+	walkDown.PushBack({ 798,933,38,89 });
 	walkDown.loop = true;
 
 	walkRight.PushBack({ 113,448,30,43 });
