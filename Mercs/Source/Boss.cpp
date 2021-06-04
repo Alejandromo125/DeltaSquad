@@ -33,7 +33,7 @@ Boss::Boss(int x, int y) : Enemy(x, y)
 	
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 128, 102 }, Collider::Type::BOSS, (Module*)App->enemies);
-
+	App->enemies->AlreadySpawned = true;
 }
 
 void Boss::Update()

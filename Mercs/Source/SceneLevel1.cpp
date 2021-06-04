@@ -7,6 +7,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "Boss.h"
 
 #include "ModuleFadeToBlack.h"
 #include "SceneIntro.h"
@@ -17,6 +18,7 @@
 #include "ModuleInput.h"
 #include <SDL_mixer/include/SDL_mixer.h>
 #pragma comment( lib, "SDL_image/libx86/SDL2_image.lib" )
+
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -232,8 +234,8 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
 
 	//BOSS
-	App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 50 - 1100);
-
+	
+	
 	
 	
 	//App->render->camera.x = 0;
@@ -346,6 +348,10 @@ Update_Status SceneLevel1::Update()
 		SceneCounter++;
 	}
 
+	if ((App->player->bossZoneEvent == true)&&(App->enemies->AlreadySpawned!=true))
+	{
+		App->enemies->AddEnemy(Enemy_Type::BOSS, 756 - 120, 50 - 1100);
+	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }

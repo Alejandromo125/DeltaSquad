@@ -111,6 +111,20 @@ bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y)
 			break;
 		}
 	}
+	if (type == Enemy_Type::BOSS)
+	{
+		for (uint i = 0; i < 1; ++i)
+		{
+			if (spawnQueue[i].type == Enemy_Type::NO_TYPE)
+			{
+				spawnQueue[i].type = type;
+				spawnQueue[i].x = x;
+				spawnQueue[i].y = y;
+				ret = true;
+				break;
+			}
+		}
+	}
 
 	return ret;
 }
@@ -148,6 +162,7 @@ void ModuleEnemies::HandleEnemiesDespawn()
 
 				enemies[i]->SetToDelete();
 			}
+			
 		}
 	}
 }
@@ -157,6 +172,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 	// Find an empty slot in the enemies array
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
+		
 		if (enemies[i] == nullptr)
 		{
 			switch (info.type)
