@@ -63,7 +63,7 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 430 - 120, 1120 - 1100, 220, 180 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 600 - 120, 360 - 1100, 220, 770 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 
-	App->collisions->AddCollider({ 760 - 120, 50 - 1100, 220, 310 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 760 - 120, 50 - 1100, 220, 310 }, Collider::Type::EVENT_TRIGGER_BOSS_ZONE);
 	App->collisions->AddCollider({ 90 - 120, 1300 - 1100, 150, 260 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 430 - 120, 1300 - 1100, 330, 260 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
 
@@ -184,7 +184,10 @@ bool SceneLevel1::Start()
 	App->collisions->AddCollider({ 100 - 120, 630 - 1100, 90, 130 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 100 - 120, 760 - 1100, 50, 60 }, Collider::Type::WALL);
 
+	App->collisions->AddCollider({ 120 - 120, 1390 - 1100, 650, 60 }, Collider::Type::WALL);
+
 	App->collisions->AddCollider({ 480 - 120, 500 - 1100, 10, 10 }, Collider::Type::MULTI_USE);
+
 
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
@@ -279,11 +282,6 @@ Update_Status SceneLevel1::Update()
 
 	}
 	*/
-
-	
-		
-	
-	
 
 
 	if (App->player->fallingWallEvent == true)

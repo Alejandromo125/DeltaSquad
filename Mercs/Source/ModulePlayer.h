@@ -135,6 +135,7 @@ public:
 	int playerDelay;
 	int time;
 	int playerFPS;
+	int bossZoneCounter;
 
 	//Events
 

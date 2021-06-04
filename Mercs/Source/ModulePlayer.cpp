@@ -172,9 +172,14 @@ bool ModulePlayer::Start()
 	immunityTime = 0;
 	playerDelay = 0;
 	playerFPS = 0;
+	bossZoneCounter = 0;
 
 	fallingWallEvent = false;
 	bossZoneEvent = false;
+
+	cameraXlimitation = false;
+	cameraYlimitation = false;
+	bidimensionalCameraLimitation = false;
 
 	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is green shot weapon, ID 3 is healing food
 
@@ -202,16 +207,34 @@ Update_Status ModulePlayer::Update()
 	
 	if (destroyed == false && activateWinCondition == false)
 	{
-		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && position.x > 0 )
 		{
-			App->player->position.x = App->player->position.x - speedX;
-			//App->render->camera.x -= cameraSpeedX;
-			if (currentAnimation != &leftAnim)
+			if (bossZoneEvent == false)
 			{
-				//leftAnim.Reset();
-				currentAnimation = &leftAnim;
-				PlayerLookingPosition = 1;
+				App->player->position.x = App->player->position.x - speedX;
+				//App->render->camera.x -= cameraSpeedX;
+				if (currentAnimation != &leftAnim)
+				{
+					//leftAnim.Reset();
+					currentAnimation = &leftAnim;
+					PlayerLookingPosition = 1;
+				}
 			}
+			else if (bossZoneEvent == true)
+			{
+				if (position.x > 630 - 120)
+				{
+					App->player->position.x = App->player->position.x - speedX;
+					//App->render->camera.x -= cameraSpeedX;
+					if (currentAnimation != &leftAnim)
+					{
+						//leftAnim.Reset();
+						currentAnimation = &leftAnim;
+						PlayerLookingPosition = 1;
+					}
+				}
+			}
+			
 			
 		}
 
@@ -294,7 +317,7 @@ Update_Status ModulePlayer::Update()
 				currentAnimation = &upRightAnim;
 				PlayerLookingPosition = 8;
 			}
-			
+
 		}
 
 		
@@ -474,7 +497,8 @@ Update_Status ModulePlayer::Update()
 
 
 
-		if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->breakableObjectCollision == false && App->player->destroyed == false)
+		if (App->player->wallCollision == false && App->player->trenchWallCollision == false && App->player->breakableObjectCollision == false
+			&& App->player->destroyed == false && bossZoneEvent == false)
 		{
 			if (App->player->cameraXlimitation == false && App->player->bidimensionalCameraLimitation == false)
 			{
@@ -558,6 +582,7 @@ Update_Status ModulePlayer::Update()
 
 	if (destroyed == true)
 	{
+		bossZoneEvent = false;
 		if (currentAnimation == &idleUpAnim || currentAnimation == &idleUpLeftAnim || currentAnimation == &idleLeftAnim || currentAnimation == &idleUpRightAnim ||
 			currentAnimation == &upAnim || currentAnimation == &upLeftAnim || currentAnimation == &upRightAnim || currentAnimation == &leftAnim)
 		{
@@ -577,10 +602,12 @@ Update_Status ModulePlayer::Update()
 
 	if (activateWinCondition == true)
 	{
+		bossZoneEvent = false;
 		winAnim.Reset();
 		currentAnimation = &winAnim;
 
 		playerDelay++;
+		
 	}
 	
 
@@ -588,6 +615,20 @@ Update_Status ModulePlayer::Update()
 	{
 		playerDelay = 0;
 		activateWinCondition = true;
+		
+	}
+
+	if (App->player->bossZoneEvent == true)
+	{
+		if (bossZoneCounter < 1) Mix_PauseMusic();
+
+		if (bossZoneCounter == 1)
+		{
+			App->audio->PlayMusic("Assets/Music/Boss1.ogg", 0.0f);
+		}
+
+		bossZoneCounter++;
+
 	}
 
 	collider->SetPos(position.x + 6, position.y + 3);
@@ -605,21 +646,20 @@ Update_Status ModulePlayer::PostUpdate()
 {
 	if (destroyed == true)
 	{
-
 		App->fonts->BlitText(30, 100, scoreFont, "Mission Failed"); // Text UI does not work
 
 		Mix_PauseMusic();
-		if(playerDelay <= 1) App->audio->PlayFx(gameOver);
+		if (playerDelay <= 1) App->audio->PlayFx(gameOver);
 
 		if (playerDelay >= 420)
 		{
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
 		}
+		
 	}
 
 	if (activateWinCondition == true)
 	{
-		
 		App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
 
 		Mix_PauseMusic();
@@ -629,6 +669,7 @@ Update_Status ModulePlayer::PostUpdate()
 		{
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
 		}
+		
 	}
 
 	if (immunityTime <= 120)
