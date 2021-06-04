@@ -82,6 +82,15 @@ public:
 	Particle dualShotDownLeft;
 	Particle dualShotUpRight;
 
+	Particle greenShotUp;
+	Particle greenShotDown;
+	Particle greenShotLeft;
+	Particle greenShotRight;
+	Particle greenShotUpLeft;
+	Particle greenShotDownRight;
+	Particle greenShotDownLeft;
+	Particle greenShotUpRight;
+
 	Particle BossShot;
 
 	//Template particle for shot effect
@@ -101,6 +110,7 @@ public:
 
 	//Item Particles
 	Particle doubleShotWeapon;
+	Particle greenShotWeapon;
 	Particle megaBomb;
 	Particle healingFood;
 

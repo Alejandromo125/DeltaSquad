@@ -41,15 +41,20 @@ void Enemy::Update()
 
 void Enemy::Draw()
 {
-	if (currentAnim != nullptr)
-		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
+	if (enemyHit == false)
+	{
+		if (currentAnim != nullptr)
+			App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
+	}
+	enemyHit = false; // For visual hit effect
 }
 
 void Enemy::OnCollision(Collider* c2)
 {
 	if (c2->type == Collider::Type::PLAYER_SHOT)
 	{
-		
+		enemyHit = true; // For visual hit effect
+
 		if (App->player->collectedItemID==0)
 		{
 			EnemyHP = EnemyHP - 1;

@@ -85,6 +85,13 @@ bool ModuleParticles::Start()
 	dualShotRight.anim.loop = false;
 	dualShotRight.anim.speed = 0.2f;
 
+	greenShotRight.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotRight.speed.x = 6;
+	greenShotRight.speed.y = 0;
+	greenShotRight.lifetime = 180;
+	greenShotRight.anim.loop = false;
+	greenShotRight.anim.speed = 0.2f;
+
 	shotLeft.anim.PushBack({ 6, 180, 10, 10 });
 	shotLeft.speed.x = -6;
 	shotLeft.speed.y = 0;
@@ -98,6 +105,13 @@ bool ModuleParticles::Start()
 	dualShotLeft.lifetime = 180;
 	dualShotLeft.anim.loop = false;
 	dualShotLeft.anim.speed = 0.2f;
+
+	greenShotLeft.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotLeft.speed.x = -6;
+	greenShotLeft.speed.y = 0;
+	greenShotLeft.lifetime = 180;
+	greenShotLeft.anim.loop = false;
+	greenShotLeft.anim.speed = 0.2f;
 
 	shotUp.anim.PushBack({ 6, 151, 10, 10 });
 	shotUp.speed.x = 0;
@@ -113,6 +127,13 @@ bool ModuleParticles::Start()
 	dualShotUp.anim.loop = false;
 	dualShotUp.anim.speed = 0.2f;
 
+	greenShotUp.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotUp.speed.x = 0;
+	greenShotUp.speed.y = -6;
+	greenShotUp.lifetime = 180;
+	greenShotUp.anim.loop = false;
+	greenShotUp.anim.speed = 0.2f;
+
 	shotDown.anim.PushBack({ 28, 218, 10, 10 });
 	shotDown.speed.x = 0;
 	shotDown.speed.y = 6;
@@ -126,6 +147,13 @@ bool ModuleParticles::Start()
 	dualShotDown.lifetime = 180;
 	dualShotDown.anim.loop = false;
 	dualShotDown.anim.speed = 0.2f;
+
+	greenShotDown.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotDown.speed.x = 0;
+	greenShotDown.speed.y = 6;
+	greenShotDown.lifetime = 180;
+	greenShotDown.anim.loop = false;
+	greenShotDown.anim.speed = 0.2f;
 
 	shotUpLeft.anim.PushBack({ 18, 178, 10, 10 });
 	shotUpLeft.speed.x = -5;
@@ -141,6 +169,13 @@ bool ModuleParticles::Start()
 	dualShotUpLeft.anim.loop = false;
 	dualShotUpLeft.anim.speed = 0.2f;
 
+	greenShotUpLeft.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotUpLeft.speed.x = -5;
+	greenShotUpLeft.speed.y = -5;
+	greenShotUpLeft.lifetime = 180;
+	greenShotUpLeft.anim.loop = false;
+	greenShotUpLeft.anim.speed = 0.2f;
+
 	shotDownRight.anim.PushBack({ 16, 244, 10, 10 });
 	shotDownRight.speed.x = 5;
 	shotDownRight.speed.y = 5;
@@ -154,6 +189,13 @@ bool ModuleParticles::Start()
 	dualShotDownRight.lifetime = 180;
 	dualShotDownRight.anim.loop = false;
 	dualShotDownRight.anim.speed = 0.2f;
+
+	greenShotDownRight.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotDownRight.speed.x = 5;
+	greenShotDownRight.speed.y = 5;
+	greenShotDownRight.lifetime = 180;
+	greenShotDownRight.anim.loop = false;
+	greenShotDownRight.anim.speed = 0.2f;
 
 	shotDownLeft.anim.PushBack({ 18, 217, 10, 10 });
 	shotDownLeft.speed.x = -5;
@@ -169,6 +211,13 @@ bool ModuleParticles::Start()
 	dualShotDownLeft.anim.loop = false;
 	dualShotDownLeft.anim.speed = 0.2f;
 
+	greenShotDownLeft.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotDownLeft.speed.x = -5;
+	greenShotDownLeft.speed.y = 5;
+	greenShotDownLeft.lifetime = 180;
+	greenShotDownLeft.anim.loop = false;
+	greenShotDownLeft.anim.speed = 0.2f;
+
 	shotUpRight.anim.PushBack({ 17, 152, 10, 10 });
 	shotUpRight.speed.x = 5;
 	shotUpRight.speed.y = -5;
@@ -182,6 +231,13 @@ bool ModuleParticles::Start()
 	dualShotUpRight.lifetime = 180;
 	dualShotUpRight.anim.loop = false;
 	dualShotUpRight.anim.speed = 0.2f;
+
+	greenShotUpRight.anim.PushBack({ 485, 195, 10, 10 });
+	greenShotUpRight.speed.x = 5;
+	greenShotUpRight.speed.y = -5;
+	greenShotUpRight.lifetime = 180;
+	greenShotUpRight.anim.loop = false;
+	greenShotUpRight.anim.speed = 0.2f;
 
 	//Enemy shots
 	EnemyshotRight.anim.PushBack({ 30, 153, 10, 10 });
@@ -257,6 +313,20 @@ bool ModuleParticles::Start()
 	//doubleShotWeapon.lifetime = 180;
 	doubleShotWeapon.anim.loop = false;
 	doubleShotWeapon.anim.speed = 0.0f;
+
+	greenShotWeapon.anim.PushBack({ 93, 50, 30, 30 });
+	greenShotWeapon.speed.x = 0;
+	greenShotWeapon.speed.y = 0;
+	//greenShotWeapon.lifetime = 180;
+	greenShotWeapon.anim.loop = false;
+	greenShotWeapon.anim.speed = 0.0f;
+
+	healingFood.anim.PushBack({ 75, 83, 30, 30 });
+	healingFood.speed.x = 0;
+	healingFood.speed.y = 0;
+	//greenShotWeapon.lifetime = 180;
+	healingFood.anim.loop = false;
+	healingFood.anim.speed = 0.0f;
 
 	return true;
 }

@@ -53,6 +53,7 @@ public:
 	int EnemyHP;
 	//BossHits
 	
+	bool enemyHit = false;
 	
 	//Test for hp implementing
 

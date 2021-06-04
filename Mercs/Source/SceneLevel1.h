@@ -35,10 +35,7 @@ public:
 	// The scene sprite sheets loaded into an SDL_Texture
 	SDL_Texture* Level1FullMapTexture = nullptr;
 	SDL_Texture* bgTexture = nullptr;
-	SDL_Texture* Houses1Texture = nullptr;
-	SDL_Texture* Houses2Texture = nullptr;
 	SDL_Texture* LevelIntroTexture = nullptr;
-	SDL_Texture* MovingAndChangingTilesTexture = nullptr;
 
 	int SceneCounter;
 	int fallingWallEventDelays;

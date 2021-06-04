@@ -120,6 +120,7 @@ public:
 	uint shot06 = 0;
 	uint dead26 = 0;
 	uint hit28 = 0;
+	uint collectItem18 = 0;
 
 	uint roundClear = 0;
 	uint gameOver = 0;
@@ -138,6 +139,7 @@ public:
 	//Events
 
 	bool fallingWallEvent;
+	bool bossZoneEvent;
 
 };
 

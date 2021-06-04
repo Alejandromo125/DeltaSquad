@@ -47,10 +47,7 @@ bool SceneLevel1::Start()
 	//TileMaps
 	Level1FullMapTexture = App->textures->Load("Assets/Art/TileMaps/FullMap.png");
 	bgTexture = App->textures->Load("Assets/Art/TileMaps/background.png");
-	Houses1Texture = App->textures->Load("Assets/Art/TileMaps/houses1.png");
-	Houses2Texture = App->textures->Load("Assets/Art/TileMaps/houses2.png");
 	LevelIntroTexture = App->textures->Load("Assets/Art/TileMaps/LevelIntro.png");
-	MovingAndChangingTilesTexture = App->textures->Load("Assets/Art/TileMaps/MovingAndChagingTiles.png");
 
 	Mix_ResumeMusic();
 
@@ -499,10 +496,7 @@ bool SceneLevel1::CleanUp()
 
 	SDL_DestroyTexture(Level1FullMapTexture);
 	SDL_DestroyTexture(bgTexture);
-	SDL_DestroyTexture(Houses1Texture);
-	SDL_DestroyTexture(Houses2Texture);
 	SDL_DestroyTexture(LevelIntroTexture);
-	SDL_DestroyTexture(MovingAndChangingTilesTexture);
 
 	//SDL_free(Level1FullMapTexture);
 	//SDL_free(bgTexture);

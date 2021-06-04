@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "Boss.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
@@ -153,6 +154,7 @@ bool ModulePlayer::Start()
 	shot06 = App->audio->LoadFx("Assets/FX/06.wav");
 	dead26 = App->audio->LoadFx("Assets/FX/26.wav");
 	hit28 = App->audio->LoadFx("Assets/FX/28.wav");
+	collectItem18 = App->audio->LoadFx("Assets/FX/18.wav");
 
 	roundClear = App->audio->LoadFx("Assets/FX/RoundClear.wav");
 	gameOver = App->audio->LoadFx("Assets/FX/GameOver.wav");
@@ -172,8 +174,10 @@ bool ModulePlayer::Start()
 	playerFPS = 0;
 
 	fallingWallEvent = false;
+	bossZoneEvent = false;
 
-	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is triple shot weapon (only ID 0 and 1 are used in level 1)
+	collectedItemID = 0; // ID 0 is single shot weapon, ID 1 is dual shot weapon, ID 2 is green shot weapon, ID 3 is healing food
+
 	//collectedMegaBombsNumber = 1; // Player starts with 1 MegaBomb available -=(MegaBomb mechanic is not implemented yet so it wont have any effect for now)=-
 
 	collider = App->collisions->AddCollider({ position.x + 5, position.y + 3, 16, 32 }, Collider::Type::PLAYER, this);
@@ -311,6 +315,13 @@ Update_Status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
 				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->greenShotUp, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUpLeft, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUpRight, position.x + 10, position.y, Collider::Type::PLAYER_SHOT);
+				}
 			}
 
 			if (currentAnimation == &idledownAnim || currentAnimation == &downAnim)
@@ -324,6 +335,13 @@ Update_Status ModulePlayer::Update()
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->greenShotDown, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDownLeft, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDownRight, position.x + 5, position.y + 15, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -339,6 +357,13 @@ Update_Status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
 				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->greenShotLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUpLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDownLeft, position.x - 3, position.y + 8, Collider::Type::PLAYER_SHOT);
+				}
 			}
 
 			if (currentAnimation == &idleRightAnim || currentAnimation == &rightAnim)
@@ -352,6 +377,13 @@ Update_Status ModulePlayer::Update()
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -367,6 +399,13 @@ Update_Status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
 				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotUp, position.x, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+				}
 			}
 
 			if (currentAnimation == &idleDownLeftAnim || currentAnimation == &downLeftAnim)
@@ -380,6 +419,13 @@ Update_Status ModulePlayer::Update()
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotDown, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -395,6 +441,13 @@ Update_Status ModulePlayer::Update()
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
 				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotUp, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+				}
 			}
 
 			if (currentAnimation == &idleDownRightAnim || currentAnimation == &downRightAnim)
@@ -408,6 +461,13 @@ Update_Status ModulePlayer::Update()
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
 					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+				}
+				else if (collectedItemID == 2)
+				{
+					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
+					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotDown, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->dualShotRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
 				}
 			}
 		}
@@ -952,9 +1012,27 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 			App->particles->doubleShotWeapon.SetToDelete();
 		}
 
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::GREEN_SHOT_WEAPON_ID02)
+		{
+			collectedItemID = 2;
+			App->particles->greenShotWeapon.SetToDelete();
+		}
+
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HEALING_FOOD_ID03)
+		{
+			playerLife += 15;
+			App->audio->PlayFx(collectItem18);
+			App->particles->healingFood.SetToDelete();
+		}
+
 		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::EVENT_TRIGGER)
 		{
 			fallingWallEvent = true;
+		}
+
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::EVENT_TRIGGER_BOSS_ZONE)
+		{
+			bossZoneEvent = true;
 		}
 	}
 }
