@@ -714,6 +714,43 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 			}
 		}
+
+		if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_BOMB) && destroyed == false && immunityTime >= 120)
+		{
+
+			playerLife -= 15;
+			if (playerLife < 0) playerLife = 0;
+			immunityTime = 0;
+			if (playerLife != 0) App->audio->PlayFx(hit28);
+
+			if (playerLife <= 0)
+			{
+
+				playerLife = 0;
+				App->audio->PlayFx(dead26);
+				destroyed = true;
+
+			}
+		}
+
+		if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BOSS_ATTACK) && destroyed == false && immunityTime >= 120)
+		{
+
+			playerLife -= 25;
+			if (playerLife < 0) playerLife = 0;
+			immunityTime = 0;
+			if (playerLife != 0) App->audio->PlayFx(hit28);
+
+			if (playerLife <= 0)
+			{
+
+				playerLife = 0;
+				App->audio->PlayFx(dead26);
+				destroyed = true;
+
+			}
+		}
+
 		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
 		{
 			speedX = 0;
@@ -1021,6 +1058,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::HEALING_FOOD_ID03)
 		{
 			playerLife += 15;
+
+			if (playerLife >= 100)
+			{
+				playerLife = 100;
+			}
+
 			App->audio->PlayFx(collectItem18);
 			App->particles->healingFood.SetToDelete();
 		}

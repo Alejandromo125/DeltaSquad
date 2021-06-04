@@ -82,10 +82,10 @@ void Boss::Update()
 		{
 				currentAnim = &Shot;
 				App->particles->AddParticle(App->particles->shotEffect, half-40, position.y +50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->BossShot, half-40, position.y + 50, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->BossShot, half-40, position.y + 50, Collider::Type::BOSS_ATTACK);
 				currentAnim = &Shot;
 				App->particles->AddParticle(App->particles->shotEffect, half+50, position.y + 50, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->BossShot,half+50, position.y + 50, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->BossShot,half+50, position.y + 50, Collider::Type::BOSS_ATTACK);
 		}
 		
 
