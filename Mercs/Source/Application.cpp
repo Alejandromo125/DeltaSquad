@@ -11,6 +11,7 @@
 #include "InfoScreen.h"
 #include "SceneIntro.h"
 #include "SceneLevel1.h"
+#include "SceneLevel2.h"
 #include "ModuleBreakable.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -35,15 +36,16 @@ Application::Application()
 	modules[6] =    titleScreen =   new TitleScreen(false);
 	modules[7] =	sceneIntro =	new SceneIntro(false);
 	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[9] = breakableParticles = new ModuleBreakable(false);
-	modules[10] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[11] =	particles =		new ModuleParticles(false);
-	modules[12] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
+	modules[9] =	sceneLevel_2 =  new SceneLevel2(false);		//Gameplay scene starts disabled
+	modules[10] = breakableParticles = new ModuleBreakable(false);
+	modules[11] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[12] =	particles =		new ModuleParticles(false);
+	modules[13] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[13] =	collisions =	new ModuleCollisions(true);
-	modules[14] =	fade =			new ModuleFadeToBlack(true);
-	modules[15] =	fonts =			new ModuleFonts(true);
-	modules[16] =	render =		new ModuleRender(true);
+	modules[14] =	collisions =	new ModuleCollisions(true);
+	modules[15] =	fade =			new ModuleFadeToBlack(true);
+	modules[16] =	fonts =			new ModuleFonts(true);
+	modules[17] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

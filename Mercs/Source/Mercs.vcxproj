@@ -105,6 +105,7 @@
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="SceneLevel2.h" />
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="Tower_Enemy_Level2.h" />
   </ItemGroup>
@@ -138,6 +139,7 @@
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Path.cpp" />
+    <ClCompile Include="SceneLevel2.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
     <ClCompile Include="Tower_Enemy_Level2.cpp" />
   </ItemGroup>

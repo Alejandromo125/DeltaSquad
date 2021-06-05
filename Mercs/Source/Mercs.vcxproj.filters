@@ -94,6 +94,9 @@
     <ClCompile Include="Enemy_car.cpp">
       <Filter>Source FIles\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="SceneLevel2.cpp">
+      <Filter>Source FIles\Modules\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -194,6 +197,9 @@
     </ClInclude>
     <ClInclude Include="Enemy_car.h">
       <Filter>Source FIles\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneLevel2.h">
+      <Filter>Source FIles\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
