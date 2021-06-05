@@ -137,7 +137,7 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 580, 1070, 10, 10 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 180, 850, 120, 80 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 1310, 40, 100 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 70, 1150, 20, 30 }, Collider::Type::WALL)
+	App->collisions->AddCollider({ 70, 1150, 20, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 150, 1240, 20, 20 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 100, 830, 40, 140 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 0, 780, 270, 40 }, Collider::Type::WALL);
