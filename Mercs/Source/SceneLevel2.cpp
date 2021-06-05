@@ -212,11 +212,14 @@ bool SceneLevel2::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 610, 1420);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 250, 1200);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 200, 1330);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 500, 1320);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 400, 1350);
 
 
 	//Item Collisions
 	App->particles->AddParticle(App->particles->greenShotWeapon, 120, 2580, Collider::Type::GREEN_SHOT_WEAPON_ID02);
 	App->particles->AddParticle(App->particles->healingFood, 270, 2450, Collider::Type::HEALING_FOOD_ID03);
+	App->particles->AddParticle(App->particles->healingFood, 160, 1170, Collider::Type::HEALING_FOOD_ID03);
 
 	App->render->camera.x = 300 * SCREEN_SIZE;
 	App->render->camera.y = 2690 * SCREEN_SIZE;

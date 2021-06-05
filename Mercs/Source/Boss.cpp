@@ -90,10 +90,10 @@ void Boss::Update()
 		
 
 	}
-	if (EnemyHP == 0)
+	if (EnemyHP <= 0)
 	{
 		App->audio->PlayFx(destroyedFx);
-		App->input->ShakeController(0, 2500, 0.3f);
+		App->input->ShakeController(0, 2500, 0.2f);
 
 		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 10);
 		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 80);
