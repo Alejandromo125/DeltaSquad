@@ -139,7 +139,7 @@ public:
 	int delay;
 	int timeFont = -1;
 	char timeText[10] = { "\0" };
-	uint timeCounter = 180;
+	uint timeCounter;
 	
 
 	// Delay and time for some smooth experience

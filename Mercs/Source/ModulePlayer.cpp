@@ -179,6 +179,8 @@ bool ModulePlayer::Start()
 	fallingWallEvent = false;
 	bossZoneEvent = false;
 
+	timeCounter = 180;
+
 	cameraXlimitation = false;
 	cameraYlimitation = false;
 	bidimensionalCameraLimitation = false;
@@ -638,7 +640,7 @@ Update_Status ModulePlayer::Update()
 
 	}
 
-	if ((delay % 60) == 0)
+	if ((delay % 60) == 0 && destroyed == false && activateWinCondition == false && activateWinCondition_FINAL == false)
 	{
 		/*
 		if (timeCounter <= 0)
@@ -722,6 +724,7 @@ Update_Status ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect, 1.0);
 	}
+
 	
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%5d", score);
@@ -755,8 +758,9 @@ Update_Status ModulePlayer::PostUpdate()
 
 	}
 
-	if (timeCounter == 0)
+	if (timeCounter <= 0)
 	{
+		timeCounter = 0;
 		playerLife = 0;
 		App->audio->PlayFx(dead26);
 		destroyed = true;
@@ -766,7 +770,7 @@ Update_Status ModulePlayer::PostUpdate()
 	App->fonts->BlitText(40, 25, scoreFont, scoreText);
 
 	// Timer
-	App->fonts->BlitText(180, 130, timeFont, timeText);
+	App->fonts->BlitText(180, 10, timeFont, timeText);
 
 
 	App->render->Blit(merc, 10, 10, NULL, 0, true);
