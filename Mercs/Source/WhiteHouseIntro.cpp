@@ -55,7 +55,7 @@ Update_Status WhiteHouseIntro::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	if (delay >= 1200) // <-- Whatever the animation takes
+	if (delay >= 1750) // <-- Whatever the animation takes
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
@@ -74,11 +74,11 @@ Update_Status WhiteHouseIntro::PostUpdate()
 
 	//Si va muy rapido cambiar el delay de abajo
 
-	if (delay >= 200 && delay <= 350) App->render->Blit(messagePart1, -200, 10, NULL);
-	if (delay >= 400 && delay <= 550) App->render->Blit(messagePart2, -200, 10, NULL);
-	if (delay >= 600 && delay <= 750) App->render->Blit(messagePart3, -200, 10, NULL);
-	if (delay >= 800 && delay <= 950) App->render->Blit(messagePart4, -200, 10, NULL);
-	if (delay >= 1000 && delay <= 1150) App->render->Blit(messagePart5, -200, 10, NULL);
+	if (delay >= 200 && delay <= 600) App->render->Blit(messagePart1, -200, 10, NULL);
+	if (delay >= 650 && delay <= 900) App->render->Blit(messagePart2, -200, 10, NULL);
+	if (delay >= 950 && delay <= 1200) App->render->Blit(messagePart3, -200, 10, NULL);
+	if (delay >= 1250 && delay <= 1500) App->render->Blit(messagePart4, -200, 10, NULL);
+	if (delay >= 1550 && delay <= 1800) App->render->Blit(messagePart5, -200, 10, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
