@@ -36,7 +36,8 @@ public:
 	SDL_Texture* messagePart1 = nullptr;
 	SDL_Texture* messagePart2 = nullptr;
 	SDL_Texture* messagePart3 = nullptr;
-	SDL_Texture* messagePart4 = nullptr; // <-- Maybe not needed
+	SDL_Texture* messagePart4 = nullptr;
+	SDL_Texture* messagePart5 = nullptr;
 
 	int delay;
 	

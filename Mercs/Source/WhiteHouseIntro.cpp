@@ -28,6 +28,11 @@ bool WhiteHouseIntro::Start()
 	whiteHouse = App->textures->Load("Assets/Art/Sequences/house.png");
 	houseTop = App->textures->Load("Assets/Art/Sequences/houseTop.png");
 	helicopter = App->textures->Load("Assets/Art/Sequences/helicopter.png");
+	messagePart1 = App->textures->Load("Assets/Art/Sequences/textintro1.png");
+	messagePart2 = App->textures->Load("Assets/Art/Sequences/textintro2.png");
+	messagePart3 = App->textures->Load("Assets/Art/Sequences/textintro3.png");
+	messagePart4 = App->textures->Load("Assets/Art/Sequences/textintro4.png");
+	messagePart5 = App->textures->Load("Assets/Art/Sequences/textintro5.png");
 
 	App->audio->PlayMusic("Assets/Music/None.ogg", 1.0f);
 
@@ -55,6 +60,7 @@ Update_Status WhiteHouseIntro::Update()
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -66,10 +72,13 @@ Update_Status WhiteHouseIntro::PostUpdate()
 	App->render->Blit(helicopter, 0, 0, NULL);
 	App->render->Blit(houseTop, 0, 0, NULL);
 
-	App->render->Blit(messagePart1, 0, 0, NULL);
-	App->render->Blit(messagePart2, 0, 0, NULL);
-	App->render->Blit(messagePart3, 0, 0, NULL);
-	App->render->Blit(messagePart4, 0, 0, NULL);
+	//Si va muy rapido cambiar el delay de abajo
+
+	if (delay >= 200 && delay <= 350) App->render->Blit(messagePart1, -200, 10, NULL);
+	if (delay >= 400 && delay <= 550) App->render->Blit(messagePart2, -200, 10, NULL);
+	if (delay >= 600 && delay <= 750) App->render->Blit(messagePart3, -200, 10, NULL);
+	if (delay >= 800 && delay <= 950) App->render->Blit(messagePart4, -200, 10, NULL);
+	if (delay >= 1000 && delay <= 1150) App->render->Blit(messagePart5, -200, 10, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
