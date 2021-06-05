@@ -702,15 +702,21 @@ Update_Status ModulePlayer::PostUpdate()
 
 	if (activateWinCondition_FINAL == true)
 	{
-		App->fonts->BlitText(30, 100, scoreFont, "President Rescued!"); // Text UI does not work
 
 		Mix_PauseMusic();
-		if (playerDelay <= 1) App->audio->PlayFx(gameClear);
 
-		if (playerDelay >= 480)
+		if (playerDelay >= 215)
 		{
-			App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneIntro, 30);
+			App->fonts->BlitText(30, 100, scoreFont, "President Rescued!"); // Text UI does not work
+
+			if (playerDelay <= 215) App->audio->PlayFx(gameClear);
+
+			if (playerDelay >= 480 + 215)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneIntro, 30);
+			}
 		}
+		
 
 	}
 

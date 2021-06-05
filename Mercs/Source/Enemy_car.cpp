@@ -214,19 +214,15 @@ void Enemy_car::Update()
 		App->audio->PlayFx(App->breakableParticles->broken04);
 		App->input->ShakeController(0, 500, 0.3f);
 
-		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 10);
-		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 80);
-		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 40);
-
-		App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 40, Collider::Type::NONE);
-		App->particles->AddParticle(App->particles->explosion, position.x + 40, position.y + 60, Collider::Type::NONE);
-		App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 50, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 30, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 20, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 10, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y + 30, Collider::Type::NONE, 5);
-		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 25, Collider::Type::NONE, 5);
+		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 15, Collider::Type::NONE, 5);
 		App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 20, Collider::Type::NONE, 5);
 		App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 10, Collider::Type::NONE, 10);
 		App->particles->AddParticle(App->particles->explosion, position.x + 25, position.y + 20, Collider::Type::NONE, 10);
-		App->particles->AddParticle(App->particles->explosion, position.x + 35, position.y + 30, Collider::Type::NONE, 10);
+		App->particles->AddParticle(App->particles->explosion, position.x + 15, position.y + 10, Collider::Type::NONE, 10);
 
 	}
 
