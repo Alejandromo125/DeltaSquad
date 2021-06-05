@@ -666,7 +666,6 @@ Update_Status ModulePlayer::PostUpdate()
 
 		if (playerDelay >= 215)
 		{
-			//App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
 			App->render->Blit(winScreen1, 8, 50, NULL, 0, true);
 			Mix_PauseMusic();
 			if (playerDelay < 216) App->audio->PlayFx(roundClear);
