@@ -119,7 +119,7 @@ bool SceneLevel2::Start()
 
 	App->collisions->AddCollider({ 450, 1450, 10, 190 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 470, 1590, 40, 20 }, Collider::Type::TRENCH_WALL);
-	App->collisions->AddCollider({ 500, 1470, 80, 110 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 503, 1450, 80, 130 }, Collider::Type::TRENCH_WALL);
 
 	App->collisions->AddCollider({ 760, 0, 10, 1760 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 660, 180, 110, 1580 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);

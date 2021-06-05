@@ -692,6 +692,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::HEALING_FOOD_ID03: // dark yellow
 				App->render->DrawQuad(colliders[i]->rect, 255, 200, 0, alpha);
 				break;
+			case Collider::Type::TOWER_ENEMY: // light red
+				App->render->DrawQuad(colliders[i]->rect, 255, 200, 200, alpha);
+				break;
 			}
 		}
 		else if (activateGodMode == true)
@@ -762,6 +765,9 @@ void ModuleCollisions::DebugDraw()
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			case Collider::Type::HEALING_FOOD_ID03: // dark yellow
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
+			case Collider::Type::TOWER_ENEMY: // light red
 				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
 				break;
 			}

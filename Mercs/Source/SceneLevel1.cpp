@@ -300,9 +300,13 @@ Update_Status SceneLevel1::Update()
 	{
 		fallingWallEventDelays++;
 	}
-	if (fallingWallEventDelays > 0 && fallingWallEventDelays <= 1)
+	if (fallingWallEventDelays == 3)
 	{
 		App->input->ShakeController(0, 1000, 0.3f);
+	}
+	if (fallingWallEventDelays > 0 && fallingWallEventDelays <= 1)
+	{
+		
 
 		App->breakableParticles->fallingWall.SetToDelete();
 		App->breakableParticles->AddParticle(App->breakableParticles->fallingWallMoving, 400 - 120, 440 - 1100);

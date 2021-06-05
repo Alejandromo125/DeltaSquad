@@ -140,7 +140,6 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (particles[i] != nullptr && particles[i]->collider == c1)
 			{
-				App->input->ShakeController(0, 100, 0.15f);
 
 				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 20, particles[i]->position.y + 40, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 40, particles[i]->position.y + 60, Collider::Type::NONE);
@@ -153,6 +152,7 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 70, particles[i]->position.y + 80, Collider::Type::NONE, 10);
 
 				App->audio->PlayFx(broken04);
+				App->input->ShakeController(0, 100, 0.15f);
 
 				particles[i]->pendingToDelete = true;
 				particles[i]->collider->pendingToDelete = true;
