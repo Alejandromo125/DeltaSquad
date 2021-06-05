@@ -702,7 +702,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 	if (activateWinCondition_FINAL == true)
 	{
-		App->fonts->BlitText(30, 100, scoreFont, "Game Complete!"); // Text UI does not work
+		App->fonts->BlitText(30, 100, scoreFont, "President Rescued!"); // Text UI does not work
 
 		Mix_PauseMusic();
 		if (playerDelay <= 1) App->audio->PlayFx(gameClear);
