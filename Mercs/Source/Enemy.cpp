@@ -65,6 +65,11 @@ void Enemy::OnCollision(Collider* c2)
 			EnemyHP = EnemyHP - 2;
 			
 		}
+		if (App->player->collectedItemID == 2)
+		{
+			EnemyHP = EnemyHP - 1;
+
+		}
 
 		if (EnemyHP == 0)
 		{

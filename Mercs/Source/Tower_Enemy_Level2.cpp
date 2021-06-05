@@ -4,6 +4,8 @@
 #include "ModuleCollisions.h"
 #include "ModulePlayer.h"
 #include "ModuleEnemies.h"
+#include "ModuleInput.h"
+#include "ModuleBreakable.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "p2Point.h"
@@ -12,7 +14,7 @@
 TowerEnemy::TowerEnemy(int x, int y) : Enemy(x, y)
 {
 
-	Enemy::EnemyHP = 5;
+	Enemy::EnemyHP = 15;
 	//SHOOTING ANIMATIONS
 	ShootDown.PushBack({ 0,861,89,161 });
 	ShootRight.PushBack({ 94,861,89,161 });
@@ -134,7 +136,26 @@ void TowerEnemy::Update()
 
 	}
 
+	if (EnemyHP == 0)
+	{
+		App->audio->PlayFx(App->breakableParticles->broken04);
+		App->input->ShakeController(0, 500, 0.3f);
 
+		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 10);
+		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 80);
+		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 40);
+
+		App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 40, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 40, position.y + 60, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 90, Collider::Type::NONE);
+		App->particles->AddParticle(App->particles->explosion, position.x + 80, position.y + 70, Collider::Type::NONE, 5);
+		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 100, Collider::Type::NONE, 5);
+		App->particles->AddParticle(App->particles->explosion, position.x + 100, position.y + 20, Collider::Type::NONE, 5);
+		App->particles->AddParticle(App->particles->explosion, position.x + 60, position.y + 10, Collider::Type::NONE, 10);
+		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 20, Collider::Type::NONE, 10);
+		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 10);
+
+	}
 
 
 
