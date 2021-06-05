@@ -136,7 +136,7 @@ void TowerEnemy::Update()
 
 	}
 
-	if (EnemyHP == 0)
+	if (EnemyHP <= 0)
 	{
 		App->audio->PlayFx(App->breakableParticles->broken04);
 		App->input->ShakeController(0, 500, 0.3f);
