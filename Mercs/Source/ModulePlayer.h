@@ -134,6 +134,14 @@ public:
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
 
+	//Timer
+
+	int delay;
+	int timeFont = -1;
+	char timeText[10] = { "\0" };
+	uint timeCounter = 180;
+	
+
 	// Delay and time for some smooth experience
 	
 	int playerDelay;
