@@ -132,6 +132,7 @@ bool SceneLevel2::Start()
 
 	//Item Collisions
 	App->particles->AddParticle(App->particles->greenShotWeapon, 120, 2580, Collider::Type::GREEN_SHOT_WEAPON_ID02);
+	App->particles->AddParticle(App->particles->greenShotWeapon, 270, 2450, Collider::Type::HEALING_FOOD_ID03);
 
 	App->render->camera.x = 300 * SCREEN_SIZE;
 	App->render->camera.y = 2690 * SCREEN_SIZE;

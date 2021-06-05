@@ -195,6 +195,7 @@ bool SceneLevel1::Start()
 	//Item Collisions
 	App->particles->AddParticle(App->particles->doubleShotWeapon, 570 - 120, 970 - 1100, Collider::Type::DOUBLE_SHOT_WEAPON_ID01);
 	App->particles->AddParticle(App->particles->healingFood, 420 - 120, 500 - 1100, Collider::Type::HEALING_FOOD_ID03);
+	App->particles->AddParticle(App->particles->healingFood, 190 - 120, 430 - 1100, Collider::Type::HEALING_FOOD_ID03);
 
 	// Breakable and special Collisions
 	App->breakableParticles->AddParticle(App->breakableParticles->palm, 440 - 120, 870 - 1100, Collider::Type::BREAKABLE_OBJECT);
