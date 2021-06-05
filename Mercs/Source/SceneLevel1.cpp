@@ -50,7 +50,7 @@ bool SceneLevel1::Start()
 	Level1FullMapTexture = App->textures->Load("Assets/Art/TileMaps/FullMap.png");
 	bgTexture = App->textures->Load("Assets/Art/TileMaps/background.png");
 	LevelIntroTexture = App->textures->Load("Assets/Art/TileMaps/LevelIntro.png");
-	winScreen1 = App->textures->Load("Assets/Art/UI/mission1Complete.png");
+	
 
 	Mix_ResumeMusic();
 
@@ -376,11 +376,6 @@ Update_Status SceneLevel1::PostUpdate()
 	App->render->Blit(bgTexture, 0, -600, NULL, 0.53, true);
 	App->render->Blit(bgTexture, 512, -600, NULL, 0.53, true);
 	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 1.0, true);
-
-	if (App->player->activateWinCondition == true)
-	{
-		App->render->Blit(winScreen1, 8, 50, NULL, 0, true);
-	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }

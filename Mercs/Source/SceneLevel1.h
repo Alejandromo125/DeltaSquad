@@ -36,7 +36,7 @@ public:
 	SDL_Texture* Level1FullMapTexture = nullptr;
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* LevelIntroTexture = nullptr;
-	SDL_Texture* winScreen1 = nullptr;
+	
 
 
 	int SceneCounter;

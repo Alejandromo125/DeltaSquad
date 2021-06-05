@@ -148,6 +148,7 @@ bool ModulePlayer::Start()
 	merc = App->textures->Load("Assets/Art/UI/merc1.1_ss.png");
 	insertcoin = App->textures->Load("Assets/Art/UI/insertcoin_ss.png");
 	mercLife = App->textures->Load("Assets/Art/UI/mercLife.png");
+	winScreen1 = App->textures->Load("Assets/Art/UI/mission1Complete.png");
 
 	currentAnimation = &idledownAnim;
 
@@ -665,9 +666,10 @@ Update_Status ModulePlayer::PostUpdate()
 
 		if (playerDelay >= 215)
 		{
-			App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
+			//App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
+			App->render->Blit(winScreen1, 8, 50, NULL, 0, true);
 			Mix_PauseMusic();
-			if (playerDelay <= 216) App->audio->PlayFx(roundClear);
+			if (playerDelay < 216) App->audio->PlayFx(roundClear);
 
 			if (playerDelay >= 480 + 215)
 			{

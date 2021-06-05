@@ -69,6 +69,8 @@ public:
 	SDL_Texture* insertcoin = nullptr;
 	SDL_Texture* mercLife = nullptr;
 
+	SDL_Texture* winScreen1 = nullptr;
+
 	// Player Life Variable
 	int playerLife;
 	int immunityTime;
