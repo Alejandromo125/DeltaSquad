@@ -172,6 +172,7 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 200, 1040, 30, 70 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 230, 1040, 20, 60 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 250, 1040, 30, 30 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 100, 1290, 90, 120 }, Collider::Type::TRENCH_WALL);
 
 
 	App->collisions->AddCollider({ 450, 1450, 10, 190 }, Collider::Type::TRENCH_WALL);
@@ -179,13 +180,38 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 503, 1450, 80, 130 }, Collider::Type::TRENCH_WALL);
 
 	App->collisions->AddCollider({ 760, 0, 10, 1760 }, Collider::Type::TRENCH_WALL);
-	App->collisions->AddCollider({ 660, 180, 110, 1580 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
-	App->collisions->AddCollider({ 0, 0, 660, 280 }, Collider::Type::VERTICAL_CAMERA_BOUND);
-	App->collisions->AddCollider({ 660, 0, 110, 180 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 660, 210, 110, 1580 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 0, 0, 660, 210 }, Collider::Type::VERTICAL_CAMERA_BOUND);
+	App->collisions->AddCollider({ 660, 0, 110, 210 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
 	App->collisions->AddCollider({ 110, 800, 130, 180 }, Collider::Type::HORIZONTAL_CAMERA_BOUND);
 
 	// Enemies
-	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 500, 1440);
+	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 501, 1440);
+	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 371, 610);
+	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 101, 1250);
+
+
+	App->enemies->AddEnemy(Enemy_Type::ENEMY_CAR, 170, 2470);
+	App->enemies->AddEnemy(Enemy_Type::ENEMY_CAR, 420, 2020);
+	App->enemies->AddEnemy(Enemy_Type::ENEMY_CAR, 130, 390);
+
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 280, 2720);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 50, 2630);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 320, 2520);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 140, 2380);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 210, 2380);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 170, 2310);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 240, 2080);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 430, 2520);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 460, 2130);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 500, 1890);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 500, 1810);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 540, 1810);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 700, 1650);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 520, 1650);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 610, 1420);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 250, 1200);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 200, 1330);
 
 
 	//Item Collisions
