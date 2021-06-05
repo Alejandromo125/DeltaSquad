@@ -157,16 +157,15 @@ bool ModulePlayer::Start()
 	collectItem18 = App->audio->LoadFx("Assets/FX/18.wav");
 
 	roundClear = App->audio->LoadFx("Assets/FX/RoundClear.wav");
+	gameClear = App->audio->LoadFx("Assets/FX/RankingDisplay.wav");
 	gameOver = App->audio->LoadFx("Assets/FX/GameOver.wav");
-
-	position.x = 150;
-	position.y = 100;
 
 	speedX = 1 * SCREEN_SIZE;
 	speedY = 1 * SCREEN_SIZE;
 
 	destroyed = false;
 	activateWinCondition = false;
+	activateWinCondition_FINAL = false;
 
 	playerLife = 100;
 	immunityTime = 0;
@@ -610,12 +609,28 @@ Update_Status ModulePlayer::Update()
 		
 	}
 	
+	if (activateWinCondition_FINAL == true)
+	{
+		bossZoneEvent = false;
+		winAnim.Reset();
+		currentAnimation = &winAnim;
+
+		playerDelay++;
+
+	}
 
 	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
 	{
 		playerDelay = 0;
 		activateWinCondition = true;
 		
+	}
+
+	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN)
+	{
+		playerDelay = 0;
+		activateWinCondition_FINAL = true;
+
 	}
 
 	if (App->player->bossZoneEvent == true)
@@ -663,13 +678,27 @@ Update_Status ModulePlayer::PostUpdate()
 		App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
 
 		Mix_PauseMusic();
-		if (playerDelay <= 1) App->audio->PlayFx(roundClear);
+		if (playerDelay < 1) App->audio->PlayFx(roundClear);
+
+		if (playerDelay >= 480)
+		{
+			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 30);
+		}
+		
+	}
+
+	if (activateWinCondition_FINAL == true)
+	{
+		App->fonts->BlitText(30, 100, scoreFont, "Game Complete!"); // Text UI does not work
+
+		Mix_PauseMusic();
+		if (playerDelay < 1) App->audio->PlayFx(gameClear);
 
 		if (playerDelay >= 480)
 		{
 			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
 		}
-		
+
 	}
 
 	if (immunityTime <= 120)
@@ -735,7 +764,7 @@ Update_Status ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (activateWinCondition == false)
+	if (activateWinCondition == false && activateWinCondition_FINAL == false)
 	{
 		if (((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT) ||
 			(c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY)) && destroyed == false && immunityTime >= 120)

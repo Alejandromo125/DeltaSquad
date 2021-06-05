@@ -245,6 +245,9 @@ bool SceneLevel1::Start()
 	App->render->camera.x = 100;
 	App->render->camera.y = -215;
 
+	App->player->position.x = 150;
+	App->player->position.y = 100;
+
 	App->player->score = 0;
 
 	App->player->Enable();

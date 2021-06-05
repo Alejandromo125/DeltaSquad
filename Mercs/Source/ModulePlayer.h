@@ -124,6 +124,7 @@ public:
 	uint collectItem18 = 0;
 
 	uint roundClear = 0;
+	uint gameClear = 0;
 	uint gameOver = 0;
 
 	// Font score index

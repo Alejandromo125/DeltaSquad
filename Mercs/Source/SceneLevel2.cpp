@@ -59,8 +59,11 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 90 - 120, 80 - 1100, 790, 1420 }, Collider::Type::NULL_COLLIDER);
 	
 
-	App->render->camera.x = 100;
-	App->render->camera.y = -215;
+	App->render->camera.x = 300 + 50;
+	App->render->camera.y = 2690 + 480;
+
+	App->player->position.x = 400 - 120;
+	App->player->position.y = 2880 - 1100;
 
 	App->player->score = 0;
 
