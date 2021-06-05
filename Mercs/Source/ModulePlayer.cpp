@@ -160,8 +160,8 @@ bool ModulePlayer::Start()
 	gameClear = App->audio->LoadFx("Assets/FX/RankingDisplay.wav");
 	gameOver = App->audio->LoadFx("Assets/FX/GameOver.wav");
 
-	speedX = 1 * SCREEN_SIZE;
-	speedY = 1 * SCREEN_SIZE;
+	speedX = 1;
+	speedY = 1;
 
 	destroyed = false;
 	activateWinCondition = false;
@@ -403,9 +403,9 @@ Update_Status ModulePlayer::Update()
 				else if (collectedItemID == 2)
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->dualShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUpRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDownRight, position.x + 18, position.y + 8, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -424,9 +424,9 @@ Update_Status ModulePlayer::Update()
 				else if (collectedItemID == 2)
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y - 5, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->dualShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotUp, position.x, position.y, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUpLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUp, position.x, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotLeft, position.x, position.y, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -445,9 +445,9 @@ Update_Status ModulePlayer::Update()
 				else if (collectedItemID == 2)
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x - 5, position.y + 20, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->dualShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotDown, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDownLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDown, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotLeft, position.x, position.y + 15, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -466,9 +466,9 @@ Update_Status ModulePlayer::Update()
 				else if (collectedItemID == 2)
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y - 5, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->dualShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotUp, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUpRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotUp, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotRight, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
 				}
 			}
 
@@ -487,9 +487,9 @@ Update_Status ModulePlayer::Update()
 				else if (collectedItemID == 2)
 				{
 					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 20, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->dualShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotDown, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
-					App->particles->AddParticle(App->particles->dualShotRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDownRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotDown, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
+					App->particles->AddParticle(App->particles->greenShotRight, position.x + 15, position.y + 10, Collider::Type::PLAYER_SHOT);
 				}
 			}
 		}
@@ -533,11 +533,11 @@ Update_Status ModulePlayer::Update()
 
 			if (App->player->cameraYlimitation == false && App->player->bidimensionalCameraLimitation == false)
 			{
-				if (App->render->camera.y <= 1156 * SCREEN_SIZE)
+				if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 				{
-
 					if (position.y - 50 < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speedY + (SCREEN_SIZE - 1);
 				}
+				
 			}
 
 		}

@@ -56,14 +56,16 @@ bool SceneLevel2::Start()
 	App->audio->PlayMusic("Assets/Music/Mission2.ogg", 0.0f);
 
 	//NULL COLLIDER --> (experimental test for camera functions and other mechanical stuff related with colliders)
-	App->collisions->AddCollider({ 90 - 120, 80 - 1100, 790, 1420 }, Collider::Type::NULL_COLLIDER);
+	App->collisions->AddCollider({ 0, 0, 768, 3072 }, Collider::Type::NULL_COLLIDER);
 	
+	//Item Collisions
+	App->particles->AddParticle(App->particles->greenShotWeapon, 120, 2580, Collider::Type::GREEN_SHOT_WEAPON_ID02);
 
-	App->render->camera.x = 300 + 50;
-	App->render->camera.y = 2690 + 480;
+	App->render->camera.x = 300 + 300;
+	App->render->camera.y = 2690 + 2690;
 
-	App->player->position.x = 400 - 120;
-	App->player->position.y = 2880 - 1100;
+	App->player->position.x = 400;
+	App->player->position.y = 2880;
 
 	App->player->score = 0;
 
@@ -130,7 +132,7 @@ Update_Status SceneLevel2::PostUpdate()
 	// Draw everything --------------------------------------
 	//App->render->Blit(bgTexture, 0, -600, NULL, 0.53, true);
 	//App->render->Blit(bgTexture, 512, -600, NULL, 0.53, true);
-	App->render->Blit(Level1FullMapTexture, -120, -1100, NULL, 1.0, true);
+	App->render->Blit(Level1FullMapTexture, 0, 0, NULL, 1.0, true);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
