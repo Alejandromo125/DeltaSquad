@@ -1,6 +1,7 @@
 #include "ModuleGamepadInput.h"
 #include "ModulePlayer.h"
 #include "SceneLevel1.h"
+#include "SceneLevel2.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -105,6 +106,10 @@ Update_Status ModuleGamepadInput::Update()
 		App->input->keys[SDL_SCANCODE_SPACE] = Key_State::KEY_DOWN;
 
 		if (App->sceneLevel_1->SceneCounter != 0)
+		{
+			App->input->ShakeController(0, 120, 0.05f);
+		}
+		if (App->sceneLevel_2->SceneCounter != 0)
 		{
 			App->input->ShakeController(0, 120, 0.05f);
 		}

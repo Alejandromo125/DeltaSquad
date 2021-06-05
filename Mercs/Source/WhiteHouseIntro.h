@@ -30,6 +30,7 @@ public:
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* whiteHouse = nullptr;
+	SDL_Texture* houseTop = nullptr;
 	SDL_Texture* helicopter = nullptr;
 
 	SDL_Texture* messagePart1 = nullptr;

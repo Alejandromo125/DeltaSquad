@@ -26,6 +26,7 @@ bool WhiteHouseIntro::Start()
 	bool ret = true;
 
 	whiteHouse = App->textures->Load("Assets/Art/Sequences/house.png");
+	houseTop = App->textures->Load("Assets/Art/Sequences/houseTop.png");
 	helicopter = App->textures->Load("Assets/Art/Sequences/helicopter.png");
 
 	App->audio->PlayMusic("Assets/Music/None.ogg", 1.0f);
@@ -63,6 +64,7 @@ Update_Status WhiteHouseIntro::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(whiteHouse, 0, 0, NULL);
 	App->render->Blit(helicopter, 0, 0, NULL);
+	App->render->Blit(houseTop, 0, 0, NULL);
 
 	App->render->Blit(messagePart1, 0, 0, NULL);
 	App->render->Blit(messagePart2, 0, 0, NULL);

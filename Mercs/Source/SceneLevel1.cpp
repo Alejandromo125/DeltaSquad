@@ -301,6 +301,8 @@ Update_Status SceneLevel1::Update()
 	}
 	if (fallingWallEventDelays > 0 && fallingWallEventDelays <= 1)
 	{
+		App->input->ShakeController(0, 1000, 0.3f);
+
 		App->breakableParticles->fallingWall.SetToDelete();
 		App->breakableParticles->AddParticle(App->breakableParticles->fallingWallMoving, 400 - 120, 440 - 1100);
 
@@ -333,6 +335,7 @@ Update_Status SceneLevel1::Update()
 	}
 	else if (fallingWallEventDelays > 75 && fallingWallEventDelays <= 76)
 	{
+		App->input->ShakeController(0, 100, 0.5f);
 		App->particles->AddParticle(App->particles->dirt, 350 - 120, 780 - 1100, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->dirt, 380 - 120, 790 - 1100, Collider::Type::NONE);
 		App->particles->AddParticle(App->particles->dirt, 410 - 120, 790 - 1100, Collider::Type::NONE);
