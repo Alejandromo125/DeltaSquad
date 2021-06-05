@@ -797,7 +797,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BOSS_ATTACK) && destroyed == false && immunityTime >= 120)
 		{
 
-			playerLife -= 25;
+			playerLife -= 18;
 			if (playerLife < 0) playerLife = 0;
 			immunityTime = 0;
 			if (playerLife != 0) App->audio->PlayFx(hit28);

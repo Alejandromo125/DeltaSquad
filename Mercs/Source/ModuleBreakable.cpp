@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
+#include "ModuleInput.h"
 #include "SceneLevel1.h"
 #include "SceneLevel1.h"
 #include "ModuleParticles.h"
@@ -139,6 +140,7 @@ void ModuleBreakable::OnCollision(Collider* c1, Collider* c2)
 		{
 			if (particles[i] != nullptr && particles[i]->collider == c1)
 			{
+				App->input->ShakeController(0, 100, 0.15f);
 
 				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 20, particles[i]->position.y + 40, Collider::Type::NONE);
 				App->particles->AddParticle(App->particles->explosion, particles[i]->position.x + 40, particles[i]->position.y + 60, Collider::Type::NONE);

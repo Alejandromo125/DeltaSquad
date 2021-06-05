@@ -127,7 +127,7 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 660, 0, 110, 180 }, Collider::Type::BIDIMENSIONAL_CAMERA_BOUND);
 
 	// Enemies
-	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 501, 1440);
+	App->enemies->AddEnemy(Enemy_Type::TOWER_ENEMY, 500, 1440);
 
 
 	//Item Collisions

@@ -32,6 +32,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::NULL_COLLIDER][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
@@ -55,6 +56,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::WALL][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::WALL][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::WALL][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
@@ -78,6 +80,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::GREEN_SHOT_WEAPON_ID02] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::HEALING_FOOD_ID03] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
@@ -101,6 +104,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
@@ -124,6 +128,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::TOWER_ENEMY] = true;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
@@ -146,7 +151,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::MULTI_USE] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::HEALING_FOOD_ID03] = false;
-	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::PLAYER] = true;
@@ -170,6 +176,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::ENEMY_BOMB][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::BOSS][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::PLAYER] = false;
@@ -193,6 +200,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BOSS][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::BOSS][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::WATER][Collider::Type::WALL] = false;
 	matrix[Collider::Type::WATER][Collider::Type::PLAYER] = true;
@@ -216,6 +224,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WATER][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::WATER][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::WATER][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::WATER][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::PLAYER] = true;
@@ -239,6 +248,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::BOSS_ATTACK][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::PLAYER] = true;
@@ -262,6 +272,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::BREAKABLE_OBJECT][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::PLAYER] = true;
@@ -285,6 +296,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::HORIZONTAL_CAMERA_BOUND][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::PLAYER] = true;
@@ -308,6 +320,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::VERTICAL_CAMERA_BOUND][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::WALL] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::PLAYER] = true;
@@ -331,6 +344,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::EVENT_TRIGGER][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::BIDIMENSIONAL_CAMERA_BOUND][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BIDIMENSIONAL_CAMERA_BOUND][Collider::Type::PLAYER] = true;
@@ -354,6 +368,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BIDIMENSIONAL_CAMERA_BOUND][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::BIDIMENSIONAL_CAMERA_BOUND][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::BIDIMENSIONAL_CAMERA_BOUND][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::BIDIMENSIONAL_CAMERA_BOUND][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::TRENCH_WALL][Collider::Type::WALL] = false;
 	matrix[Collider::Type::TRENCH_WALL][Collider::Type::PLAYER] = true;
@@ -377,6 +392,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::TRENCH_WALL][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::TRENCH_WALL][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::TRENCH_WALL][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::TRENCH_WALL][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::DOUBLE_SHOT_WEAPON_ID01][Collider::Type::WALL] = false;
 	matrix[Collider::Type::DOUBLE_SHOT_WEAPON_ID01][Collider::Type::PLAYER] = true;
@@ -400,6 +416,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::DOUBLE_SHOT_WEAPON_ID01][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::DOUBLE_SHOT_WEAPON_ID01][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::DOUBLE_SHOT_WEAPON_ID01][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::DOUBLE_SHOT_WEAPON_ID01][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::MULTI_USE][Collider::Type::WALL] = true;
 	matrix[Collider::Type::MULTI_USE][Collider::Type::PLAYER] = true;
@@ -423,6 +440,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::MULTI_USE][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::MULTI_USE][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::MULTI_USE][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::MULTI_USE][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::GREEN_SHOT_WEAPON_ID02][Collider::Type::WALL] = false;
 	matrix[Collider::Type::GREEN_SHOT_WEAPON_ID02][Collider::Type::PLAYER] = true;
@@ -446,6 +464,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::GREEN_SHOT_WEAPON_ID02][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::GREEN_SHOT_WEAPON_ID02][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::GREEN_SHOT_WEAPON_ID02][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::GREEN_SHOT_WEAPON_ID02][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::HEALING_FOOD_ID03][Collider::Type::WALL] = false;
 	matrix[Collider::Type::HEALING_FOOD_ID03][Collider::Type::PLAYER] = true;
@@ -469,6 +488,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::HEALING_FOOD_ID03][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::HEALING_FOOD_ID03][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::HEALING_FOOD_ID03][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::HEALING_FOOD_ID03][Collider::Type::TOWER_ENEMY] = false;
 
 	matrix[Collider::Type::EVENT_TRIGGER_BOSS_ZONE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::EVENT_TRIGGER_BOSS_ZONE][Collider::Type::PLAYER] = true;
@@ -492,6 +512,31 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::EVENT_TRIGGER_BOSS_ZONE][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
 	matrix[Collider::Type::EVENT_TRIGGER_BOSS_ZONE][Collider::Type::HEALING_FOOD_ID03] = false;
 	matrix[Collider::Type::EVENT_TRIGGER_BOSS_ZONE][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::EVENT_TRIGGER_BOSS_ZONE][Collider::Type::TOWER_ENEMY] = false;
+
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::WALL] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::WATER] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::ENEMY_BOMB] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::BOSS_ATTACK] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::BREAKABLE_OBJECT] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::HORIZONTAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::VERTICAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::EVENT_TRIGGER] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::BOSS] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::NULL_COLLIDER] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::BIDIMENSIONAL_CAMERA_BOUND] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::TRENCH_WALL] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::DOUBLE_SHOT_WEAPON_ID01] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::MULTI_USE] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::GREEN_SHOT_WEAPON_ID02] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::HEALING_FOOD_ID03] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::EVENT_TRIGGER_BOSS_ZONE] = false;
+	matrix[Collider::Type::TOWER_ENEMY][Collider::Type::TOWER_ENEMY] = false;
 }
 
 // Destructor

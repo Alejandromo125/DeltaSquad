@@ -25,7 +25,7 @@ TowerEnemy::TowerEnemy(int x, int y) : Enemy(x, y)
 	//Have the Soldiers describe a path in the screen taking into account the collisions
 
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 86, 92 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	collider = App->collisions->AddCollider({ position.x, position.y, 86, 92 }, Collider::Type::TOWER_ENEMY, (Module*)App->enemies);
 
 
 
