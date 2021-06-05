@@ -58,6 +58,15 @@ bool SceneLevel2::Start()
 	//NULL COLLIDER --> (experimental test for camera functions and other mechanical stuff related with colliders)
 	App->collisions->AddCollider({ 0, 0, 768, 3072 }, Collider::Type::NULL_COLLIDER);
 	
+	// Scene Colliders
+	App->collisions->AddCollider({ 270, 2890, 60, 180 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 250, 2870, 50, 20 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 210, 2820, 70, 50 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 200, 2810, 10, 40 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 170, 2770, 60, 40 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 160, 2760, 30, 10 }, Collider::Type::TRENCH_WALL);
+	App->collisions->AddCollider({ 0, 2740, 180, 20 }, Collider::Type::TRENCH_WALL);
+
 	//Item Collisions
 	App->particles->AddParticle(App->particles->greenShotWeapon, 120, 2580, Collider::Type::GREEN_SHOT_WEAPON_ID02);
 
