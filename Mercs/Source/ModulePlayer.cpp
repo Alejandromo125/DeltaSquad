@@ -161,6 +161,8 @@ bool ModulePlayer::Start()
 	gameClear = App->audio->LoadFx("Assets/FX/RankingDisplay.wav");
 	gameOver = App->audio->LoadFx("Assets/FX/GameOver.wav");
 
+	delay = 0;
+
 	speedX = 1;
 	speedY = 1;
 
@@ -198,12 +200,14 @@ bool ModulePlayer::Start()
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable[] = { "0123456789" };
 	scoreFont = App->fonts->Load("Assets/Art/UI/numbers_s.png", lookupTable, 1);
+	timeFont = App->fonts->Load("Assets/Art/UI/numbers2.png", lookupTable, 1);
 	
 	return ret;
 }
 
 Update_Status ModulePlayer::Update()
 {
+	delay++;
 	
 	if (destroyed == false && activateWinCondition == false && activateWinCondition_FINAL == false)
 	{
@@ -634,6 +638,19 @@ Update_Status ModulePlayer::Update()
 
 	}
 
+	if ((delay % 60) == 0)
+	{
+		/*
+		if (timeCounter <= 0)
+		{
+			timeCounter == 0;
+		}
+		*/
+		timeCounter--;
+	}
+	
+
+
 	collider->SetPos(position.x + 6, position.y + 3);
 
 	currentAnimation->Update();
@@ -708,6 +725,7 @@ Update_Status ModulePlayer::PostUpdate()
 	
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%5d", score);
+	sprintf_s(timeText, 10, "%3d", timeCounter);
 
 	SDL_Rect quad;
 	quad = { 5, 338, playerLife, 10 };
@@ -737,8 +755,18 @@ Update_Status ModulePlayer::PostUpdate()
 
 	}
 
+	if (timeCounter == 0)
+	{
+		playerLife = 0;
+		App->audio->PlayFx(dead26);
+		destroyed = true;
+	}
+
 	// TODO 3: Blit the text of the score in at the bottom of the screen
 	App->fonts->BlitText(40, 25, scoreFont, scoreText);
+
+	// Timer
+	App->fonts->BlitText(180, 130, timeFont, timeText);
 
 
 	App->render->Blit(merc, 10, 10, NULL, 0, true);
@@ -810,6 +838,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				destroyed = true;
 
 			}
+
+			
 		}
 
 		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::WALL)
