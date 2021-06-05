@@ -207,7 +207,10 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	delay++;
+	if (activateWinCondition == false)
+	{
+		delay++;
+	}
 	
 	if (destroyed == false && activateWinCondition == false && activateWinCondition_FINAL == false)
 	{
