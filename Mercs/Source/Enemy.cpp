@@ -69,7 +69,7 @@ void Enemy::OnCollision(Collider* c2)
 		if (EnemyHP == 0)
 		{
 			App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-			App->audio->PlayFx(destroyedFx);
+			//App->audio->PlayFx(destroyedFx);
 			App->player->score += 150;
 			SetToDelete();
 		}

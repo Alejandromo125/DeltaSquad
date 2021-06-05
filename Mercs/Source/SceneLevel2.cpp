@@ -61,13 +61,13 @@ bool SceneLevel2::Start()
 	//Item Collisions
 	App->particles->AddParticle(App->particles->greenShotWeapon, 120, 2580, Collider::Type::GREEN_SHOT_WEAPON_ID02);
 
-	App->render->camera.x = 300 + 300;
-	App->render->camera.y = 2690 + 2690;
+	App->render->camera.x = 300 * SCREEN_SIZE;
+	App->render->camera.y = 2690 * SCREEN_SIZE;
 
 	App->player->position.x = 400;
 	App->player->position.y = 2880;
 
-	App->player->score = 0;
+	App->player->score = App->player->score;
 
 	App->player->Enable();
 	App->enemies->Enable();
@@ -107,7 +107,12 @@ Update_Status SceneLevel2::Update()
 	}
 	*/
 
+	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN)
+	{
+		App->player->playerDelay = 0;
+		App->player->activateWinCondition_FINAL = true;
 
+	}
 
 	if (App->player->activateWinCondition_FINAL == true || App->player->destroyed == true)
 	{

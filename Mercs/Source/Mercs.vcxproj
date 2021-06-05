@@ -108,6 +108,7 @@
     <ClInclude Include="SceneLevel2.h" />
     <ClInclude Include="TitleScreen.h" />
     <ClInclude Include="Tower_Enemy_Level2.h" />
+    <ClInclude Include="WhiteHouseIntro.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
@@ -142,6 +143,7 @@
     <ClCompile Include="SceneLevel2.cpp" />
     <ClCompile Include="TitleScreen.cpp" />
     <ClCompile Include="Tower_Enemy_Level2.cpp" />
+    <ClCompile Include="WhiteHouseIntro.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

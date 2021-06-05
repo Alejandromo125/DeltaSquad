@@ -13,7 +13,7 @@
 
 Boss::Boss(int x, int y) : Enemy(x, y)
 {
-	Enemy::EnemyHP = 20;
+	Enemy::EnemyHP = 30;
 	Idle.PushBack({ 0,0,128,102 });
 	Idle.loop = true;
 
@@ -43,7 +43,6 @@ void Boss::Update()
 	BossMovementCounter++;
 	int half = position.x + 54;
 
-	
 	
 	if (counter % 2 == 0)
 	{
@@ -92,7 +91,7 @@ void Boss::Update()
 	}
 	if (EnemyHP == 0)
 	{
-		App->player->activateWinCondition = true;
+		App->audio->PlayFx(destroyedFx);
 
 		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 10);
 		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 80);
@@ -127,6 +126,21 @@ void Boss::Update()
 		App->particles->AddParticle(App->particles->explosion, position.x + 60, position.y + 10, Collider::Type::NONE, 70);
 		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 20, Collider::Type::NONE, 70);
 		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 70);
+
+		App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 40, Collider::Type::NONE, 80);
+		App->particles->AddParticle(App->particles->explosion, position.x + 40, position.y + 60, Collider::Type::NONE, 80);
+		App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 90, Collider::Type::NONE, 80);
+		App->particles->AddParticle(App->particles->explosion, position.x + 80, position.y + 70, Collider::Type::NONE, 95);
+		App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 100, Collider::Type::NONE, 95);
+		App->particles->AddParticle(App->particles->explosion, position.x + 100, position.y + 20, Collider::Type::NONE, 95);
+		App->particles->AddParticle(App->particles->explosion, position.x + 60, position.y + 10, Collider::Type::NONE, 110);
+		App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 20, Collider::Type::NONE, 115);
+		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 120);
+		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 125);
+		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 130);
+
+		App->player->activateWinCondition = true;
+		
 	}
 	
 

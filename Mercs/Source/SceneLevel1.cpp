@@ -288,6 +288,12 @@ Update_Status SceneLevel1::Update()
 	}
 	*/
 
+	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
+	{
+		App->player->playerDelay = 0;
+		App->player->activateWinCondition = true;
+
+	}
 
 	if (App->player->fallingWallEvent == true)
 	{

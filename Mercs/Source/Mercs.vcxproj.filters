@@ -97,6 +97,9 @@
     <ClCompile Include="SceneLevel2.cpp">
       <Filter>Source FIles\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="WhiteHouseIntro.cpp">
+      <Filter>Source FIles\Modules\Gameplay</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -199,6 +202,9 @@
       <Filter>Source FIles\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="SceneLevel2.h">
+      <Filter>Source FIles\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="WhiteHouseIntro.h">
       <Filter>Source FIles\Modules\Gameplay</Filter>
     </ClInclude>
   </ItemGroup>

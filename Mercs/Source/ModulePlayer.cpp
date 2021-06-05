@@ -204,7 +204,7 @@ bool ModulePlayer::Start()
 Update_Status ModulePlayer::Update()
 {
 	
-	if (destroyed == false && activateWinCondition == false)
+	if (destroyed == false && activateWinCondition == false && activateWinCondition_FINAL == false)
 	{
 		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT && position.x > 0 )
 		{
@@ -602,6 +602,7 @@ Update_Status ModulePlayer::Update()
 	if (activateWinCondition == true)
 	{
 		bossZoneEvent = false;
+
 		winAnim.Reset();
 		currentAnimation = &winAnim;
 
@@ -616,20 +617,6 @@ Update_Status ModulePlayer::Update()
 		currentAnimation = &winAnim;
 
 		playerDelay++;
-
-	}
-
-	if (App->input->keys[SDL_SCANCODE_F3] == Key_State::KEY_DOWN)
-	{
-		playerDelay = 0;
-		activateWinCondition = true;
-		
-	}
-
-	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN)
-	{
-		playerDelay = 0;
-		activateWinCondition_FINAL = true;
 
 	}
 
@@ -675,14 +662,17 @@ Update_Status ModulePlayer::PostUpdate()
 
 	if (activateWinCondition == true)
 	{
-		App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
 
-		Mix_PauseMusic();
-		if (playerDelay < 1) App->audio->PlayFx(roundClear);
-
-		if (playerDelay >= 480)
+		if (playerDelay >= 215)
 		{
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 30);
+			App->fonts->BlitText(30, 100, scoreFont, "Mission Complete!"); // Text UI does not work
+			Mix_PauseMusic();
+			if (playerDelay <= 216) App->audio->PlayFx(roundClear);
+
+			if (playerDelay >= 480 + 215)
+			{
+				App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneLevel_2, 60);
+			}
 		}
 		
 	}
@@ -692,11 +682,11 @@ Update_Status ModulePlayer::PostUpdate()
 		App->fonts->BlitText(30, 100, scoreFont, "Game Complete!"); // Text UI does not work
 
 		Mix_PauseMusic();
-		if (playerDelay < 1) App->audio->PlayFx(gameClear);
+		if (playerDelay <= 1) App->audio->PlayFx(gameClear);
 
 		if (playerDelay >= 480)
 		{
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
+			App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneIntro, 30);
 		}
 
 	}

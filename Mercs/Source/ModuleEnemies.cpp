@@ -32,7 +32,7 @@ bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Art/Sprites/soldier.png");
 	
-	enemyDestroyedFx = App->audio->LoadFx("Assets/explosion.wav");
+	enemyDestroyedFx = App->audio->LoadFx("Assets/FX/22.wav");
 
 	return true;
 }
