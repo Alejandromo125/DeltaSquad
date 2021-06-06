@@ -29,17 +29,22 @@ public:
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* whiteHouse = nullptr;
-	SDL_Texture* houseTop = nullptr;
-	SDL_Texture* helicopter = nullptr;
+	SDL_Texture* heroes = nullptr;
 
-	SDL_Texture* messagePart1 = nullptr;
-	SDL_Texture* messagePart2 = nullptr;
-	SDL_Texture* messagePart3 = nullptr;
-	SDL_Texture* messagePart4 = nullptr;
-	SDL_Texture* messagePart5 = nullptr;
+	SDL_Texture* white1 = nullptr;
+	SDL_Texture* white2 = nullptr;
+	SDL_Texture* white3 = nullptr;
+	SDL_Texture* white4 = nullptr;
+
+	int timer;
+	int timerFinal = 400;
+	int speed = 0;
+	int framesScroll = 0;
+	int counter = 0;
 
 	int delay;
+
+	void scrollHeroes(int& speed, int& frames);
 
 };
 

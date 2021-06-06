@@ -25,14 +25,13 @@ bool HeroesIntro::Start()
 
 	bool ret = true;
 
-	whiteHouse = App->textures->Load("Assets/Art/Sequences/house.png");
-	houseTop = App->textures->Load("Assets/Art/Sequences/houseTop.png");
-	helicopter = App->textures->Load("Assets/Art/Sequences/helicopter.png");
-	messagePart1 = App->textures->Load("Assets/Art/Sequences/textintro1.png");
-	messagePart2 = App->textures->Load("Assets/Art/Sequences/textintro2.png");
-	messagePart3 = App->textures->Load("Assets/Art/Sequences/textintro3.png");
-	messagePart4 = App->textures->Load("Assets/Art/Sequences/textintro4.png");
-	messagePart5 = App->textures->Load("Assets/Art/Sequences/textintro5.png");
+	heroes = App->textures->Load("Assets/Art/Sequences/totalscene.png");
+
+	white1 = App->textures->Load("Assets/Art/Sequences/white1.png");
+	white2 = App->textures->Load("Assets/Art/Sequences/white2.png");
+	white3 = App->textures->Load("Assets/Art/Sequences/white3.png");
+	white4 = App->textures->Load("Assets/Art/Sequences/white4.png");
+	
 
 	App->audio->PlayMusic("Assets/Music/None.ogg", 1.0f);
 
@@ -40,6 +39,8 @@ bool HeroesIntro::Start()
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
+
+	timer = timerFinal;
 
 	App->player->cameraXlimitation = true;
 	App->player->cameraYlimitation = true;
@@ -55,10 +56,24 @@ Update_Status HeroesIntro::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	if (delay >= 2050) // <-- Whatever the animation takes
+	if (delay >= 2150) // <-- Whatever the animation takes
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
+
+	if (timer <= 0)
+	{
+		if (counter < 2) {
+			timerFinal = 500;
+			timer = timerFinal;
+			speed = 6;
+			framesScroll = 124;
+			counter++;
+		}
+	}
+
+	timer--;
+	scrollHeroes(speed, framesScroll);
 
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -68,17 +83,35 @@ Update_Status HeroesIntro::Update()
 Update_Status HeroesIntro::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(whiteHouse, 0, 0, NULL);
-	App->render->Blit(helicopter, 0, 0, NULL);
-	App->render->Blit(houseTop, 0, 0, NULL);
 
-	//Si va muy rapido cambiar el delay de abajo
+	App->render->Blit(heroes, -203, -10 , NULL);
 
-	if (delay >= 200 && delay <= 600) App->render->Blit(messagePart1, -200, 10, NULL);
-	if (delay >= 650 && delay <= 950) App->render->Blit(messagePart2, -200, 10, NULL);
-	if (delay >= 1000 && delay <= 1300) App->render->Blit(messagePart3, -200, 10, NULL);
-	if (delay >= 1350 && delay <= 1650) App->render->Blit(messagePart4, -200, 10, NULL);
-	if (delay >= 1700 && delay <= 2000) App->render->Blit(messagePart5, -200, 10, NULL);
+	// Cambiar los delays para ajustar la escena de disparo 
+	
+	if (delay >= 1300 && delay <= 1519) App->render->Blit(white1, -200, 396, NULL);
+	if (delay >= 1520 && delay <= 1599) App->render->Blit(white2, -200, 396, NULL);
+	if (delay >= 1600 && delay <= 1899) App->render->Blit(white3, -200, 396, NULL);
+	if (delay >= 1900 && delay <= 2200) App->render->Blit(white4, -200, 396, NULL);
+
+	//App->render->Blit(heroes, -202, -345, NULL);
+	
+	//App->render->Blit(heroes, -205, -768, NULL);
+
+
 
 	return Update_Status::UPDATE_CONTINUE;
+}
+
+void HeroesIntro::scrollHeroes(int& speed, int& framesScroll)
+{
+	if (framesScroll > 0)
+	{
+		App->render->camera.y += speed;
+		framesScroll--;
+	}
+	else
+	{
+
+		speed = 0;
+	}
 }
