@@ -39,5 +39,5 @@ The objective of the game consists on the following, the players are a group of 
 
 ## Direct link to download our release
 
-[Link](https://github.com/Alejandromo125/DeltaSquad/releases)
+- [Direct link to the github releases](https://github.com/Alejandromo125/DeltaSquad/releases)
 
