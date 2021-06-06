@@ -64,11 +64,11 @@ Update_Status WhiteHouseIntro::Update()
 	delay++;
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->heroesIntro, 90);
 	}
 	if (delay >= 2050) // <-- Whatever the animation takes
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->heroesIntro, 90);
 	}
 
 	if ((delay % 10) == 0)
