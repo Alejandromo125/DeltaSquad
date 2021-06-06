@@ -124,8 +124,8 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 380, 1200, 390, 30 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 350, 1210, 30, 20 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 1230, 40, 80 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 40, 1230, 110, 40 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 170, 1250, 20, 20 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 40, 1230, 110, 40 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 170, 1250, 20, 20 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 60, 970, 10, 260 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 70, 970, 360, 40 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 430, 980, 30, 30 }, Collider::Type::WALL);
@@ -138,7 +138,7 @@ bool SceneLevel2::Start()
 	App->collisions->AddCollider({ 180, 850, 120, 80 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 1310, 40, 100 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 70, 1150, 20, 30 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 150, 1240, 20, 20 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 150, 1240, 20, 20 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 100, 830, 40, 140 }, Collider::Type::TRENCH_WALL);
 	App->collisions->AddCollider({ 0, 780, 270, 40 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 570, 780, 200, 40 }, Collider::Type::WALL);

@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleBreakable.h"
 #include "ModuleParticles.h"
+#include "Particle.h"
 #include "ModuleAudio.h"
 #include "p2Point.h"
 
@@ -27,7 +28,7 @@ TowerEnemy::TowerEnemy(int x, int y) : Enemy(x, y)
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 86, 92 }, Collider::Type::TOWER_ENEMY, (Module*)App->enemies);
 
-
+	explosionDelay = 0;
 
 }
 
@@ -35,7 +36,7 @@ void TowerEnemy::Update()
 {
 
 
-
+	explosionDelay++;
 	counter++;
 
 	if (App->player->position.y > position.y)
@@ -64,76 +65,46 @@ void TowerEnemy::Update()
 		currentAnim = &ShootDownLeft;
 	}
 
+	App->particles->enemyBomb.speed.x = (App->player->position.x - position.x) / 90;
+	App->particles->enemyBomb.speed.y = (App->player->position.y - position.y) / 90;
 
-	if (counter % 60 == 0)
+	if (counter % 120 == 0)
 	{
-		if (position.DistanceTo(App->player->position) < 250)
+		if (position.DistanceTo(App->player->position) < 350)
 		{
+			explosionDelay = 0;
 
+			App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
 
-			if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
+			
+
+			if (explosionDelay == 118)
 			{
-				currentAnim = &ShootDown;
-				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-				currentAnim = &ShootDown;
-
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
-
-
-			}
-			if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
-			{
-
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotRight, position.x + 18, position.y + 8, Collider::Type::ENEMY_SHOT);
-
-
-
-			}
-			if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
-			{
-
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
-
+				App->particles->AddParticle(App->particles->bombExplosion, App->particles->enemyBomb.position.x + 3, App->particles->enemyBomb.position.y + 3, Collider::Type::NONE);
 			}
 
 
 		}
 	}
-	if (counter % 200 == 0)
+
+	if (counter % 120 == 0)
 	{
 		//DIAGONAL SHOT IMPLEMENTATION
 
-		if (position.DistanceTo(App->player->position) < 250)
+		if (position.DistanceTo(App->player->position) < 350)
 		{
+			explosionDelay = 0;
 
+			App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
 
-			if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
-			{
-				currentAnim = &ShootDownLeft;
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
-				currentAnim = &ShootDownLeft;
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 20, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x + 3, position.y + 20, Collider::Type::ENEMY_SHOT);
-
-
-			}
-			if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
-			{
-				currentAnim = &ShootDownRight;
-				App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
-				currentAnim = &ShootDownRight;
-				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 15, Collider::Type::NONE);
-				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x - 8, position.y + 15, Collider::Type::ENEMY_SHOT);
-
-
-			}
+			
 		}
 
+	}
+
+	if (explosionDelay == 118)
+	{
+		App->particles->AddParticle(App->particles->bombExplosion, App->particles->enemyBomb.position.x, App->particles->enemyBomb.position.y, Collider::Type::NONE);
 	}
 
 	if (EnemyHP <= 0)
