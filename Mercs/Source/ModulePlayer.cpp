@@ -654,7 +654,11 @@ Update_Status ModulePlayer::Update()
 		timeCounter--;
 	}
 	
-
+	if (App->input->keys[SDL_SCANCODE_F5] == Key_State::KEY_DOWN)
+	{
+		playerLife = 0;
+		destroyed = true;
+	}
 
 	collider->SetPos(position.x + 6, position.y + 3);
 
@@ -675,11 +679,6 @@ Update_Status ModulePlayer::PostUpdate()
 
 		Mix_PauseMusic();
 		if (playerDelay <= 1) App->audio->PlayFx(gameOver);
-
-		if (playerDelay >= 420)
-		{
-			App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 30);
-		}
 		
 	}
 

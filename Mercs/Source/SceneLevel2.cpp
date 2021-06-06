@@ -293,6 +293,11 @@ Update_Status SceneLevel2::Update()
 	}
 	*/
 
+	if (App->player->playerDelay >= 420 && App->player->destroyed == true)
+	{
+		App->fade->FadeToBlack((Module*)App->sceneLevel_2, (Module*)App->sceneIntro, 30);
+	}
+
 	if (App->input->keys[SDL_SCANCODE_F4] == Key_State::KEY_DOWN)
 	{
 		App->player->playerDelay = 0;
