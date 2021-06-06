@@ -108,6 +108,10 @@ public:
 	//Template particle for player in water
 	Particle waterParticles;
 
+	//Template particle for bomb thrown by enemy
+	Particle enemyBomb;
+	Particle bombExplosion;
+
 	//Item Particles
 	Particle doubleShotWeapon;
 	Particle greenShotWeapon;

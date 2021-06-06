@@ -202,7 +202,7 @@ bool SceneLevel2::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 210, 2380);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 170, 2310);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 240, 2080);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 430, 2520);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 220, 2310);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 460, 2130);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 500, 1890);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 500, 1810);
@@ -214,7 +214,33 @@ bool SceneLevel2::Start()
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 200, 1330);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 500, 1320);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 400, 1350);
-
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 320, 1290);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 260, 2180);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 110, 1170);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 250, 1360);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 210, 1230);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 300, 1220);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 700, 1360);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 330, 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 390, 1150);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 420, 1090);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 500, 1150);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 500, 1020);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 540, 1040);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 690, 970);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 630, 940);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 250, 930);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 480, 840);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 320, 790);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 280, 790);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 230, 710);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 60, 700);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 100, 640);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 140, 650);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 190, 630);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 110, 340);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 160, 340);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER_LEVEL2, 130, 290);
 
 	//Item Collisions
 	App->particles->AddParticle(App->particles->greenShotWeapon, 120, 2580, Collider::Type::GREEN_SHOT_WEAPON_ID02);
