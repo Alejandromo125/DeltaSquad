@@ -56,7 +56,7 @@ Update_Status HeroesIntro::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	if (delay >= 2050) // <-- Whatever the animation takes
+	if (delay >= 2150) // <-- Whatever the animation takes
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
@@ -88,10 +88,10 @@ Update_Status HeroesIntro::PostUpdate()
 
 	// Cambiar los delays para ajustar la escena de disparo 
 	
-	if (delay >= 1200 && delay <= 1419) App->render->Blit(white1, -200, 396, NULL);
-	if (delay >= 1420 && delay <= 1499) App->render->Blit(white2, -200, 396, NULL);
-	if (delay >= 1500 && delay <= 1799) App->render->Blit(white3, -200, 396, NULL);
-	if (delay >= 1800 && delay <= 2100) App->render->Blit(white4, -200, 396, NULL);
+	if (delay >= 1300 && delay <= 1519) App->render->Blit(white1, -200, 396, NULL);
+	if (delay >= 1520 && delay <= 1599) App->render->Blit(white2, -200, 396, NULL);
+	if (delay >= 1600 && delay <= 1899) App->render->Blit(white3, -200, 396, NULL);
+	if (delay >= 1900 && delay <= 2200) App->render->Blit(white4, -200, 396, NULL);
 
 	//App->render->Blit(heroes, -202, -345, NULL);
 	
