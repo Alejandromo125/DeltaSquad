@@ -5,6 +5,7 @@
 #include "ModuleInput.h"
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
+#include "ModuleEndPlane.h"
 #include "Boss.h"
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
@@ -149,6 +150,7 @@ bool ModulePlayer::Start()
 	insertcoin = App->textures->Load("Assets/Art/UI/insertcoin_ss.png");
 	mercLife = App->textures->Load("Assets/Art/UI/mercLife.png");
 	winScreen1 = App->textures->Load("Assets/Art/UI/mission1Complete.png");
+	winScreen2 = App->textures->Load("Assets/Art/UI/mission2Complete.png");
 
 	currentAnimation = &idledownAnim;
 
@@ -156,6 +158,8 @@ bool ModulePlayer::Start()
 	dead26 = App->audio->LoadFx("Assets/FX/26.wav");
 	hit28 = App->audio->LoadFx("Assets/FX/28.wav");
 	collectItem18 = App->audio->LoadFx("Assets/FX/18.wav");
+	finalDestruction05 = App->audio->LoadFx("Assets/FX/05.wav");
+	finalDestruction14 = App->audio->LoadFx("Assets/FX/14.wav");
 
 	roundClear = App->audio->LoadFx("Assets/FX/RoundClear.wav");
 	gameClear = App->audio->LoadFx("Assets/FX/RankingDisplay.wav");
@@ -675,7 +679,7 @@ Update_Status ModulePlayer::PostUpdate()
 {
 	if (destroyed == true)
 	{
-		App->fonts->BlitText(30, 100, scoreFont, "Mission Failed"); // Text UI does not work
+		//App->fonts->BlitText(30, 100, scoreFont, "Mission Failed"); // Text UI does not work
 
 		Mix_PauseMusic();
 		if (playerDelay <= 1) App->audio->PlayFx(gameOver);
@@ -703,10 +707,71 @@ Update_Status ModulePlayer::PostUpdate()
 	{
 
 		Mix_PauseMusic();
+		if (playerDelay < 1)
+		{
+			App->audio->PlayFx(finalDestruction05);
+			App->audio->PlayFx(finalDestruction14);
+		}
+
+		if (playerDelay == 2)
+		{
+			App->particles->AddParticle(App->particles->explosion, 630, 60);
+			App->particles->AddParticle(App->particles->explosion, 590, 100);
+			App->particles->AddParticle(App->particles->explosion, 610, 80);
+			App->particles->AddParticle(App->particles->explosion, 530, 120);
+			App->particles->AddParticle(App->particles->explosion, 650, 120);
+
+			App->endPlane->AddParticle(App->endPlane->planeDestroyed, 10, 0, Collider::Type::NONE);
+
+			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE);
+			App->particles->AddParticle(App->particles->explosion, 550, 90, Collider::Type::NONE);
+			App->particles->AddParticle(App->particles->explosion, 600, 130, Collider::Type::NONE);
+			App->particles->AddParticle(App->particles->explosion, 560, 140, Collider::Type::NONE, 5);
+			App->particles->AddParticle(App->particles->explosion, 500, 100, Collider::Type::NONE, 5);
+			App->particles->AddParticle(App->particles->explosion, 650, 80, Collider::Type::NONE, 5);
+			App->particles->AddParticle(App->particles->explosion, 690, 110, Collider::Type::NONE, 10);
+			App->particles->AddParticle(App->particles->explosion, 600, 170, Collider::Type::NONE, 10);
+			App->particles->AddParticle(App->particles->explosion, 530, 40, Collider::Type::NONE, 10);
+
+			App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 40, Collider::Type::NONE, 15);
+			App->particles->AddParticle(App->particles->explosion, position.x + 40, position.y + 60, Collider::Type::NONE, 15);
+			App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 90, Collider::Type::NONE, 15);
+			App->particles->AddParticle(App->particles->explosion, position.x + 80, position.y + 70, Collider::Type::NONE, 25);
+			App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 100, Collider::Type::NONE, 25);
+			App->particles->AddParticle(App->particles->explosion, position.x + 100, position.y + 20, Collider::Type::NONE, 25);
+			App->particles->AddParticle(App->particles->explosion, position.x + 60, position.y + 10, Collider::Type::NONE, 35);
+			App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 20, Collider::Type::NONE, 35);
+			App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 35);
+
+			App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 40, Collider::Type::NONE, 40);
+			App->particles->AddParticle(App->particles->explosion, position.x + 40, position.y + 60, Collider::Type::NONE, 40);
+			App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 90, Collider::Type::NONE, 40);
+			App->particles->AddParticle(App->particles->explosion, position.x + 80, position.y + 70, Collider::Type::NONE, 55);
+			App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 100, Collider::Type::NONE, 55);
+			App->particles->AddParticle(App->particles->explosion, position.x + 100, position.y + 20, Collider::Type::NONE, 55);
+			App->particles->AddParticle(App->particles->explosion, position.x + 60, position.y + 10, Collider::Type::NONE, 70);
+			App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 20, Collider::Type::NONE, 70);
+			App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 70);
+
+			App->particles->AddParticle(App->particles->explosion, position.x + 20, position.y + 40, Collider::Type::NONE, 80);
+			App->particles->AddParticle(App->particles->explosion, position.x + 40, position.y + 60, Collider::Type::NONE, 80);
+			App->particles->AddParticle(App->particles->explosion, position.x + 30, position.y + 90, Collider::Type::NONE, 80);
+			App->particles->AddParticle(App->particles->explosion, position.x + 80, position.y + 70, Collider::Type::NONE, 95);
+			App->particles->AddParticle(App->particles->explosion, position.x + 10, position.y + 100, Collider::Type::NONE, 95);
+			App->particles->AddParticle(App->particles->explosion, position.x + 100, position.y + 20, Collider::Type::NONE, 95);
+			App->particles->AddParticle(App->particles->explosion, position.x + 60, position.y + 10, Collider::Type::NONE, 110);
+			App->particles->AddParticle(App->particles->explosion, position.x + 50, position.y + 20, Collider::Type::NONE, 115);
+			App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 120);
+			App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 125);
+			App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 130);
+		}
+
+		if(playerDelay == 10) App->audio->PlayFx(finalDestruction05);
 
 		if (playerDelay >= 215)
 		{
-			App->fonts->BlitText(30, 100, scoreFont, "President Rescued!"); // Text UI does not work
+			//App->fonts->BlitText(30, 100, scoreFont, "President Rescued!"); // Text UI does not work
+			App->render->Blit(winScreen2, 8, 50, NULL, 0, true);
 
 			if (playerDelay <= 215) App->audio->PlayFx(gameClear);
 
@@ -1179,6 +1244,21 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::EVENT_TRIGGER_BOSS_ZONE)
 		{
 			bossZoneEvent = true;
+		}
+
+		if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::MULTI_USE)
+		{
+			if (activateWinCondition_FINAL == false)
+			{
+				activateWinCondition_FINAL = true;
+			}
+		}
+		else if (c1->type == Collider::Type::PLAYER && c2->type != Collider::Type::MULTI_USE)
+		{
+			if (activateWinCondition_FINAL == true)
+			{
+				activateWinCondition_FINAL = false;
+			}
 		}
 	}
 }

@@ -70,6 +70,7 @@ public:
 	SDL_Texture* mercLife = nullptr;
 
 	SDL_Texture* winScreen1 = nullptr;
+	SDL_Texture* winScreen2 = nullptr;
 
 	// Player Life Variable
 	int playerLife;
@@ -124,6 +125,8 @@ public:
 	uint dead26 = 0;
 	uint hit28 = 0;
 	uint collectItem18 = 0;
+	uint finalDestruction05 = 0;
+	uint finalDestruction14 = 0;
 
 	uint roundClear = 0;
 	uint gameClear = 0;
