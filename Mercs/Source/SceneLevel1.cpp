@@ -220,20 +220,21 @@ bool SceneLevel1::Start()
 	// Enemies ---
 	//SOLDIER
 
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 178-120, 1340-1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 178 - 120, 1340 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 401 - 120, 1280 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 596 - 120, 965 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 400 - 120, 871 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 380 - 120, 711 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 260 - 120, 565 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 307 - 120, 287 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 210 - 120, 1280 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 610 - 120, 930 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 390 - 120, 880 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 420 - 120, 790 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 430 - 120, 200 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 590 - 120, 180 - 1100);
 
 	//SOLDIER2
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 370 - 120, 489 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 386 - 120, 650 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 278 - 120, 346 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 501 - 120, 215 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 645 - 120, 214 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 360 - 120, 490 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 230 - 120, 450 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 280 - 120, 360 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 660 - 120, 150 - 1100);
+	App->enemies->AddEnemy(Enemy_Type::SOLDIER2, 700 - 120, 210 - 1100);
 
 	//BOSS
 	
