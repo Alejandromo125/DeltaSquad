@@ -26,19 +26,16 @@ The objective of the game consists on the following, the players are a group of 
 
 ## Gameplay
 
-[Direct link to youtube](https://youtu.be/bDwPMNx_Z8U)
-
 - This is the full gameplay of our tribute to "Mercs" we have done the first level completely and the second level almost completely except from 1 enemy and the boss of the second level itself
+- [Direct link to youtube](https://youtu.be/bDwPMNx_Z8U)
 
 ## Debugging functionalities
-
-[Direct link to youtube](https://youtu.be/modcGC85kL0)
-
--With WASD you can move the camera inside of the game as another debug funcitonality.
--With F1 you can see the colliders, that are rectangles in different colours depending on the type of collider.
--With F2 you activate and deactivate god mode that consists on deactivating and reactivating the colliders.
--With F3 you can instantly win so ass to pass to the next level
--With F11 you can toggle fullScreen on and off.
+- With WASD you can move the camera inside of the game as another debug funcitonality.
+- With F1 you can see the colliders, that are rectangles in different colours depending on the type of collider.
+- With F2 you activate and deactivate god mode that consists on deactivating and reactivating the colliders.
+- With F3 you can instantly win so ass to pass to the next level.
+- With F11 you can toggle fullScreen on and off.
+- [Direct link to youtube](https://youtu.be/modcGC85kL0)
 
 ## Direct link to download our release
 
