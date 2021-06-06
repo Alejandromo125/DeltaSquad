@@ -83,6 +83,7 @@
     <ClInclude Include="Enemy_Soldier.h" />
     <ClInclude Include="Enemy_Soldier_Standing.h" />
     <ClInclude Include="Enemy_Soldier_Level2.h" />
+    <ClInclude Include="HeroesIntro.h" />
     <ClInclude Include="InfoScreen.h" />
     <ClInclude Include="ModuleAudio.h" />
     <ClInclude Include="ModuleCollisions.h" />
@@ -120,6 +121,7 @@
     <ClCompile Include="Enemy_Soldier_Standing.cpp" />
     <ClCompile Include="Enemy_Soldier_Level2.cpp" />
     <ClCompile Include="Globals.cpp" />
+    <ClCompile Include="HeroesIntro.cpp" />
     <ClCompile Include="InfoScreen.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollisions.cpp" />

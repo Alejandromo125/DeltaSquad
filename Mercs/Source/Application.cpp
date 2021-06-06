@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "TitleScreen.h"
 #include "whiteHouseIntro.h"
+#include "HeroesIntro.h"
 #include "InfoScreen.h"
 #include "SceneIntro.h"
 #include "SceneLevel1.h"
@@ -36,18 +37,19 @@ Application::Application()
 	modules[5] =	infoScreen =	new InfoScreen(true);
 	modules[6] =    titleScreen =   new TitleScreen(false);
 	modules[7] =	whiteHouseIntro = new WhiteHouseIntro(false);
-	modules[8] =	sceneIntro =	new SceneIntro(false);
-	modules[9] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[10] =	sceneLevel_2 =  new SceneLevel2(false);		//Gameplay scene starts disabled
-	modules[11] =	breakableParticles = new ModuleBreakable(false);
-	modules[12] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[13] =	particles =		new ModuleParticles(false);
-	modules[14] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
+	modules[8] =    heroesIntro =   new HeroesIntro(false);
+	modules[9] =	sceneIntro =	new SceneIntro(false);
+	modules[10] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[11] =	sceneLevel_2 =  new SceneLevel2(false);		//Gameplay scene starts disabled
+	modules[12] =	breakableParticles = new ModuleBreakable(false);
+	modules[13] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[14] =	particles =		new ModuleParticles(false);
+	modules[15] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[15] =	collisions =	new ModuleCollisions(true);
-	modules[16] =	fade =			new ModuleFadeToBlack(true);
-	modules[17] =	fonts =			new ModuleFonts(true);
-	modules[18] =	render =		new ModuleRender(true);
+	modules[16] =	collisions =	new ModuleCollisions(true);
+	modules[17] =	fade =			new ModuleFadeToBlack(true);
+	modules[18] =	fonts =			new ModuleFonts(true);
+	modules[19] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()

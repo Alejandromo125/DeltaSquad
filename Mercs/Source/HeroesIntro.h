@@ -1,19 +1,19 @@
-#ifndef __WHITE_HOUSE_INTRO_H__
-#define __WHITE_HOUSE_INTRO_H__
+#ifndef __HEROES_INTRO_H__
+#define __HEROES_INTRO_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class WhiteHouseIntro : public Module
+class HeroesIntro : public Module
 {
 public:
 	//Constructor
-	WhiteHouseIntro(bool startEnabled);
+	HeroesIntro(bool startEnabled);
 
 	//Destructor
-	~WhiteHouseIntro();
+	~HeroesIntro();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -31,11 +31,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* whiteHouse = nullptr;
 	SDL_Texture* houseTop = nullptr;
-
 	SDL_Texture* helicopter = nullptr;
-	SDL_Texture* helicopter1 = nullptr;
-	SDL_Texture* helicopter2 = nullptr;
-	SDL_Texture* helicopter3 = nullptr;
 
 	SDL_Texture* messagePart1 = nullptr;
 	SDL_Texture* messagePart2 = nullptr;
@@ -45,10 +41,6 @@ public:
 
 	int delay;
 
-	Animation helicopterAnimation;
-	int counterFrame_x;
-	int counterFrame_y;
-	
 };
 
 #endif

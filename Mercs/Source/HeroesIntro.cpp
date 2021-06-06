@@ -1,4 +1,4 @@
-#include "WhiteHouseIntro.h"
+#include "HeroesIntro.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -8,22 +8,18 @@
 #include "ModuleFadeToBlack.h"
 #include "ModulePlayer.h"
 
-WhiteHouseIntro::WhiteHouseIntro(bool startEnabled) : Module(startEnabled)
+HeroesIntro::HeroesIntro(bool startEnabled) : Module(startEnabled)
 {
-	helicopterAnimation.PushBack({ 14, 24, 50, 26 });
-	helicopterAnimation.PushBack({ 66, 24, 50, 26 });
-	helicopterAnimation.PushBack({ 39, 60, 50, 26 });
-	helicopterAnimation.loop = true;
-	helicopterAnimation.speed = 0.2f;
+
 }
 
-WhiteHouseIntro::~WhiteHouseIntro()
+HeroesIntro::~HeroesIntro()
 {
 
 }
 
 // Load assets
-bool WhiteHouseIntro::Start()
+bool HeroesIntro::Start()
 {
 	LOG("Loading background assets");
 
@@ -31,23 +27,16 @@ bool WhiteHouseIntro::Start()
 
 	whiteHouse = App->textures->Load("Assets/Art/Sequences/house.png");
 	houseTop = App->textures->Load("Assets/Art/Sequences/houseTop.png");
-	helicopter1 = App->textures->Load("Assets/Art/Sequences/h1.png");
-	helicopter2 = App->textures->Load("Assets/Art/Sequences/h2.png");
-	helicopter3 = App->textures->Load("Assets/Art/Sequences/h3.png");
-
+	helicopter = App->textures->Load("Assets/Art/Sequences/helicopter.png");
 	messagePart1 = App->textures->Load("Assets/Art/Sequences/textintro1.png");
 	messagePart2 = App->textures->Load("Assets/Art/Sequences/textintro2.png");
 	messagePart3 = App->textures->Load("Assets/Art/Sequences/textintro3.png");
 	messagePart4 = App->textures->Load("Assets/Art/Sequences/textintro4.png");
 	messagePart5 = App->textures->Load("Assets/Art/Sequences/textintro5.png");
 
-
 	App->audio->PlayMusic("Assets/Music/None.ogg", 1.0f);
 
 	delay = 0;
-	//On apareixen els Helicopters
-	counterFrame_x = 60;
-	counterFrame_y = 60;
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -58,7 +47,7 @@ bool WhiteHouseIntro::Start()
 	return ret;
 }
 
-Update_Status WhiteHouseIntro::Update()
+Update_Status HeroesIntro::Update()
 {
 
 	delay++;
@@ -71,36 +60,16 @@ Update_Status WhiteHouseIntro::Update()
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
 
-	if ((delay % 10) == 0)
-	{
-		counterFrame_y--;
-		if (delay >= 120)
-		{
-			counterFrame_x--;
-		}
-	}
-	if ((delay % 2) == 0)
-	{
-		helicopter = helicopter2;
-	}
-	if ((delay % 4) == 0)
-	{
-		helicopter = helicopter3;
-	}
-	if ((delay % 6) == 0)
-	{
-		helicopter = helicopter1;
-	}
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-Update_Status WhiteHouseIntro::PostUpdate()
+Update_Status HeroesIntro::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(whiteHouse, 0, 0, NULL);
-	App->render->Blit(helicopter, counterFrame_x, counterFrame_y, NULL);
+	App->render->Blit(helicopter, 0, 0, NULL);
 	App->render->Blit(houseTop, 0, 0, NULL);
 
 	//Si va muy rapido cambiar el delay de abajo
