@@ -199,7 +199,7 @@ void Enemy_Soldier::Update()
 		if (counter % 200 == 0)
 		{
 			//DIAGONAL SHOT IMPLEMENTATION
-			if (position.DistanceTo(App->player->position) < 250)
+			if (position.DistanceTo(App->player->position) < 150)
 			{
 				if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
 				{
@@ -238,7 +238,7 @@ void Enemy_Soldier::Update()
 		{
 			
 
-			if ((position.DistanceTo(App->player->position) < 350)&&(position.DistanceTo(App->player->position) > 250))
+			if ((position.DistanceTo(App->player->position) < 250)&&(position.DistanceTo(App->player->position) > 150))
 			{
 				if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 				{
