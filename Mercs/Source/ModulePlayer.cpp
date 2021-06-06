@@ -734,35 +734,35 @@ Update_Status ModulePlayer::PostUpdate()
 			App->particles->AddParticle(App->particles->explosion, 530, 40, Collider::Type::NONE, 10);
 
 			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 15);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 15);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 15);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 25);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 25);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 25);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 35);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 35);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 35);
+			App->particles->AddParticle(App->particles->explosion, 550, 90, Collider::Type::NONE, 15);
+			App->particles->AddParticle(App->particles->explosion, 600, 130, Collider::Type::NONE, 15);
+			App->particles->AddParticle(App->particles->explosion, 560, 140, Collider::Type::NONE, 25);
+			App->particles->AddParticle(App->particles->explosion, 500, 100, Collider::Type::NONE, 25);
+			App->particles->AddParticle(App->particles->explosion, 650, 80, Collider::Type::NONE, 25);
+			App->particles->AddParticle(App->particles->explosion, 690, 110, Collider::Type::NONE, 35);
+			App->particles->AddParticle(App->particles->explosion, 600, 170, Collider::Type::NONE, 35);
+			App->particles->AddParticle(App->particles->explosion, 530, 40, Collider::Type::NONE, 35);
 
 			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 40);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 40);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 40);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 55);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 55);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 55);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 70);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 70);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 70);
+			App->particles->AddParticle(App->particles->explosion, 550, 90, Collider::Type::NONE, 40);
+			App->particles->AddParticle(App->particles->explosion, 600, 130, Collider::Type::NONE, 40);
+			App->particles->AddParticle(App->particles->explosion, 560, 140, Collider::Type::NONE, 55);
+			App->particles->AddParticle(App->particles->explosion, 500, 100, Collider::Type::NONE, 55);
+			App->particles->AddParticle(App->particles->explosion, 650, 80, Collider::Type::NONE, 55);
+			App->particles->AddParticle(App->particles->explosion, 690, 110, Collider::Type::NONE, 70);
+			App->particles->AddParticle(App->particles->explosion, 600, 170, Collider::Type::NONE, 70);
+			App->particles->AddParticle(App->particles->explosion, 530, 40, Collider::Type::NONE, 70);
 
 			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 80);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 80);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 80);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 95);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 95);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 95);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 110);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 115);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 120);
-			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 125);
+			App->particles->AddParticle(App->particles->explosion, 550, 90, Collider::Type::NONE, 80);
+			App->particles->AddParticle(App->particles->explosion, 600, 130, Collider::Type::NONE, 80);
+			App->particles->AddParticle(App->particles->explosion, 560, 140, Collider::Type::NONE, 95);
+			App->particles->AddParticle(App->particles->explosion, 500, 100, Collider::Type::NONE, 95);
+			App->particles->AddParticle(App->particles->explosion, 650, 80, Collider::Type::NONE, 95);
+			App->particles->AddParticle(App->particles->explosion, 650, 80, Collider::Type::NONE, 110);
+			App->particles->AddParticle(App->particles->explosion, 690, 110, Collider::Type::NONE, 115);
+			App->particles->AddParticle(App->particles->explosion, 600, 170, Collider::Type::NONE, 120);
+			App->particles->AddParticle(App->particles->explosion, 530, 40, Collider::Type::NONE, 125);
 			App->particles->AddParticle(App->particles->explosion, 470, 60, Collider::Type::NONE, 130);
 		}
 
@@ -777,7 +777,7 @@ Update_Status ModulePlayer::PostUpdate()
 			//App->fonts->BlitText(30, 100, scoreFont, "President Rescued!"); // Text UI does not work
 			App->render->Blit(winScreen2, 8, 50, NULL, 0, true);
 
-			if (playerDelay <= 215) App->audio->PlayFx(gameClear);
+			if (playerDelay <= 270) App->audio->PlayFx(gameClear);
 
 			if (playerDelay >= 510 + 270)
 			{
