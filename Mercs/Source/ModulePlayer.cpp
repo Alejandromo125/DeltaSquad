@@ -820,7 +820,7 @@ Update_Status ModulePlayer::PostUpdate()
 	}
 	else if (playerLife > 50)
 	{
-		App->render->DrawQuad(quad, 165, 255, 126, 165, 0.0f, true);
+		App->render->DrawQuad(quad, 120, 255, 0, 165, 0.0f, true);
 	}
 	else if (playerLife > 20 && playerLife <= 50)
 	{

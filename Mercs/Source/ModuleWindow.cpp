@@ -4,6 +4,7 @@
 #include "Globals.h"
 
 #include "SDL/include/SDL.h"
+#include <SDL_image/include/SDL_image.h>
 
 
 ModuleWindow::ModuleWindow(bool startEnabled) : Module(startEnabled)
@@ -55,6 +56,14 @@ bool ModuleWindow::Init()
 			screenSurface = SDL_GetWindowSurface(window);
 
 			SDL_SetClipRect(screenSurface, &rectangleLimitation); // Does not work ???
+
+			SDL_Surface* surface = IMG_Load("Assets/icon.png");     // Declare an SDL_Surface to be filled in with pixel data from an image file
+
+			// The icon is attached to the window pointer
+			SDL_SetWindowIcon(window, surface);
+
+			// ...and the surface containing the icon pixel data is no longer required.
+			SDL_FreeSurface(surface);
 		}
 	}
 

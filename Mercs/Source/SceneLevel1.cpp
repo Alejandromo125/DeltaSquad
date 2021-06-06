@@ -548,6 +548,7 @@ bool SceneLevel1::CleanUp()
 	App->collisions->CleanUp();
 	App->collisions->Disable();
 
+
 	App->collisions->RemoveCollider(App->player->collider);
 
 	return true;

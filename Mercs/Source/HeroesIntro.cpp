@@ -56,7 +56,7 @@ Update_Status HeroesIntro::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
-	if (delay >= 2100) // <-- Whatever the animation takes
+	if (delay >= 2000) // <-- Whatever the animation takes
 	{
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 	}
