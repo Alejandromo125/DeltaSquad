@@ -31,7 +31,7 @@ public:
 
 	//The window's surface
 	SDL_Surface* screenSurface = nullptr;
-	SDL_Rect rectangleLimitation = { 0, 0, 224 * SCREEN_WIDTH, 384 * SCREEN_HEIGHT };
+	SDL_Rect rectangleLimitation = { 0, 0, 224 * SCREEN_SIZE, 384 * SCREEN_SIZE };
 
 };
 
