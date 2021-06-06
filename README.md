@@ -12,37 +12,37 @@ Mercs is a top-down run and gun arcade game, which means that the character or c
 
 **Useful Information:**
 
-KEYBOARD Gameplay:
+**KEYBOARD Gameplay:**
 
-Use the ARROW KEYS to move and SPACE BAR to shoot.
+-Use the ARROW KEYS to move and SPACE BAR to shoot.
 
-SPACE BAR to skip the initial screens
+-SPACE BAR to skip the initial screens
 
-GAMEPAD Gameplay:
+**GAMEPAD Gameplay:**
 
-Use the Left joystick to move and A button BAR to shoot.
+-Use the Left joystick to move and A button BAR to shoot.
 
-A button BAR to skip the initial screens
+-A button BAR to skip the initial screens
 
-KEYBOARD debug keys:
+**KEYBOARD debug keys:**
 
-A, D, W, S, to move the screen around
+-A, D, W, S, to move the screen around
 
-F1 to see colliders
+-F1 to see colliders
 
-F2 to turn ON/OFF god mode
+-F2 to turn ON/OFF god mode
 
-F3 direct Win Level 1
+-F3 direct Win Level 1
 
-F4 direct Win Level 2
+-F4 direct Win Level 2
 
-F5 direct Lose
+-F5 direct Lose
 
-F11 Toggle fullScreen ON/OFF
+-F11 Toggle fullScreen ON/OFF
 
-GAMEPAD debug buttons:
+**GAMEPAD debug buttons:**
 
-Right joystick to move the screen around
+-Right joystick to move the screen around
 
 
 # Members
