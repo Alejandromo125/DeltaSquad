@@ -340,7 +340,7 @@ bool ModuleParticles::Start()
 	enemyBomb.speed.x = 0; // Depends where the player and enemy are
 	enemyBomb.speed.y = 0; // Depends where the player and enemy are
 	enemyBomb.anim.loop = true;
-	enemyBomb.lifetime = 180;
+	enemyBomb.lifetime = 90;
 	enemyBomb.anim.speed = 0.2f;
 
 

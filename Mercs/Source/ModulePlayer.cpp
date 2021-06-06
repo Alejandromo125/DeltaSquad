@@ -813,8 +813,12 @@ Update_Status ModulePlayer::PostUpdate()
 	SDL_Rect bgquad;
 	bgquad = { 3, 336, 104, 14 };
 	App->render->DrawQuad(bgquad, 255, 255, 255, 165, 0.0f, true);
-
-	if (playerLife > 50)
+	if (playerLife >= 100)
+	{
+		playerLife = 100;
+		App->render->DrawQuad(quad, 0, 200, 255, 255, 0.0f, true);
+	}
+	else if (playerLife > 50)
 	{
 		App->render->DrawQuad(quad, 0, 255, 0, 165, 0.0f, true);
 	}
@@ -887,6 +891,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_BOMB) && destroyed == false && immunityTime >= 120)
 		{
+			App->particles->AddParticle(App->particles->bombExplosion, App->player->position.x, App->player->position.y, Collider::Type::NONE);
 
 			playerLife -= 15;
 			if (playerLife < 0) playerLife = 0;
@@ -901,6 +906,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 				destroyed = true;
 
 			}
+		}
+
+		if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_BOMB))
+		{
+			App->particles->AddParticle(App->particles->bombExplosion, App->player->position.x, App->player->position.y, Collider::Type::NONE);
+
+			App->input->ShakeController(0, 120, 0.15f);
 		}
 
 		if ((c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BOSS_ATTACK) && destroyed == false && immunityTime >= 120)

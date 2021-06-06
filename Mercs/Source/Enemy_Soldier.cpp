@@ -161,134 +161,179 @@ void Enemy_Soldier::Update()
 		}
 	}
 	
-		if (counter % 60 == 0)
+	if (counter % 60 == 0)
+	{
+		if (position.DistanceTo(App->player->position) < 250)
 		{
-			if (position.DistanceTo(App->player->position) < 250)
+
+			if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
+
+			}
+			if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+
+			}
+			if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
 			{
 
-				if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
-				{
-					App->particles->AddParticle(App->particles->shotEffect, position.x + 5, position.y + 25, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotDown, position.x + 5, position.y + 15, Collider::Type::ENEMY_SHOT);
-				
-				}
-				if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
-				{
-					App->particles->AddParticle(App->particles->shotEffect, position.x + 10, position.y - 5, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotUp, position.x + 10, position.y, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotRight, position.x + 18, position.y + 8, Collider::Type::ENEMY_SHOT);
 
-				}
-				if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
-				{
 
-					App->particles->AddParticle(App->particles->shotEffect, position.x + 25, position.y + 8, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotRight, position.x + 18, position.y + 8, Collider::Type::ENEMY_SHOT);
-				
-
-				}
-				if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
-				{
-					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
-					
-
-				}
-				
 			}
-		}
-		if (counter % 200 == 0)
-		{
-			//DIAGONAL SHOT IMPLEMENTATION
-			if (position.DistanceTo(App->player->position) < 150)
+			if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
 			{
-				if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
-				{
-					
-					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotUpLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
 
 
-				}
-				if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
-				{
-					App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
-
-
-				}
-				if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
-				{
-					App->particles->AddParticle(App->particles->shotEffect, position.x + 20, position.y + 8, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotUpRight, position.x + 20, position.y + 8, Collider::Type::ENEMY_SHOT);
-
-
-				}
-				if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
-				{
-					App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
-					App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
-
-
-				}
 			}
-			
-		}
-		
-		if (counter % 120 == 0)
-		{
-			
 
-			if ((position.DistanceTo(App->player->position) < 250)&&(position.DistanceTo(App->player->position) > 150))
+		}
+	}
+	if (counter % 200 == 0)
+	{
+		//DIAGONAL SHOT IMPLEMENTATION
+		if (position.DistanceTo(App->player->position) < 150)
+		{
+			if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
 			{
-				if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
-				{
-					App->particles->enemyBomb.speed.x = 0;
-					App->particles->enemyBomb.speed.y = 0;
-					App->particles->enemyBomb.speed.y = ((App->player->position.y - position.y) / 80);
-					App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-				}
-				if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
-				{
-					App->particles->enemyBomb.speed.x = 0;
-					App->particles->enemyBomb.speed.y = 0;
-					App->particles->enemyBomb.speed.y = ((App->player->position.y - position.y) / 80);
-					App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-				}
-				if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
-				{
-					App->particles->enemyBomb.speed.x = 0;
-					App->particles->enemyBomb.speed.y = 0;
-					App->particles->enemyBomb.speed.x = ((App->player->position.x - position.x) / 80);
-					App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-				
-				}
-				if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
-				{
-					App->particles->enemyBomb.speed.x = 0;
-					App->particles->enemyBomb.speed.y = 0;
-					App->particles->enemyBomb.speed.x = -((position.x - App->player->position.x) / 80);
-					App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-					
-				}
-			}
-			
 
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotUpLeft, position.x - 3, position.y + 8, Collider::Type::ENEMY_SHOT);
+
+
+			}
+			if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x - 8, position.y + 20, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownLeft, position.x - 3, position.y + 20, Collider::Type::ENEMY_SHOT);
+
+
+			}
+			if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 20, position.y + 8, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotUpRight, position.x + 20, position.y + 8, Collider::Type::ENEMY_SHOT);
+
+
+			}
+			if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
+			{
+				App->particles->AddParticle(App->particles->shotEffect, position.x + 8, position.y + 15, Collider::Type::NONE);
+				App->particles->AddParticle(App->particles->EnemyshotDownRight, position.x + 8, position.y + 15, Collider::Type::ENEMY_SHOT);
+
+
+			}
 		}
-		if (App->particles->enemyBomb.isAlive==true)
+
+	}
+
+	if (counter % 300 == 0)
+	{
+
+
+		if ((position.DistanceTo(App->player->position) < 250) && (position.DistanceTo(App->player->position) > 80))
 		{
-			explosionDelay++;
-			if (explosionDelay == 118)
+			/*
+			if ((position.x == App->player->position.x) && (position.y < App->player->position.y))
 			{
 				App->particles->enemyBomb.speed.x = 0;
 				App->particles->enemyBomb.speed.y = 0;
-				App->input->ShakeController(0, 120, 0.15f);
-				App->particles->AddParticle(App->particles->explosion, App->particles->enemyBomb.position.x, App->particles->enemyBomb.position.x, Collider::Type::NONE); // Does not work
-				explosionDelay = 0;
-				App->particles->enemyBomb.SetToDelete();
+				App->particles->enemyBomb.speed.y = ((App->player->position.y - position.y) / 80);
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+			}
+			if ((position.x == App->player->position.x) && (position.y > App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.y = ((App->player->position.y - position.y) / 80);
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+			}
+			if ((position.x < App->player->position.x) && (position.y == App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.x = ((App->player->position.x - position.x) / 80);
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+			}
+			if ((position.x > App->player->position.x) && (position.y == App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.x = -((position.x - App->player->position.x) / 80);
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+			}
+			*/
+
+			// Diagonal throws
+			if ((position.x < App->player->position.x) && (position.y < App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.x = 2;
+				App->particles->enemyBomb.speed.y = 1;
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+				App->particles->AddParticle(App->particles->bombExplosion, position.x + 180, position.y + 90, Collider::Type::NONE, 90);
+			}
+			if ((position.x < App->player->position.x) && (position.y > App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.x = 2;
+				App->particles->enemyBomb.speed.y = -1;
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+				App->particles->AddParticle(App->particles->bombExplosion, position.x + 180, position.y - 90, Collider::Type::NONE, 90);
+			}
+			if ((position.x > App->player->position.x) && (position.y < App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.y = 1;
+				App->particles->enemyBomb.speed.x = -2;
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+				App->particles->AddParticle(App->particles->bombExplosion, position.x - 180, position.y + 90, Collider::Type::NONE, 90);
 				
 			}
-			
+			if ((position.x > App->player->position.x) && (position.y > App->player->position.y))
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+				App->particles->enemyBomb.speed.y = -1;
+				App->particles->enemyBomb.speed.x = -2;
+				App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+				App->particles->AddParticle(App->particles->bombExplosion, position.x - 180, position.y - 90, Collider::Type::NONE, 90);
+			}
 		}
+
+
+	}
+	if (App->particles->enemyBomb.isAlive == true)
+	{
+		explosionDelay++;
+		if (explosionDelay == 118)
+		{
+			App->particles->enemyBomb.speed.x = 0;
+			App->particles->enemyBomb.speed.y = 0;
+			App->input->ShakeController(0, 120, 0.15f);
+			App->particles->AddParticle(App->particles->explosion, App->particles->enemyBomb.position.x, App->particles->enemyBomb.position.x, Collider::Type::NONE); // Does not work
+			explosionDelay = 0;
+			App->particles->enemyBomb.SetToDelete();
+
+		}
+
+	}
 		
 	
 	// Call to the base class. It must be called at the end
