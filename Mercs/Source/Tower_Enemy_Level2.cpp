@@ -28,8 +28,8 @@ TowerEnemy::TowerEnemy(int x, int y) : Enemy(x, y)
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 86, 92 }, Collider::Type::TOWER_ENEMY, (Module*)App->enemies);
 
-	explosionDelay = 120;
-
+	
+	explosionDelay = 0;
 }
 
 void TowerEnemy::Update()
@@ -38,81 +38,45 @@ void TowerEnemy::Update()
 
 	explosionDelay++;
 	counter++;
-
-	if (App->player->position.y > position.y)
+	/*
+	if ((App->player->position.y > position.y)&& (App->player->position.x == position.x))
 	{
 
 		currentAnim = &ShootDown;
-		App->particles->enemyBomb.speed.y = (App->player->position.y - (position.y + 20)) / 120;
+		App->particles->enemyBomb.speed.y = 1;
+		App->particles->enemyBomb.speed.x = 0;
 	}
 
-	if (App->player->position.x < position.x)
+	if ((App->player->position.x < position.x)&& (App->player->position.y == position.y))
 	{
 		currentAnim = &ShootLeft;
-		App->particles->enemyBomb.speed.x = -(App->player->position.x - (position.x + 10)) / 120;
-
+		App->particles->enemyBomb.speed.x = -1;
+		App->particles->enemyBomb.speed.y = 0;
 	}
-	if (App->player->position.x > position.x)
+	if ((App->player->position.x > position.x) && (App->player->position.y == position.y))
 	{
 		currentAnim = &ShootRight;
-		App->particles->enemyBomb.speed.x = (App->player->position.x - (position.x + 10)) / 120;
+		App->particles->enemyBomb.speed.x = 1;
+		App->particles->enemyBomb.speed.y = 0;
 	}
 
 	if ((App->player->position.y > position.y) && (App->player->position.x > position.x))
 	{
 		currentAnim = &ShootDownRight;
-		App->particles->enemyBomb.speed.x = (App->player->position.x - (position.x + 10)) / 120;
-		App->particles->enemyBomb.speed.y = (App->player->position.y - (position.y + 20)) / 120;
+		App->particles->enemyBomb.speed.y = 1;
+		App->particles->enemyBomb.speed.x = 1;
 	}
 
 	if ((App->player->position.x < position.x) && (App->player->position.y > position.y))
 	{
 		currentAnim = &ShootDownLeft;
-		App->particles->enemyBomb.speed.x = -(App->player->position.x - (position.x + 10)) / 120;
-		App->particles->enemyBomb.speed.y = (App->player->position.y - (position.y + 20)) / 120;
+		App->particles->enemyBomb.speed.y = 1;
+		App->particles->enemyBomb.speed.x = -1;
 	}
+	*/
 
-	if (counter % 120 == 0)
-	{
-		if (position.DistanceTo(App->player->position) < 350)
-		{
-			explosionDelay = 0;
 
-			App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-			App->particles->AddParticle(App->particles->bombExplosion, position.x + 5, position.y + 15, Collider::Type::NONE);
-			if (explosionDelay == 118)
-			{
-				App->particles->bombExplosion.speed.x = 0;
-				App->particles->bombExplosion.speed.y = 0;
-			}
-		}
-	}
-
-	if (counter % 120 == 0)
-	{
-		//DIAGONAL SHOT IMPLEMENTATION
-
-		if (position.DistanceTo(App->player->position) < 350)
-		{
-			explosionDelay = 0;
-
-			App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
-			App->particles->AddParticle(App->particles->bombExplosion, position.x + 5, position.y + 15, Collider::Type::NONE);
-			if (explosionDelay == 118)
-			{
-				App->particles->bombExplosion.speed.x = 0;
-				App->particles->bombExplosion.speed.y = 0;
-			}
-			
-		}
-
-	}
-
-	if (explosionDelay == 118)
-	{
-		App->input->ShakeController(0, 120, 0.15f);
-		App->particles->AddParticle(App->particles->bombExplosion, App->particles->bombExplosion.position.x + 5, App->particles->bombExplosion.position.y + 15, Collider::Type::NONE); // Does not work
-	}
+	
 
 	if (EnemyHP <= 0)
 	{
@@ -134,7 +98,31 @@ void TowerEnemy::Update()
 		App->particles->AddParticle(App->particles->explosion, position.x + 70, position.y + 80, Collider::Type::NONE, 10);
 
 	}
+	/*
+	if (counter % 120 == 0)
+	{
+		//DIAGONAL SHOT IMPLEMENTATION
 
+		if (position.DistanceTo(App->player->position) < 350)
+		{
+		
+			App->particles->AddParticle(App->particles->enemyBomb, position.x + 5, position.y + 15, Collider::Type::ENEMY_BOMB);
+
+			if (explosionDelay % 40 == 0)
+			{
+				App->particles->enemyBomb.speed.x = 0;
+				App->particles->enemyBomb.speed.y = 0;
+			}
+			
+		}
+
+	}
+	if (explosionDelay % 40 == 0)
+	{
+		App->input->ShakeController(0, 120, 0.15f);
+		App->particles->AddParticle(App->particles->explosion, App->particles->enemyBomb.position.x + 5, App->particles->enemyBomb.position.y + 15, Collider::Type::ENEMY_BOMB); // Does not work
+	}
+	*/
 
 
 

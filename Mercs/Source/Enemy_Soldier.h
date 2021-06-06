@@ -17,7 +17,7 @@ public:
 
 	
 	int counter;
-	
+	int explosionDelay;
 	
 
 private:

@@ -110,6 +110,8 @@ public:
 
 	//Template particle for bomb thrown by enemy
 	Particle enemyBomb;
+
+
 	Particle bombExplosion;
 
 	//Item Particles
