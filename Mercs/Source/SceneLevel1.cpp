@@ -222,7 +222,6 @@ bool SceneLevel1::Start()
 
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 178 - 120, 1340 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 401 - 120, 1280 - 1100);
-	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 210 - 120, 1280 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 610 - 120, 930 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 390 - 120, 880 - 1100);
 	App->enemies->AddEnemy(Enemy_Type::SOLDIER, 420 - 120, 790 - 1100);

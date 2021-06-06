@@ -103,6 +103,9 @@
     <ClCompile Include="HeroesIntro.cpp">
       <Filter>Source FIles\Modules\Gameplay</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleEndPlane.cpp">
+      <Filter>Source FIles\Modules\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -212,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="HeroesIntro.h">
       <Filter>Source FIles\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleEndPlane.h">
+      <Filter>Source FIles\Modules\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

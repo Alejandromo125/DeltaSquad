@@ -33,7 +33,7 @@ public:
 public:
 	
 	// The scene sprite sheets loaded into an SDL_Texture
-	SDL_Texture* Level1FullMapTexture = nullptr;
+	SDL_Texture* Level2FullMapTexture = nullptr;
 	//SDL_Texture* bgTexture = nullptr;
 	//SDL_Texture* LevelIntroTexture = nullptr;
 

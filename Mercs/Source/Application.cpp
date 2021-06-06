@@ -16,6 +16,7 @@
 #include "SceneLevel2.h"
 #include "ModuleBreakable.h"
 #include "ModuleParticles.h"
+#include "ModuleEndPlane.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
@@ -43,13 +44,14 @@ Application::Application()
 	modules[11] =	sceneLevel_2 =  new SceneLevel2(false);		//Gameplay scene starts disabled
 	modules[12] =	breakableParticles = new ModuleBreakable(false);
 	modules[13] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[14] =	particles =		new ModuleParticles(false);
-	modules[15] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
+	modules[14] =	endPlane =		new ModuleEndPlane(false);
+	modules[15] =	particles =		new ModuleParticles(false);
+	modules[16] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[16] =	collisions =	new ModuleCollisions(true);
-	modules[17] =	fade =			new ModuleFadeToBlack(true);
-	modules[18] =	fonts =			new ModuleFonts(true);
-	modules[19] =	render =		new ModuleRender(true);
+	modules[17] =	collisions =	new ModuleCollisions(true);
+	modules[18] =	fade =			new ModuleFadeToBlack(true);
+	modules[19] =	fonts =			new ModuleFonts(true);
+	modules[20] =	render =		new ModuleRender(true);
 }
 
 Application::~Application()
