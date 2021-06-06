@@ -50,7 +50,7 @@ bool ModuleWindow::Init()
 		}
 		else
 		{
-			
+			SDL_SetClipRect(screenSurface, &rectangleLimitation); // Does not work ???
 
 			screenSurface = SDL_GetWindowSurface(window);
 

@@ -86,7 +86,7 @@ int main(int argc, char* argv[])
 				}
 				else if (fullScreen == true)
 				{
-					SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+					SDL_SetWindowFullscreen(App->window->window, SDL_WINDOW_FULLSCREEN);
 				}
 
 				if (status == Update_Status::UPDATE_ERROR)
