@@ -46,8 +46,8 @@ bool WhiteHouseIntro::Start()
 
 	delay = 0;
 	//On apareixen els Helicopters
-	counterFrame_x = 60;
-	counterFrame_y = 60;
+	counterFrame_x = 80;
+	counterFrame_y = 70;
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -74,7 +74,7 @@ Update_Status WhiteHouseIntro::Update()
 	if ((delay % 10) == 0)
 	{
 		counterFrame_y--;
-		if (delay >= 120)
+		if (delay >= 180)
 		{
 			counterFrame_x--;
 		}
