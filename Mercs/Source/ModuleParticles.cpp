@@ -337,8 +337,8 @@ bool ModuleParticles::Start()
 	enemyBomb.anim.PushBack({ 403, 384, 20, 20 });
 	enemyBomb.anim.PushBack({ 433, 384, 20, 20 });
 	enemyBomb.anim.PushBack({ 465, 384, 20, 20 });
-	enemyBomb.speed.x = 0; // Depends where the player is
-	enemyBomb.speed.y = 0; // Depends where the player is
+	enemyBomb.speed.x = 0; // Depends where the player and enemy are
+	enemyBomb.speed.y = 0; // Depends where the player and enemy are
 	enemyBomb.anim.loop = false;
 	enemyBomb.anim.speed = 0.2f;
 
