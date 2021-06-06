@@ -328,6 +328,30 @@ bool ModuleParticles::Start()
 	healingFood.anim.loop = false;
 	healingFood.anim.speed = 0.0f;
 
+	// Enemy bomb particle
+	enemyBomb.anim.PushBack({ 372, 363, 20, 20 });
+	enemyBomb.anim.PushBack({ 402, 362, 20, 20 });
+	enemyBomb.anim.PushBack({ 435, 360, 20, 20 });
+	enemyBomb.anim.PushBack({ 464, 360, 20, 20 });
+	enemyBomb.anim.PushBack({ 372, 384, 20, 20 });
+	enemyBomb.anim.PushBack({ 403, 384, 20, 20 });
+	enemyBomb.anim.PushBack({ 433, 384, 20, 20 });
+	enemyBomb.anim.PushBack({ 465, 384, 20, 20 });
+	enemyBomb.speed.x = 0; // Depends where the player is
+	enemyBomb.speed.y = 0; // Depends where the player is
+	enemyBomb.anim.loop = false;
+	enemyBomb.anim.speed = 0.2f;
+
+	// Bomb Explosion particle
+	bombExplosion.anim.PushBack({ 108, 0, 32, 40 });
+	bombExplosion.anim.PushBack({ 142, 0, 32, 40 });
+	bombExplosion.anim.PushBack({ 178, 0, 32, 40 });
+	bombExplosion.anim.PushBack({ 214, 0, 32, 40 });
+	bombExplosion.speed.x = 0;
+	bombExplosion.speed.y = 0;
+	bombExplosion.anim.loop = false;
+	bombExplosion.anim.speed = 0.15f;
+
 	return true;
 }
 
