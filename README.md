@@ -3,6 +3,8 @@
 Games Development - Project I - My first amazing game: 
 **https://github.com/Alejandromo125/DeltaSquad**
 
+Project web: **https://alejandromo125.github.io/DeltaSquad/**
+
 # Mercs
 ***
 
