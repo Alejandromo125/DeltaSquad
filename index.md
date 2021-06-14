@@ -27,7 +27,7 @@ The objective of the game consists on the following, the players are a group of 
 ## Gameplay
 
 - This is the full gameplay of our tribute to "Mercs" we have done the first level completely and the second level almost completely except from 1 enemy and the boss of the second level itself
-- [Direct link to youtube](https://youtu.be/bDwPMNx_Z8U)
+- [Direct link to youtube](https://youtu.be/tEACKqkK7Ls)
 
 ## Debugging functionalities
 - With WASD you can move the camera inside of the game as another debug funcitonality.
